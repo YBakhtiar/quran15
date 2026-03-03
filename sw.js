@@ -1,6 +1,8 @@
-const CACHE_NAME = 'quran-cache-v5';
+const CACHE_NAME = 'quran-cache-final';
+const IMAGE_CACHE = 'quran-images-cache';
 
-const ASSETS_TO_CACHE = [
+// فایل‌های اصلی
+const CORE_FILES = [
   './',
   './index.html',
   './manifest.json',
@@ -8,94 +10,55 @@ const ASSETS_TO_CACHE = [
   'https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css'
 ];
 
-self.addEventListener('install', event => {
+self.addEventListener('install', e => {
   self.skipWaiting();
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('کش کردن فایل‌های اصلی');
-        return cache.addAll(ASSETS_TO_CACHE);
-      })
+  e.waitUntil(
+    caches.open(CACHE_NAME).then(cache => cache.addAll(CORE_FILES))
   );
 });
 
-self.addEventListener('activate', event => {
+self.addEventListener('activate', e => {
   self.clients.claim();
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) {
-            console.log('حذف کش قدیمی:', cacheName);
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
+  e.waitUntil(
+    caches.keys().then(keys => 
+      Promise.all(keys.map(key => {
+        if (key !== CACHE_NAME && key !== IMAGE_CACHE) {
+          return caches.delete(key);
+        }
+      }))
+    )
   );
 });
 
-self.addEventListener('fetch', event => {
-  if (event.request.method !== 'GET') return;
+self.addEventListener('fetch', e => {
+  const url = e.request.url;
   
-  const url = new URL(event.request.url);
-  const requestPath = url.pathname;
-  
-  // برای تصاویر قرآن
-  if (requestPath.includes('/images/Quran') && requestPath.endsWith('.jpg')) {
-    event.respondWith(
-      caches.match(event.request)
-        .then(cachedResponse => {
-          if (cachedResponse) {
-            return cachedResponse;
-          }
+  // اگه تصویر قرآن هست
+  if (url.includes('/images/Quran') && url.endsWith('.jpg')) {
+    e.respondWith(
+      caches.open(IMAGE_CACHE).then(cache => {
+        return cache.match(e.request).then(cached => {
+          if (cached) return cached;
           
-          return fetch(event.request)
-            .then(networkResponse => {
-              if (networkResponse && networkResponse.status === 200) {
-                const responseToCache = networkResponse.clone();
-                caches.open(CACHE_NAME)
-                  .then(cache => {
-                    cache.put(event.request, responseToCache);
-                  });
-              }
-              return networkResponse;
-            })
-            .catch(() => {
-              console.log('تصویر در دسترس نیست:', requestPath);
-              return new Response('', { status: 404, statusText: 'Not Found' });
-            });
-        })
+          return fetch(e.request).then(network => {
+            if (network.ok) {
+              cache.put(e.request, network.clone());
+            }
+            return network;
+          }).catch(() => {
+            // برگردوندن یه تصویر خالی به جای خطا
+            return new Response('', {status: 200});
+          });
+        });
+      })
     );
     return;
   }
   
-  // برای سایر درخواست‌ها
-  event.respondWith(
-    caches.match(event.request)
-      .then(cachedResponse => {
-        if (cachedResponse) {
-          return cachedResponse;
-        }
-        
-        return fetch(event.request)
-          .then(networkResponse => {
-            if (networkResponse && networkResponse.status === 200) {
-              const responseToCache = networkResponse.clone();
-              caches.open(CACHE_NAME)
-                .then(cache => {
-                  cache.put(event.request, responseToCache);
-                });
-            }
-            return networkResponse;
-          })
-          .catch(error => {
-            console.log('خطا در درخواست:', error);
-            if (event.request.mode === 'navigate') {
-              return caches.match('./index.html');
-            }
-            return new Response('', { status: 404, statusText: 'Not Found' });
-          });
-      })
+  // برای بقیه فایل‌ها
+  e.respondWith(
+    caches.match(e.request).then(cached => {
+      return cached || fetch(e.request);
+    })
   );
 });
