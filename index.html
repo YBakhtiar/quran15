@@ -8,33 +8,206 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vazirmatn/33.0.0/Vazirmatn-font-face.min.css">
     <link href="https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css" rel="stylesheet" type="text/css">
     <style>
-        body { background-color: #0d1622; font-family: 'Vazirmatn', 'Vazir', Tahoma, sans-serif !important; margin: 0; padding: 0; display: flex; height: 100vh; overflow: hidden; }
-        .menu-toggle { position: fixed; top: 20px; right: 20px; background: rgba(255,255,255,0.1); color: #cfddec; border: 1px solid rgba(255,255,255,0.2); font-size: 20px; cursor: pointer; padding: 12px 16px; border-radius: 14px; z-index: 1002; }
-        .main-download-btn { position: fixed; top: 20px; left: 20px; background: rgba(255,255,255,0.05); color: #8da4be; border: 1px solid rgba(255,255,255,0.15); font-size: 13px; cursor: pointer; padding: 10px 15px; border-radius: 12px; z-index: 1002; }
-        .main-download-btn:hover { background: rgba(255,255,255,0.15); color: #fff; }
-        .main-download-btn.done { color: #4ade80; pointer-events: none; }
-        .progress-tooltip { position: fixed; top: 65px; left: 20px; color: #8da4be; font-size: 11px; background: rgba(13,22,34,0.8); padding: 4px 8px; border-radius: 6px; display: none; z-index: 1002; }
-        .sidebar { position: fixed; top: 0; right: -220px; width: 190px; background: rgba(17,29,43,0.75); backdrop-filter: blur(10px); border-left: 1px solid rgba(255,255,255,0.1); height: 100vh; padding: 85px 0 20px 0; display: flex; flex-direction: column; z-index: 1001; transition: right 0.3s; }
-        .sidebar.open { right: 0; }
-        .sidebar-title { color: #8da4be; text-align: center; margin-bottom: 15px; font-size: 16px; font-weight: bold; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 15px; }
-        #juzList { overflow-y: auto; flex-grow: 1; padding-bottom: 10px; }
-        .sidebar button.juz-btn { display: block; width: 82%; margin: 6px auto; padding: 9px; background: rgba(255,255,255,0.05); color: #8da4be; border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; cursor: pointer; font-size: 14px; }
-        .sidebar button.juz-btn:hover { background: rgba(255,255,255,0.15); color: #fff; }
-        .sidebar button.delete-btn { color: #c96a75; border: 1px dashed rgba(201,106,117,0.3); background: transparent; margin-top: 25px; }
-        .sidebar button.delete-btn:hover { background: rgba(201,106,117,0.1); color: #e57e8a; }
-        .main-content { position: relative; flex-grow: 1; display: flex; align-items: center; justify-content: center; height: 100vh; width: 100%; }
-        .quran-container { display: flex; justify-content: center; align-items: center; gap: 15px; height: 96vh; width: 100%; padding: 0 20px; box-sizing: border-box; }
-        .page { height: 100%; max-width: 48%; object-fit: contain; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); background-color: white; }
-        .nav-btn { position: absolute; top: 0; height: 100%; background: rgba(13,22,34,0.05); color: #8da4be; padding: 0 8px; cursor: pointer; z-index: 100; border: none; display: flex; align-items: center; justify-content: center; font-size: 28px; opacity: 0.7; }
-        .nav-btn:hover { background: rgba(255,255,255,0.1); color: #fff; opacity: 1; }
-        .right-btn { right: 0; border-left: 1px solid rgba(255,255,255,0.05); }
-        .left-btn { left: 0; border-right: 1px solid rgba(255,255,255,0.05); }
-        .fullscreen-btn { position: fixed; bottom: 25px; left: 25px; background: rgba(255,255,255,0.1); color: #cfddec; border: 1px solid rgba(255,255,255,0.2); width: 50px; height: 50px; border-radius: 50%; font-size: 20px; display: flex; justify-content: center; align-items: center; cursor: pointer; opacity: 0.7; z-index: 1000; }
+        body {
+            background-color: #0d1622;
+            font-family: 'Vazirmatn', 'Vazir', Tahoma, sans-serif !important;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .menu-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.1);
+            color: #cfddec;
+            border: 1px solid rgba(255,255,255,0.2);
+            font-size: 20px;
+            cursor: pointer;
+            padding: 12px 16px;
+            border-radius: 14px;
+            z-index: 1002;
+        }
+        .main-download-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.05);
+            color: #8da4be;
+            border: 1px solid rgba(255,255,255,0.15);
+            font-size: 13px;
+            cursor: pointer;
+            padding: 10px 15px;
+            border-radius: 12px;
+            z-index: 1002;
+        }
+        .main-download-btn:hover {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+        }
+        .progress-tooltip {
+            position: fixed;
+            top: 65px;
+            left: 20px;
+            color: #8da4be;
+            font-size: 11px;
+            background: rgba(13,22,34,0.8);
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: none;
+            z-index: 1002;
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -220px;
+            width: 190px;
+            background: rgba(17,29,43,0.75);
+            backdrop-filter: blur(10px);
+            border-left: 1px solid rgba(255,255,255,0.1);
+            height: 100vh;
+            padding: 85px 0 20px 0;
+            display: flex;
+            flex-direction: column;
+            z-index: 1001;
+            transition: right 0.3s;
+        }
+        .sidebar.open {
+            right: 0;
+        }
+        .sidebar-title {
+            color: #8da4be;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 15px;
+        }
+        #juzList {
+            overflow-y: auto;
+            flex-grow: 1;
+            padding-bottom: 10px;
+        }
+        .sidebar button.juz-btn {
+            display: block;
+            width: 82%;
+            margin: 6px auto;
+            padding: 9px;
+            background: rgba(255,255,255,0.05);
+            color: #8da4be;
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .sidebar button.juz-btn:hover {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+        }
+        .sidebar button.delete-btn {
+            color: #c96a75;
+            border: 1px dashed rgba(201,106,117,0.3);
+            background: transparent;
+            margin-top: 25px;
+        }
+        .sidebar button.delete-btn:hover {
+            background: rgba(201,106,117,0.1);
+            color: #e57e8a;
+        }
+        .main-content {
+            position: relative;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100%;
+        }
+        .quran-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            height: 96vh;
+            width: 100%;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        .page {
+            height: 100%;
+            max-width: 48%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background-color: white;
+        }
+        .nav-btn {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            background: rgba(13,22,34,0.05);
+            color: #8da4be;
+            padding: 0 8px;
+            cursor: pointer;
+            z-index: 100;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            opacity: 0.7;
+        }
+        .nav-btn:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            opacity: 1;
+        }
+        .right-btn {
+            right: 0;
+            border-left: 1px solid rgba(255,255,255,0.05);
+        }
+        .left-btn {
+            left: 0;
+            border-right: 1px solid rgba(255,255,255,0.05);
+        }
+        .fullscreen-btn {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            background: rgba(255,255,255,0.1);
+            color: #cfddec;
+            border: 1px solid rgba(255,255,255,0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0.7;
+            z-index: 1000;
+        }
         @media screen and (max-width: 768px) {
-            .quran-container { padding: 10px; gap: 0; }
-            .page { max-width: 100%; width: 100%; height: auto; max-height: 95vh; }
-            .nav-btn { display: none !important; }
-            .fullscreen-btn { display: none !important; }
+            .quran-container {
+                padding: 10px;
+                gap: 0;
+            }
+            .page {
+                max-width: 100%;
+                width: 100%;
+                height: auto;
+                max-height: 95vh;
+            }
+            .nav-btn {
+                display: none !important;
+            }
+            .fullscreen-btn {
+                display: none !important;
+            }
         }
     </style>
 </head>
@@ -58,14 +231,12 @@
     <script>
         const totalPages = 623;
         let currentPage = 1;
-        const CACHE_VERSION = 'quran-cache-v3';
 
+        // ثبت سرویس ورکر
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                    .then(reg => console.log('SW Registered:', reg.scope))
-                    .catch(err => console.log('SW Error:', err));
-            });
+            navigator.serviceWorker.register('sw.js')
+                .then(reg => console.log('Service Worker ثبت شد'))
+                .catch(err => console.log('خطا:', err));
         }
 
         function setDownloadedUI() {
@@ -77,41 +248,54 @@
 
         function resetDownloadedUI() {
             const dlBtn = document.getElementById('mainDownloadBtn');
-            if(dlBtn) { dlBtn.style.display = "block"; dlBtn.innerHTML = "📥 دانلود آفلاین"; dlBtn.style.pointerEvents = "auto"; }
+            if(dlBtn) {
+                dlBtn.style.display = "block";
+                dlBtn.innerHTML = "📥 دانلود آفلاین";
+                dlBtn.style.pointerEvents = "auto";
+            }
             const delBtn = document.getElementById('deleteBtnSidebar');
             if(delBtn) delBtn.style.display = "none";
         }
 
         async function startDownload() {
             if (!confirm("آیا مطمئن هستید؟ حدود ۷۰ مگابایت حجم دارد.")) return;
+            
             const dlBtn = document.getElementById('mainDownloadBtn');
             const progress = document.getElementById('progressTooltip');
+            
             dlBtn.style.pointerEvents = "none";
             dlBtn.innerHTML = "⏳ در حال دانلود...";
             progress.style.display = "block";
+
             try {
-                const cache = await caches.open(CACHE_VERSION);
+                const cache = await caches.open('quran-v1');
                 let downloadedCount = 0;
                 const batchSize = 10;
+                
                 for (let i = 1; i <= totalPages; i += batchSize) {
                     const promises = [];
                     for (let j = 0; j < batchSize && (i + j) <= totalPages; j++) {
                         let pageNum = String(i + j).padStart(3, '0');
-                        let imgUrl = `images/Quran${pageNum}.jpg`;
-                        promises.push(fetch(imgUrl).then(async (response) => {
-                            if (response.ok) {
-                                await cache.put(imgUrl, response.clone());
-                                return true;
-                            }
-                            return false;
-                        }).catch(e => false));
+                        let imgUrl = 'images/Quran' + pageNum + '.jpg';
+                        
+                        promises.push(
+                            fetch(imgUrl).then(async (response) => {
+                                if (response.ok) {
+                                    await cache.put(imgUrl, response.clone());
+                                    return true;
+                                }
+                                return false;
+                            }).catch(e => false)
+                        );
                     }
                     await Promise.all(promises);
                     downloadedCount += batchSize;
-                    progress.innerText = `پیشرفت: ${Math.min(downloadedCount, totalPages)} از ${totalPages}`;
+                    progress.innerText = 'پیشرفت: ' + Math.min(downloadedCount, totalPages) + ' از ' + totalPages;
                 }
+                
                 setDownloadedUI();
                 alert("دانلود با موفقیت انجام شد! اکنون آفلاین هستید.");
+                
             } catch (error) {
                 console.error("Download Error:", error);
                 progress.innerText = "❌ خطا در دانلود";
@@ -124,18 +308,27 @@
         async function deleteOfflineFiles() {
             if (!confirm("فایل‌های آفلاین حذف شوند؟")) return;
             try {
-                await caches.delete(CACHE_VERSION);
+                await caches.delete('quran-v1');
                 location.reload();
-            } catch(e) { alert("خطا در حذف فایل‌ها"); }
+            } catch(e) {
+                alert("خطا در حذف فایل‌ها");
+            }
         }
 
-        function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
-        function toggleFullScreen() {
-            if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(err => {});
-            else if (document.exitFullscreen) document.exitFullscreen();
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
         }
+
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {});
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+            }
+        }
+
         function toPersianNum(num) {
-            const farsiDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+            const farsiDigits = ['۰', '', '۲', '', '۴', '', '۶', '', '۸', ''];
             return num.toString().replace(/\d/g, x => farsiDigits[x]);
         }
 
@@ -154,6 +347,7 @@
             };
             juzListDiv.appendChild(btn);
         }
+        
         const delBtn = document.createElement("button");
         delBtn.id = "deleteBtnSidebar";
         delBtn.className = "juz-btn delete-btn";
@@ -162,25 +356,33 @@
         delBtn.onclick = deleteOfflineFiles;
         juzListDiv.appendChild(delBtn);
 
-        function formatPageNumber(num) { return String(num).padStart(3, '0'); }
+        function formatPageNumber(num) {
+            return String(num).padStart(3, '0');
+        }
 
         function updatePages() {
             let isMobile = window.innerWidth <= 768;
             const rightImg = document.getElementById("rightPage");
             const leftImg = document.getElementById("leftPage");
+
             if (isMobile) {
-                rightImg.src = `images/Quran${formatPageNumber(currentPage)}.jpg`;
+                rightImg.src = 'images/Quran' + formatPageNumber(currentPage) + '.jpg';
                 leftImg.style.display = "none";
             } else {
                 let rightPageNum = (currentPage % 2 !== 0) ? currentPage : currentPage - 1;
                 let leftPageNum = rightPageNum + 1;
-                rightImg.src = `images/Quran${formatPageNumber(rightPageNum)}.jpg`;
+
+                rightImg.src = 'images/Quran' + formatPageNumber(rightPageNum) + '.jpg';
+                
                 if (leftPageNum <= totalPages) {
-                    leftImg.src = `images/Quran${formatPageNumber(leftPageNum)}.jpg`;
+                    leftImg.src = 'images/Quran' + formatPageNumber(leftPageNum) + '.jpg';
                     leftImg.style.display = "block";
-                } else { leftImg.style.display = "none"; }
+                } else {
+                    leftImg.style.display = "none";
+                }
                 if (currentPage % 2 === 0) currentPage = rightPageNum;
             }
+            
             localStorage.setItem('lastQuranPage', currentPage);
         }
 
@@ -190,6 +392,7 @@
             else if (currentPage < totalPages) currentPage++;
             updatePages();
         }
+
         function prevPage() {
             let step = window.innerWidth <= 768 ? 1 : 2;
             if (currentPage - step >= 1) currentPage -= step;
@@ -199,7 +402,12 @@
 
         let touchStartX = 0, touchEndX = 0;
         const swipeArea = document.getElementById('swipeArea');
-        swipeArea.addEventListener('touchstart', e => { if(e.touches.length > 1) return; touchStartX = e.changedTouches[0].screenX; }, {passive: true});
+        
+        swipeArea.addEventListener('touchstart', e => {
+            if(e.touches.length > 1) return;
+            touchStartX = e.changedTouches[0].screenX;
+        }, {passive: true});
+
         swipeArea.addEventListener('touchend', e => {
             if(e.touches && e.touches.length > 0) return;
             if (window.visualViewport && window.visualViewport.scale > 1.05) return;
@@ -208,14 +416,23 @@
             if (touchEndX - touchStartX > 100) prevPage();
         }, {passive: true});
 
-        document.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') nextPage(); if (e.key === 'ArrowRight') prevPage(); });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowLeft') nextPage();
+            if (e.key === 'ArrowRight') prevPage();
+        });
+
         window.addEventListener('resize', updatePages);
 
         window.onload = function() {
             let saved = localStorage.getItem('lastQuranPage');
             if (saved) currentPage = parseInt(saved);
             updatePages();
-            caches.open(CACHE_VERSION).then(cache => cache.match('images/Quran001.jpg')).then(res => { if (res) setDownloadedUI(); });
+            
+            caches.open('quran-v1').then(cache => {
+                return cache.match('images/Quran001.jpg');
+            }).then(res => {
+                if (res) setDownloadedUI();
+            });
         };
     </script>
 </body>
