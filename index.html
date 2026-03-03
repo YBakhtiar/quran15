@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="manifest.json">
     <title>القرآن الكريم</title>
     
@@ -18,7 +18,6 @@
             display: flex;
             height: 100vh;
             overflow: hidden;
-            /* جلوگیری از رفرش شدن ناخواسته با کشیدن به پایین در موبایل */
             overscroll-behavior-y: contain; 
         }
         
@@ -276,7 +275,7 @@
         @media screen and (max-width: 768px) {
             .quran-container {
                 padding: 10px;
-                gap: 0; /* فاصله حذف می‌شود چون فقط یک عکس داریم */
+                gap: 0; 
             }
             .page {
                 max-width: 100%;
@@ -284,12 +283,9 @@
                 height: auto;
                 max-height: 95vh;
             }
-            
-            /* در موبایل دکمه‌های ورق زدن کلا مخفی می‌شوند تا با سوایپ کار کند */
             .nav-btn {
                 display: none !important;
             }
-            
             /* مخفی کردن دکمه فول اسکرین در موبایل */
             .fullscreen-btn {
                 display: none !important;
@@ -447,7 +443,6 @@
             
             btn.onclick = function() {
                 let targetPage = startPage;
-                // در دسکتاپ فقط اعداد زوج رو مبنا قرار میدیم تا دو صفحه درست کنار هم بیفتن
                 if (window.innerWidth > 768 && targetPage % 2 === 0) {
                     targetPage -= 1; 
                 }
@@ -470,18 +465,14 @@
             return String(num).padStart(3, '0');
         }
 
-        // --- هوشمندسازی صفحات برای موبایل و دسکتاپ --- //
         function updatePages() {
             let isMobile = window.innerWidth <= 768;
 
             if (isMobile) {
-                // حالت موبایل: نمایش تک صفحه‌ای دقیقا برابر با شماره صفحه
                 document.getElementById("rightPage").src = "Quran" + formatPageNumber(currentPage) + ".jpg";
                 document.getElementById("leftPage").style.display = "none";
             } else {
-                // حالت دسکتاپ: نمایش دو صفحه‌ای
                 let rightPageNum = currentPage;
-                // برای دسکتاپ، صفحه راست باید فرد باشد
                 if (rightPageNum % 2 === 0) {
                     rightPageNum -= 1;
                 }
@@ -495,7 +486,6 @@
                 } else {
                     document.getElementById("leftPage").style.display = "none";
                 }
-                // اصلاح currentPage برای یکپارچگی حالت دسکتاپ
                 currentPage = rightPageNum;
             }
             
@@ -510,7 +500,7 @@
                 currentPage += step;
                 updatePages();
             } else if (currentPage + 1 <= totalPages) { 
-                currentPage += 1; // برای حالتی که در آخر باشیم
+                currentPage += 1;
                 updatePages();
             }
         }
@@ -526,47 +516,54 @@
             }
         }
 
-        // --- اضافه کردن قابلیت کشیدن (Swipe) در موبایل --- //
+        // --- هوشمندسازی کشیدن انگشت (Swipe) و جلوگیری از حساسیت بالا --- //
         let touchstartX = 0;
         let touchstartY = 0;
         let touchendX = 0;
         let touchendY = 0;
+        let touchStartTime = 0;
 
         const swipeArea = document.getElementById('swipeArea');
 
         swipeArea.addEventListener('touchstart', function(event) {
+            // نادیده گرفتن لمس چندانگشتی (وقتی کاربر می‌خواهد زوم کند)
+            if (event.touches.length > 1) return;
             touchstartX = event.changedTouches[0].screenX;
             touchstartY = event.changedTouches[0].screenY;
+            touchStartTime = new Date().getTime();
         }, {passive: true});
 
         swipeArea.addEventListener('touchend', function(event) {
+            if (event.changedTouches.length > 1) return;
             touchendX = event.changedTouches[0].screenX;
             touchendY = event.changedTouches[0].screenY;
-            handleSwipe();
+            let timeDiff = new Date().getTime() - touchStartTime;
+            handleSwipe(timeDiff);
         }, {passive: true});
 
-        function handleSwipe() {
+        function handleSwipe(timeDiff) {
+            // اگر کاربر روی عکس زوم کرده باشد، ورق زدن قفل می‌شود تا راحت جابه‌جا شود
+            if (window.visualViewport && window.visualViewport.scale > 1.01) {
+                return;
+            }
+
             let diffX = Math.abs(touchendX - touchstartX);
             let diffY = Math.abs(touchendY - touchstartY);
             
-            // اگر حرکت انگشت بیشتر افقی بود تا عمودی (برای جلوگیری از تداخل با اسکرول پایین)
-            if (diffX > diffY && diffX > 40) {
+            // شرایط سخت‌گیرانه برای ورق خوردن: حرکت سریع (<800ms) و کاملا افقی (>100px)
+            if (diffX > 100 && diffX > diffY * 2 && timeDiff < 800) {
                 if (touchendX > touchstartX) {
-                    // کشیدن به راست -> صفحه بعد
-                    nextPage();
+                    nextPage(); // کشیدن به راست
                 } else {
-                    // کشیدن به چپ -> صفحه قبل
-                    prevPage();
+                    prevPage(); // کشیدن به چپ
                 }
             }
         }
 
-        // بروزرسانی چیدمان هنگام چرخاندن گوشی یا تغییر سایز پنجره
         window.addEventListener('resize', () => {
             updatePages();
         });
 
-        // کار با دکمه‌های کیبورد
         document.addEventListener('keydown', function(event) {
             if (event.key === 'ArrowLeft') {
                 nextPage(); 
