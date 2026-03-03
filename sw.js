@@ -41,7 +41,7 @@ self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
   const requestPath = url.pathname;
   
-  // مشکل اصلی اینجا بود - مسیرها رو درست تشخیص بده
+  // برای تصاویر قرآن
   if (requestPath.includes('/images/Quran') && requestPath.endsWith('.jpg')) {
     event.respondWith(
       caches.match(event.request)
@@ -63,7 +63,6 @@ self.addEventListener('fetch', event => {
             })
             .catch(() => {
               console.log('تصویر در دسترس نیست:', requestPath);
-              // برگردوندن یه پاسخ ساده به جای خطا
               return new Response('', { status: 404, statusText: 'Not Found' });
             });
         })
@@ -71,7 +70,7 @@ self.addEventListener('fetch', event => {
     return;
   }
   
-  // برای صفحه اصلی و فایل‌های دیگه
+  // برای سایر درخواست‌ها
   event.respondWith(
     caches.match(event.request)
       .then(cachedResponse => {
@@ -81,7 +80,6 @@ self.addEventListener('fetch', event => {
         
         return fetch(event.request)
           .then(networkResponse => {
-            // فقط پاسخ‌های موفق رو کش کن
             if (networkResponse && networkResponse.status === 200) {
               const responseToCache = networkResponse.clone();
               caches.open(CACHE_NAME)
@@ -93,7 +91,6 @@ self.addEventListener('fetch', event => {
           })
           .catch(error => {
             console.log('خطا در درخواست:', error);
-            // برای صفحه اصلی، همون index.html رو برگردون
             if (event.request.mode === 'navigate') {
               return caches.match('./index.html');
             }
