@@ -1,7 +1,5 @@
-// تغییر نام به v3 برای اجبار مرورگر به حذف نسخه‌های قبلی و خراب
-const CACHE_NAME = 'quran-cache-v3';
+const CACHE_NAME = 'quran-cache-v5';
 
-// آدرس‌های دقیق برای گیت‌هاب پیجز
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -10,26 +8,26 @@ const ASSETS_TO_CACHE = [
   'https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css'
 ];
 
-// 1. نصب سرویس ورکر و کش کردن فایل‌های اولیه
 self.addEventListener('install', event => {
-  self.skipWaiting(); // نصب فوری نسخه جدید
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
+        console.log('کش کردن فایل‌های اصلی');
         return cache.addAll(ASSETS_TO_CACHE);
       })
   );
 });
 
-// 2. پاک کردن حافظه‌های خراب قبلی
 self.addEventListener('activate', event => {
-  self.clients.claim(); // کنترل فوری صفحات
+  self.clients.claim();
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames.map(cacheName => {
           if (cacheName !== CACHE_NAME) {
-            return caches.delete(cacheName); 
+            console.log('حذف کش قدیمی:', cacheName);
+            return caches.delete(cacheName);
           }
         })
       );
@@ -37,29 +35,70 @@ self.addEventListener('activate', event => {
   );
 });
 
-// 3. رهگیری هوشمند درخواست‌ها
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
-
+  
+  const url = new URL(event.request.url);
+  const requestPath = url.pathname;
+  
+  // مشکل اصلی اینجا بود - مسیرها رو درست تشخیص بده
+  if (requestPath.includes('/images/Quran') && requestPath.endsWith('.jpg')) {
+    event.respondWith(
+      caches.match(event.request)
+        .then(cachedResponse => {
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+          
+          return fetch(event.request)
+            .then(networkResponse => {
+              if (networkResponse && networkResponse.status === 200) {
+                const responseToCache = networkResponse.clone();
+                caches.open(CACHE_NAME)
+                  .then(cache => {
+                    cache.put(event.request, responseToCache);
+                  });
+              }
+              return networkResponse;
+            })
+            .catch(() => {
+              console.log('تصویر در دسترس نیست:', requestPath);
+              // برگردوندن یه پاسخ ساده به جای خطا
+              return new Response('', { status: 404, statusText: 'Not Found' });
+            });
+        })
+    );
+    return;
+  }
+  
+  // برای صفحه اصلی و فایل‌های دیگه
   event.respondWith(
-    // ابتدا چک می‌کنیم آیا فایل در حافظه هست؟ (با نادیده گرفتن پارامترهای اضافی آدرس)
-    caches.match(event.request, { ignoreSearch: true }).then(cachedResponse => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
-
-      // اگر در حافظه نبود، از اینترنت می‌گیریم و خودکار در حافظه ذخیره می‌کنیم
-      return fetch(event.request).then(networkResponse => {
-        return caches.open(CACHE_NAME).then(cache => {
-          cache.put(event.request, networkResponse.clone());
-          return networkResponse;
-        });
-      }).catch(() => {
-        // اگر اینترنت کاملاً قطع بود و کاربر می‌خواست صفحه اصلی را باز کند
-        if (event.request.mode === 'navigate') {
-          return caches.match('./index.html');
+    caches.match(event.request)
+      .then(cachedResponse => {
+        if (cachedResponse) {
+          return cachedResponse;
         }
-      });
-    })
+        
+        return fetch(event.request)
+          .then(networkResponse => {
+            // فقط پاسخ‌های موفق رو کش کن
+            if (networkResponse && networkResponse.status === 200) {
+              const responseToCache = networkResponse.clone();
+              caches.open(CACHE_NAME)
+                .then(cache => {
+                  cache.put(event.request, responseToCache);
+                });
+            }
+            return networkResponse;
+          })
+          .catch(error => {
+            console.log('خطا در درخواست:', error);
+            // برای صفحه اصلی، همون index.html رو برگردون
+            if (event.request.mode === 'navigate') {
+              return caches.match('./index.html');
+            }
+            return new Response('', { status: 404, statusText: 'Not Found' });
+          });
+      })
   );
 });
