@@ -1,8 +1,7 @@
-const CACHE_NAME = 'quran-cache-final';
-const IMAGE_CACHE = 'quran-images-cache';
+// sw.js
+const CACHE_NAME = 'quran-cache-v3'; // نام کش باید با HTML یکی باشد
 
-// فایل‌های اصلی
-const CORE_FILES = [
+const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './manifest.json',
@@ -10,55 +9,52 @@ const CORE_FILES = [
   'https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css'
 ];
 
-self.addEventListener('install', e => {
+// 1. نصب و کش کردن فایل‌های حیاتی
+self.addEventListener('install', event => {
   self.skipWaiting();
-  e.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(CORE_FILES))
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(ASSETS_TO_CACHE))
   );
 });
 
-self.addEventListener('activate', e => {
+// 2. پاک کردن کش‌های قدیمی
+self.addEventListener('activate', event => {
   self.clients.claim();
-  e.waitUntil(
-    caches.keys().then(keys => 
-      Promise.all(keys.map(key => {
-        if (key !== CACHE_NAME && key !== IMAGE_CACHE) {
-          return caches.delete(key);
-        }
-      }))
-    )
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(name => {
+          if (name !== CACHE_NAME) return caches.delete(name);
+        })
+      );
+    })
   );
 });
 
-self.addEventListener('fetch', e => {
-  const url = e.request.url;
-  
-  // اگه تصویر قرآن هست
-  if (url.includes('/images/Quran') && url.endsWith('.jpg')) {
-    e.respondWith(
-      caches.open(IMAGE_CACHE).then(cache => {
-        return cache.match(e.request).then(cached => {
+// 3. استراتژی شبکه اول، سپس کش (مناسب برای آپدیت بودن محتوا)
+self.addEventListener('fetch', event => {
+  if (event.request.method !== 'GET') return;
+
+  event.respondWith(
+    fetch(event.request)
+      .then(networkRes => {
+        // اگر دانلود موفق بود، در کش ذخیره کن (برای دفعات بعد)
+        if (networkRes && networkRes.status === 200) {
+          const clone = networkRes.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+        }
+        return networkRes;
+      })
+      .catch(() => {
+        // اگر اینترنت نبود، از کش بخوان
+        return caches.match(event.request, { ignoreSearch: true }).then(cached => {
           if (cached) return cached;
-          
-          return fetch(e.request).then(network => {
-            if (network.ok) {
-              cache.put(e.request, network.clone());
-            }
-            return network;
-          }).catch(() => {
-            // برگردوندن یه تصویر خالی به جای خطا
-            return new Response('', {status: 200});
-          });
+          // اگر صفحه اصلی بود و آفلاین، همین ایندکس را نشان بده
+          if (event.request.mode === 'navigate') {
+            return caches.match('./index.html');
+          }
         });
       })
-    );
-    return;
-  }
-  
-  // برای بقیه فایل‌ها
-  e.respondWith(
-    caches.match(e.request).then(cached => {
-      return cached || fetch(e.request);
-    })
   );
 });
