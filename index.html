@@ -462,9 +462,18 @@
             return num.toString().replace(/\d/g, x => farsiDigits[x]);
         }
 
+        // ساخت دکمه‌های اجزاء (با تنظیم جدید یک صفحه جلوتر برای جزء ۲ به بعد)
         const juzListDiv = document.getElementById("juzList");
         for (let i = 1; i <= 30; i++) {
-            let startPage = (i === 30) ? 587 : 3 + ((i - 1) * 20);
+            let startPage;
+            if (i === 1) {
+                startPage = 3; // جزء ۱
+            } else if (i === 30) {
+                startPage = 588; // جزء ۳۰ (ویرایش شد: یک صفحه رفت جلوتر)
+            } else {
+                startPage = 4 + ((i - 1) * 20); // جزء ۲ تا ۲۹ (ویرایش شد: یک صفحه رفت جلوتر)
+            }
+
             let btn = document.createElement("button");
             btn.className = "juz-btn";
             btn.innerText = "جزء " + toPersianNum(i);
@@ -513,7 +522,21 @@
                 if (currentPage % 2 === 0) currentPage = rightPageNum;
             }
             
-            localStorage.setItem('lastQuranPage', currentPage);
+            // ذخیره مطمئن در حافظه موبایل (بدون کرش کردن)
+            try {
+                localStorage.setItem('lastQuranPage', currentPage.toString());
+            } catch(e) {
+                console.log("LocalStorage not available.");
+            }
+            
+            // جلوگیری از خطای امنیتی آدرس دهی در گوشی
+            try {
+                if (window.location.protocol !== 'file:') {
+                    history.replaceState(null, null, '#' + currentPage);
+                }
+            } catch(e) {
+                // بی‌خیال تغییر آدرس در فایل‌های لوکال می‌شویم تا ذخیره کار کند
+            }
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
             const mainContent = document.querySelector('.main-content');
@@ -574,7 +597,6 @@
                 return;
             }
             
-            // این شرط برای زمانی که صفحه زوم شده است عالی عمل می‌کند و مانع سوایپ اشتباه می‌شود
             if (window.visualViewport && window.visualViewport.scale > 1.05) return;
             
             touchendX = e.changedTouches[0].screenX;
@@ -586,9 +608,9 @@
             
             if (diffX > 100 && diffX > diffY * 2 && timeDiff < 600) {
                 if (touchendX > touchstartX) {
-                    nextPage(); // سوایپ به راست
+                    nextPage();
                 } else {
-                    prevPage(); // سوایپ به چپ
+                    prevPage();
                 }
             }
         }, {passive: true});
@@ -606,9 +628,21 @@
 
         window.addEventListener('resize', updatePages);
 
-        window.onload = function() {
-            let saved = localStorage.getItem('lastQuranPage');
-            if (saved) currentPage = parseInt(saved);
+        document.addEventListener('DOMContentLoaded', function() {
+            let hashPage = parseInt(window.location.hash.replace('#', ''));
+            let savedPage = null;
+            
+            // گرفتن امن از حافظه
+            try {
+                savedPage = localStorage.getItem('lastQuranPage');
+            } catch(e) {}
+
+            if (hashPage && hashPage >= 1 && hashPage <= totalPages) {
+                currentPage = hashPage;
+            } else if (savedPage && !isNaN(parseInt(savedPage))) {
+                currentPage = parseInt(savedPage);
+            }
+            
             updatePages();
             
             caches.open('quran-cache-v1').then(cache => {
@@ -616,7 +650,7 @@
                     if (res) setDownloadedUI();
                 });
             });
-        };
+        });
     </script>
 </body>
 </html>
