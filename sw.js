@@ -1,17 +1,18 @@
-const APP_CACHE_NAME = 'quran-app-v2';
+// نام کش را به v3 تغییر دادیم تا گوشی کاربران متوجه تغییرات بشود و کش قبلی را آپدیت کند
+const APP_CACHE_NAME = 'quran-app-v3'; 
 const IMAGE_CACHE_NAME = 'quran-cache-v1';
 
-// فایل‌هایی که برای اجرای اولیه و آفلاین پوسته برنامه نیاز هستند
+// فایل‌هایی که برای اجرای اولیه و آفلاین برنامه نیاز هستند
 const urlsToCache = [
   './',
   './index.html',
   './manifest.json'
-  // اگر فایل آیکون (مثل icon-192.png) داری، مسیر آن را هم اینجا اضافه کن
+  // اگر فایل آیکون (مثل icon-192.png) داری، مسیر آن را هم در یک خط جدید اینجا اضافه کن
 ];
 
-// مرحله نصب (Install): کش کردن فایل‌های اصلی برنامه (App Shell)
+// مرحله نصب: کش کردن فایل‌های اصلی برنامه
 self.addEventListener('install', event => {
-  self.skipWaiting(); // فوراً سرویس ورکر جدید را جایگزین نسخه قبلی می‌کند
+  self.skipWaiting(); 
   event.waitUntil(
     caches.open(APP_CACHE_NAME)
       .then(cache => {
@@ -21,16 +22,13 @@ self.addEventListener('install', event => {
   );
 });
 
-// مرحله فعال‌سازی (Activate): پاک کردن کش‌های قدیمیِ برنامه (به جز تصاویر!)
+// مرحله فعال‌سازی: پاک کردن کش‌های قدیمی برنامه
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames.map(cacheName => {
-          // فقط کش‌های قدیمی مربوط به برنامه را پاک می‌کنیم
-          // دقت کن که کش تصاویر (quran-cache-v1) حفظ می‌شود
           if (cacheName.startsWith('quran-app-') && cacheName !== APP_CACHE_NAME) {
-            console.log('Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
@@ -39,27 +37,38 @@ self.addEventListener('activate', event => {
   );
 });
 
-// مرحله درخواست (Fetch): استراتژی مدیریت آفلاین/آنلاین
+// مرحله درخواست: استراتژی استاندارد موزیلا برای مدیریت آفلاین/آنلاین
 self.addEventListener('fetch', event => {
   
-  // ۱. اگر درخواست مربوط به تصاویر قرآن بود:
+  // ۱. درخواست‌های مربوط به تصاویر قرآن (بدون تغییر، چون درست بود)
   if (event.request.url.includes('images/Quran')) {
     event.respondWith(
-      caches.match(event.request)
-        .then(cachedResponse => {
-          // اگر تصویر در کش وجود داشت همان را نشان بده، در غیر این صورت از اینترنت دانلود کن
-          return cachedResponse || fetch(event.request);
-        })
+      caches.match(event.request).then(cachedResponse => {
+        return cachedResponse || fetch(event.request);
+      })
     );
   } 
   
-  // ۲. اگر درخواست مربوط به فایل‌های اصلی (مثل index.html) بود:
+  // ۲. سایر درخواست‌ها (بر اساس آموزش موزیلا)
   else {
     event.respondWith(
-      // استراتژی Network-First: اول تلاش می‌کند نسخه جدید را از اینترنت بگیرد
-      fetch(event.request)
-        .then(networkResponse => {
-          // اگر موفق شد فایل جدید را بگیرد، آن را در کش هم آپدیت می‌کند
+      caches.match(event.request).then(cachedResponse => {
+        // اگر فایل در کش بود، همان را فورا نشان بده (برای کارکرد قطعی در حالت آفلاین)
+        if (cachedResponse) {
+          // در پس‌زمینه سعی می‌کنیم نسخه جدید را هم از اینترنت بگیریم تا اگر تغییری دادی، برای دفعه بعد آپدیت شود
+          fetch(event.request).then(networkResponse => {
+            if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
+               caches.open(APP_CACHE_NAME).then(cache => {
+                 cache.put(event.request, networkResponse.clone());
+               });
+            }
+          }).catch(() => {}); // اگر اینترنت قطع بود، اینجا خطا ندهد
+          
+          return cachedResponse;
+        }
+        
+        // اگر فایل اصلا در کش نبود، آن را از اینترنت دانلود کن
+        return fetch(event.request).then(networkResponse => {
           if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
             const responseToCache = networkResponse.clone();
             caches.open(APP_CACHE_NAME).then(cache => {
@@ -67,11 +76,14 @@ self.addEventListener('fetch', event => {
             });
           }
           return networkResponse;
-        })
-        .catch(() => {
-          // اگر اینترنت قطع بود (آفلاین)، نسخه ذخیره‌شده در کش را نشان می‌دهد
-          return caches.match(event.request);
-        })
+        }).catch(async () => {
+           // *** ترفند نهایی برای جلوگیری از صفحه خطای مرورگر ***
+           // اگر اینترنت قطع بود و کاربر صفحه جدیدی را باز کرد که در کش نبود، او را به صفحه اصلی (index.html) بفرست
+           if (event.request.mode === 'navigate') {
+             return caches.match('./index.html');
+           }
+        });
+      })
     );
   }
 });
