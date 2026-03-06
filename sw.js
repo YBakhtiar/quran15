@@ -7,7 +7,7 @@ const urlsToCache = [
   './',
   './index.html',
   './manifest.json'
-  // اگر فایل آیکون (مثل icon-192.png) داری، مسیر آن را هم در یک خط جدید اینجا اضافه کن
+  // اگر فایل آیکون (مثل icon-192.png) داری، مسیر آن را هم اضافه کن
 ];
 
 // مرحله نصب: کش کردن فایل‌های اصلی برنامه
@@ -40,7 +40,7 @@ self.addEventListener('activate', event => {
 // مرحله درخواست: استراتژی استاندارد موزیلا برای مدیریت آفلاین/آنلاین
 self.addEventListener('fetch', event => {
   
-  // ۱. درخواست‌های مربوط به تصاویر قرآن (بدون تغییر، چون درست بود)
+  // ۱. درخواست‌های مربوط به تصاویر قرآن (ابتدا کش، سپس نتورک)
   if (event.request.url.includes('images/Quran')) {
     event.respondWith(
       caches.match(event.request).then(cachedResponse => {
@@ -55,19 +55,19 @@ self.addEventListener('fetch', event => {
       caches.match(event.request).then(cachedResponse => {
         // اگر فایل در کش بود، همان را فورا نشان بده (برای کارکرد قطعی در حالت آفلاین)
         if (cachedResponse) {
-          // در پس‌زمینه سعی می‌کنیم نسخه جدید را هم از اینترنت بگیریم تا اگر تغییری دادی، برای دفعه بعد آپدیت شود
+          // در پس‌زمینه سعی می‌کنیم نسخه جدید را هم از اینترنت بگیریم
           fetch(event.request).then(networkResponse => {
             if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
                caches.open(APP_CACHE_NAME).then(cache => {
                  cache.put(event.request, networkResponse.clone());
                });
             }
-          }).catch(() => {}); // اگر اینترنت قطع بود، اینجا خطا ندهد
+          }).catch(() => {}); // اگر اینترنت قطع بود، خطا ندهد
           
           return cachedResponse;
         }
         
-        // اگر فایل اصلا در کش نبود، آن را از اینترنت دانلود کن
+        // اگر فایل در کش نبود، آن را از اینترنت دانلود کن
         return fetch(event.request).then(networkResponse => {
           if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
             const responseToCache = networkResponse.clone();
@@ -77,8 +77,7 @@ self.addEventListener('fetch', event => {
           }
           return networkResponse;
         }).catch(async () => {
-           // *** ترفند نهایی برای جلوگیری از صفحه خطای مرورگر ***
-           // اگر اینترنت قطع بود و کاربر صفحه جدیدی را باز کرد که در کش نبود، او را به صفحه اصلی (index.html) بفرست
+           // اگر اینترنت قطع بود و کاربر صفحه جدیدی را باز کرد (مثلاً با رفرش)، index.html را نشان بده
            if (event.request.mode === 'navigate') {
              return caches.match('./index.html');
            }
