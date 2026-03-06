@@ -1,13 +1,14 @@
 const APP_CACHE_NAME = 'quran-app-v3'; 
 const IMAGE_CACHE_NAME = 'quran-cache-v1';
 
-// فایل‌های ضروری برای اجرای آفلاین (شامل فونت‌ها و CSS)
+// فایل‌های ضروری برای اجرای آفلاین (شامل فونت‌های Google و Vazir)
 const urlsToCache = [
   './',
   './index.html',
   './manifest.json',
-  // فونت وزیر (CSS و فایل‌های فونت)
-  'https://cdnjs.cloudflare.com/ajax/libs/vazirmatn/33.0.0/Vazirmatn-font-face.min.css',
+  // فونت وزیرمتن از Google Fonts (فایل CSS)
+  'https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap',
+  // فونت وزیر (پشتیبان)
   'https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css',
   'https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.woff2',
   'https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.woff',
@@ -47,7 +48,7 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   const url = event.request.url;
 
-  // برای تصاویر قرآن: ابتدا کش، سپس نتورک (استراتژی Cache First)
+  // برای تصاویر قرآن: ابتدا کش، سپس نتورک (Cache First)
   if (url.includes('images/Quran')) {
     event.respondWith(
       caches.match(event.request).then(cachedResponse => {
@@ -55,12 +56,23 @@ self.addEventListener('fetch', event => {
       })
     );
   } 
-  // برای درخواست‌های فونت و CSS مرتبط: استراتژی Network First (ابتدا شبکه، سپس کش)
-  else if (url.includes('Vazir') || url.includes('vazirmatn') || url.includes('fontcdn')) {
+  // برای فونت‌ها و CSS مربوطه: استراتژی Cache First (ابتدا کش، سپس نتورک)
+  else if (url.includes('Vazir') || url.includes('vazirmatn') || url.includes('fontcdn') || url.includes('fonts.googleapis')) {
     event.respondWith(
-      fetch(event.request)
-        .then(networkResponse => {
-          // اگر موفقیت‌آمیز بود، در کش ذخیره کن و پاسخ را برگردان
+      caches.match(event.request).then(cachedResponse => {
+        if (cachedResponse) {
+          // اگر در کش بود، همان را برگردان و در پس‌زمینه آپدیت کن
+          fetch(event.request).then(networkResponse => {
+            if (networkResponse && networkResponse.status === 200) {
+              caches.open(APP_CACHE_NAME).then(cache => {
+                cache.put(event.request, networkResponse.clone());
+              });
+            }
+          }).catch(() => {});
+          return cachedResponse;
+        }
+        // اگر در کش نبود، از شبکه بگیر و کش کن
+        return fetch(event.request).then(networkResponse => {
           if (networkResponse && networkResponse.status === 200) {
             const responseToCache = networkResponse.clone();
             caches.open(APP_CACHE_NAME).then(cache => {
@@ -68,11 +80,8 @@ self.addEventListener('fetch', event => {
             });
           }
           return networkResponse;
-        })
-        .catch(() => {
-          // اگر شبکه در دسترس نبود، از کش استفاده کن (حتی اگر وجود نداشته باشد، undefined برمی‌گرداند)
-          return caches.match(event.request);
-        })
+        });
+      })
     );
   }
   // سایر درخواست‌ها (مثل index.html, manifest.json): استراتژی Stale-While-Revalidate
@@ -105,7 +114,7 @@ self.addEventListener('fetch', event => {
           if (event.request.mode === 'navigate') {
             return caches.match('./index.html');
           }
-          // در غیر این صورت، اجازه بده درخواست fail شود (مرورگر ارور می‌دهد)
+          // در غیر این صورت، اجازه بده درخواست fail شود
         });
       })
     );
