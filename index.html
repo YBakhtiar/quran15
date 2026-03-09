@@ -175,8 +175,13 @@
         .dl-opt-btn:hover { background: var(--button-hover); transform: scale(1.02); }
         .dl-opt-btn span { display: block; font-size: 11px; opacity: 0.6; margin-top: 4px; }
 
-        .hq-btn { border-color: var(--accent-color); }
-        .hq-btn:hover { border-color: var(--accent-color); background: rgba(74, 222, 128, 0.1); }
+        /* استروک سبز حذف شد */
+        .dl-opt-btn.hq-btn {
+            border-color: var(--border-light); /* دیگر سبز نیست */
+        }
+        .dl-opt-btn.hq-btn:hover {
+            border-color: var(--border-hover);
+        }
 
         .dl-cancel-btn {
             background: transparent; border: none; color: var(--danger-color);
@@ -376,6 +381,17 @@
         .juz-list-container::-webkit-scrollbar { width: 4px; }
         .juz-list-container::-webkit-scrollbar-track { background: transparent; }
         .juz-list-container::-webkit-scrollbar-thumb { background: var(--text-secondary); border-radius: 4px; }
+
+        /* مخفی کردن اسکرول بار در موبایل */
+        @media screen and (max-width: 768px) {
+            .juz-list-container {
+                scrollbar-width: none; /* Firefox */
+                -ms-overflow-style: none; /* IE/Edge */
+            }
+            .juz-list-container::-webkit-scrollbar {
+                display: none; /* Chrome/Safari */
+            }
+        }
 
         .juz-item {
             display: block;
@@ -656,7 +672,7 @@
             <h3>📥 انتخاب کیفیت دانلود</h3>
             <p>لطفاً کیفیت مناسب خود را انتخاب کنید:</p>
             <button class="dl-opt-btn" onclick="startDownload('standard')">📱 کیفیت استاندارد (۷۰ مگابایت)<br><span>مناسب موبایل ها و تبلت‌ها</span></button>
-            <button class="dl-opt-btn hq-btn" onclick="startDownload('hq')">🖥 کیفیت بالا (۵۰۰ مگابایت)<br><span>مناسب کامپیوتر، تلویزیون و صفحه های بزرگ</span></button>
+            <button class="dl-opt-btn" onclick="startDownload('hq')">🖥 کیفیت بالا (۵۰۰ مگابایت)<br><span>مناسب کامپیوتر، تلویزیون و صفحه های بزرگ</span></button>
             
             <!-- بخش نصب PWA -->
             <div class="install-section" id="installSection">
