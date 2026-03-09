@@ -37,13 +37,11 @@
             --juz-card-bg: rgba(20,30,45,0.7);
             --modal-bg: #111d2b;
             --image-filter: none; /* پیش‌فرض: بدون فیلتر (حالت روز) */
-            --shadow-color: rgba(0, 0, 0, 0.5); /* سایه پیش‌فرض */
         }
 
-        /* حالت شب: فیلتر و سایه مخصوص */
+        /* حالت شب: فیلتر از طریق متغیرهای سفارشی تنظیم می‌شود */
         body.night-mode {
             --image-filter: var(--night-filter);
-            --shadow-color: rgba(255, 255, 255, 0.7); /* سایه روشن که پس از invert تیره می‌شود */
         }
 
         body {
@@ -85,7 +83,6 @@
             transform: scale(1.05);
         }
 
-        /* دکمه دانلود آفلاین - هم‌شکل با دکمه منو */
         .main-download-btn {
             position: fixed;
             top: 20px;
@@ -98,12 +95,11 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             font-size: 13px;
             cursor: pointer;
-            padding: 12px 16px; /* هماهنگ با menu-toggle */
-            border-radius: 14px; /* هماهنگ با menu-toggle */
+            padding: 10px 15px;
+            border-radius: 12px;
             opacity: 0.7;
             transition: all 0.4s ease;
             z-index: 1002;
-            font-family: inherit; /* استفاده از فونت وزیر */
         }
         .main-download-btn:hover {
             opacity: 1;
@@ -502,11 +498,16 @@
         }
 
         .page {
-            height: 100%; width: 100%; object-fit: contain; border-radius: 8px;
+            height: 100%; max-width: 48%; object-fit: contain; border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); background-color: white;
             transform-origin: center center; will-change: transform;
             filter: var(--image-filter); /* فیلتر وابسته به تم */
             transition: filter 0.3s ease;
-            box-shadow: 0 10px 30px var(--shadow-color); /* سایه با متغیر */
+        }
+
+        /* سایه تیره‌تر در حالت شب */
+        body.night-mode .page {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
 
         .nav-btn {
@@ -540,7 +541,7 @@
             opacity: 1; background: var(--button-hover); transform: scale(1.05);
         }
 
-        /* در موبایل دکمه تمام‌صفحه و ناوبری مخفی می‌شود */
+        /* در موبایل دکمه تمام‌صفحه مخفی می‌شود */
         @media screen and (max-width: 768px) {
             .quran-container { padding: 10px; gap: 0; }
             .page { max-width: 100%; width: 100%; height: auto; max-height: 95vh; }
