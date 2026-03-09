@@ -39,9 +39,9 @@
             --image-filter: none; /* پیش‌فرض: بدون فیلتر (حالت روز) */
         }
 
-        /* حالت شب: فقط فیلتر تصاویر تغییر می‌کند */
+        /* حالت شب: فیلتر ملایم‌تر برای کاهش تاریکی */
         body.night-mode {
-            --image-filter: invert(1) hue-rotate(180deg);
+            --image-filter: invert(0.92) hue-rotate(180deg);
         }
 
         body {
@@ -553,14 +553,14 @@
         function setTheme(mode) {
             if (mode === 'night') {
                 document.body.classList.add('night-mode');
-                themeColorMeta.setAttribute('content', '#0d1622'); // ثابت می‌ماند
+                themeColorMeta.setAttribute('content', '#0d1622');
                 localStorage.setItem('quran-theme', 'night');
             } else {
                 document.body.classList.remove('night-mode');
                 themeColorMeta.setAttribute('content', '#0d1622');
                 localStorage.setItem('quran-theme', 'day');
             }
-            // به‌روزرسانی متن دکمه تغییر تم در منو (اگر وجود داشته باشد)
+            // به‌روزرسانی متن دکمه تغییر تم در منو
             const themeBtn = document.getElementById('themeToggleMenuItem');
             if (themeBtn) {
                 themeBtn.innerHTML = document.body.classList.contains('night-mode') ? '☀️ حالت روز' : '🌙 حالت شب';
@@ -762,26 +762,7 @@
         // ======== تولید لیست اجزاء و آیتم‌های اضافی ========
         const juzListDiv = document.getElementById("juzList");
         
-        // دکمه تغییر تم
-        const themeBtn = document.createElement("button");
-        themeBtn.className = "theme-toggle-item";
-        themeBtn.id = "themeToggleMenuItem";
-        themeBtn.innerHTML = document.body.classList.contains('night-mode') ? '☀️ حالت روز' : '🌙 حالت شب';
-        themeBtn.onclick = function() {
-            toggleTheme();
-            closeJuzOverlay(); // اختیاری: بستن منو پس از تغییر تم
-        };
-        juzListDiv.appendChild(themeBtn);
-
-        // دکمه حذف آفلاین
-        const deleteBtn = document.createElement("button");
-        deleteBtn.className = "delete-offline-item";
-        deleteBtn.id = "deleteOfflineItem";
-        deleteBtn.innerText = "🗑 حذف فایل‌های آفلاین";
-        deleteBtn.onclick = deleteOfflineFiles;
-        juzListDiv.appendChild(deleteBtn);
-
-        // لیست اجزاء
+        // ابتدا دکمه‌های جزء (۱ تا ۳۰)
         for (let i = 1; i <= 30; i++) {
             let startPage;
             if (i === 1) startPage = 3; else if (i === 30) startPage = 588; else startPage = 4 + ((i - 1) * 20);
@@ -798,6 +779,25 @@
             };
             juzListDiv.appendChild(btn);
         }
+
+        // سپس دکمه تغییر تم
+        const themeBtn = document.createElement("button");
+        themeBtn.className = "theme-toggle-item";
+        themeBtn.id = "themeToggleMenuItem";
+        themeBtn.innerHTML = document.body.classList.contains('night-mode') ? '☀️ حالت روز' : '🌙 حالت شب';
+        themeBtn.onclick = function() {
+            toggleTheme();
+            closeJuzOverlay(); // اختیاری: بستن منو پس از تغییر تم
+        };
+        juzListDiv.appendChild(themeBtn);
+
+        // در آخر دکمه حذف آفلاین
+        const deleteBtn = document.createElement("button");
+        deleteBtn.className = "delete-offline-item";
+        deleteBtn.id = "deleteOfflineItem";
+        deleteBtn.innerText = "🗑 حذف فایل‌های آفلاین";
+        deleteBtn.onclick = deleteOfflineFiles;
+        juzListDiv.appendChild(deleteBtn);
 
         // توابع کمکی
         function formatPageNumber(num) { return String(num).padStart(3, '0'); }
