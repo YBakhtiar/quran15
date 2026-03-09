@@ -21,7 +21,7 @@
     <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png">
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
     <style>
-        /* متغیرهای رنگ (پس‌زمینه ثابت تیره) */
+        /* متغیرهای رنگ */
         :root {
             --bg-primary: #0d1622;
             --bg-secondary: #111d2b;
@@ -68,7 +68,6 @@
             color: var(--text-primary);
             border: 1px solid var(--border-light);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            font-size: 20px;
             cursor: pointer;
             padding: 12px 16px;
             border-radius: 14px;
@@ -102,7 +101,7 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             font-size: 13px;
             cursor: pointer;
-            padding: 8px 12px; /* کمی کوچکتر */
+            padding: 8px 12px;
             border-radius: 12px;
             opacity: 0.7;
             transition: all 0.4s ease;
@@ -161,12 +160,12 @@
         .modal-content {
             background: var(--modal-bg);
             border: 1px solid var(--border-light);
-            padding: 18px; /* کاهش padding */
+            padding: 18px;
             border-radius: 15px;
             text-align: center;
             color: var(--text-primary);
             max-width: 90%;
-            width: 300px; /* کوچکتر از قبل */
+            width: 300px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             font-family: 'Vazirmatn', sans-serif;
             max-height: 80vh;
@@ -185,7 +184,7 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            font-size: 16px; /* کوچکتر */
+            font-size: 16px;
         }
         .modal-content h3 svg {
             width: 20px;
@@ -196,12 +195,12 @@
 
         .dl-opt-btn {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 8px;
             width: 100%;
             margin: 8px 0;
-            padding: 10px; /* کوچکتر */
+            padding: 10px;
             background: var(--button-bg);
             color: var(--text-primary);
             border: 1px solid var(--border-light);
@@ -209,27 +208,54 @@
             cursor: pointer;
             transition: 0.3s;
             font-family: inherit;
-            font-size: 13px; /* کوچکتر */
         }
         .dl-opt-btn:hover { background: var(--button-hover); transform: scale(1.02); }
-        .dl-opt-btn span { display: block; font-size: 10px; opacity: 0.6; margin-top: 2px; }
+        .dl-opt-btn .main-text {
+            font-weight: bold;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .dl-opt-btn .sub-text {
+            font-size: 10px;
+            opacity: 0.7;
+            margin-top: 2px;
+            font-weight: normal;
+        }
         .dl-opt-btn svg {
             width: 18px;
             height: 18px;
             fill: currentColor;
         }
 
-        .dl-cancel-btn {
-            background: transparent;
-            border: none;
+        .cancel-btn {
+            background: rgba(201, 106, 117, 0.1);
+            border: 1px solid var(--danger-color);
             color: var(--danger-color);
-            margin-top: 12px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-top: 15px;
             cursor: pointer;
-            padding: 5px 12px;
             font-family: inherit;
-            font-size: 12px;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: 0.3s;
+            width: auto;
+            min-width: 100px;
         }
-        .dl-cancel-btn:hover { text-decoration: underline; color: var(--danger-color); }
+        .cancel-btn:hover {
+            background: rgba(201, 106, 117, 0.2);
+            transform: translateY(-2px);
+        }
+        .cancel-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
 
         .install-section {
             margin-top: 20px;
@@ -281,11 +307,24 @@
         .install-instructions {
             background: rgba(0,0,0,0.2);
             border-radius: 10px;
-            padding: 10px;
+            padding: 12px;
             text-align: right;
             font-size: 12px;
             color: var(--text-secondary);
-            line-height: 1.6;
+            line-height: 1.8;
+        }
+        .install-instructions p {
+            margin: 8px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+        }
+        .install-instructions svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+            flex-shrink: 0;
+            margin-top: 2px;
         }
 
         /* اسپلش */
@@ -333,7 +372,7 @@
             justify-content: center;
             gap: 8px;
             width: 100%;
-            padding: 14px 0; /* کمی کوچکتر */
+            padding: 14px 0;
             margin: 10px 0;
             border: none;
             border-radius: 50px;
@@ -518,9 +557,12 @@
             width: 18px;
             height: 18px;
             fill: currentColor;
+            transition: transform 0.3s ease;
+        }
+        .theme-toggle-item:active svg {
+            transform: rotate(360deg);
         }
 
-        /* تنظیمات پیشرفته حالت شب */
         .night-settings-container {
             margin: 12px 0 6px 0;
             border-radius: 30px;
@@ -719,13 +761,10 @@
             border: 1px solid var(--border-light); 
             border-radius: 14px;
             padding: 12px 16px;
-            font-size: 20px; 
             display: flex; justify-content: center; align-items: center;
             cursor: pointer; opacity: 0.7; z-index: 1000; 
             transition: all 0.4s ease; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            line-height: 1; 
-            width: auto; height: auto;
         }
         .fullscreen-btn:hover {
             opacity: 1; background: var(--button-hover); transform: scale(1.05);
@@ -752,10 +791,9 @@
             <h1>القرآن الكريم</h1>
             <div class="subtitle">به نرم‌افزار قرآن کریم خوش آمدید</div>
             <button class="splash-btn" id="continueReadingBtn">
-                <!-- آیکون کتاب (مناسب مطالعه) -->
+                <!-- آیکون پلی برای ادامه مطالعه -->
                 <svg viewBox="0 0 24 24">
-                    <path d="M4 6H20v2H4V6zM4 12H20v2H4v-2zM4 18H14v2H4v-2z"/>
-                    <path d="M18 4H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H6V6h12v12z"/>
+                    <path d="M8 5v14l11-7z"/>
                 </svg>
                 ادامه مطالعه
             </button>
@@ -806,19 +844,25 @@
                 انتخاب کیفیت
             </h3>
             <p>کیفیت مناسب خود را انتخاب کنید:</p>
+            
             <button class="dl-opt-btn" onclick="startDownload('standard')">
-                <svg viewBox="0 0 24 24">
-                    <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/>
-                </svg>
-                استاندارد (۷۰ مگابایت)
-                <span>مناسب موبایل و تبلت</span>
+                <span class="main-text">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/>
+                    </svg>
+                    کیفیت استاندارد (۷۰ مگابایت)
+                </span>
+                <span class="sub-text">مناسب موبایل و تبلت</span>
             </button>
+            
             <button class="dl-opt-btn" onclick="startDownload('hq')">
-                <svg viewBox="0 0 24 24">
-                    <path d="M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/>
-                </svg>
-                کیفیت بالا (۵۰۰ مگابایت)
-                <span>مناسب کامپیوتر، تلویزیون</span>
+                <span class="main-text">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/>
+                    </svg>
+                    کیفیت بالا (۵۰۰ مگابایت)
+                </span>
+                <span class="sub-text">مناسب کامپیوتر، تلویزیون و صفحات بزرگ</span>
             </button>
             
             <div class="install-section" id="installSection">
@@ -835,13 +879,28 @@
                     نصب اپلیکیشن
                 </button>
                 <div class="install-instructions" id="installInstructions">
-                    <i>🔹 اندروید/کروم:</i> دکمه نصب یا "Install App".<br>
-                    <i>🔹 آیفون/آیپد:</i> "Add to Home Screen".<br>
-                    <i>🔹 دسکتاپ:</i> آیکون نصب در نوار آدرس.
+                    <p>
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        <span><strong>اندروید و کروم:</strong> دکمه نصب یا "Install App".</span>
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        <span><strong>آیفون/آیپد:</strong> "Add to Home Screen".</span>
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        <span><strong>دسکتاپ:</strong> آیکون نصب در نوار آدرس.</span>
+                    </p>
                 </div>
             </div>
             
-            <button class="dl-cancel-btn" onclick="closeDownloadModal()">انصراف</button>
+            <!-- دکمه لغو -->
+            <button class="cancel-btn" onclick="closeDownloadModal()">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                </svg>
+                لغو
+            </button>
         </div>
     </div>
 
@@ -928,20 +987,40 @@
                 themeColorMeta.setAttribute('content', '#0d1622');
                 localStorage.setItem('quran-theme', 'day');
             }
+            
+            // به‌روزرسانی آیکون و متن دکمه تغییر تم با SVGهای جدید
             const themeBtn = document.getElementById('themeToggleMenuItem');
             if (themeBtn) {
                 const icon = themeBtn.querySelector('svg');
                 const textSpan = themeBtn.querySelector('span');
                 if (document.body.classList.contains('night-mode')) {
-                    // آیکون ماه برای حالت شب
-                    icon.innerHTML = '<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14c-2.76 0-5-2.24-5-5 0-1.1.35-2.12.95-2.95.85.58 1.87.95 2.95.95 1.08 0 2.1-.37 2.95-.95.6.83.95 1.85.95 2.95 0 2.76-2.24 5-5 5z"/>';
+                    // حالت شب: آیکون ماه با ستاره
+                    icon.innerHTML = `
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M18 3.5L18.5 4.7L19.7 5.2L18.5 5.7L18 6.9L17.5 5.7L16.3 5.2L17.5 4.7Z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14.5 2L14.9 3L16 3.4L14.9 3.8L14.5 4.8L14.1 3.8L13 3.4L14.1 3Z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="19" cy="9" r="0.8" fill="currentColor" stroke="none"/>
+                    `;
                     textSpan.textContent = 'حالت روز';
                 } else {
-                    // آیکون خورشید برای حالت روز
-                    icon.innerHTML = '<path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm0-13c-.55 0-1 .45-1 1v2c0 .55.45 1 1 1s1-.45 1-1V3c0-.55-.45-1-1-1zm8 8h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zm-2 5.66l1.41 1.41c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L18.41 16c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41zM20 12c0 .55.45 1 1 1s1-.45 1-1-.45-1-1-1-1 .45-1 1zM4 12c0-.55-.45-1-1-1s-1 .45-1 1 .45 1 1 1 1-.45 1-1zm2.59-5.66L5.18 4.93c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L5.18 7.75c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41z"/>';
+                    // حالت روز: آیکون خورشید
+                    icon.innerHTML = `
+                        <circle cx="12" cy="12" r="5" fill="currentColor"/>
+                        <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            <line x1="12" y1="1" x2="12" y2="4"/>
+                            <line x1="12" y1="20" x2="12" y2="23"/>
+                            <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/>
+                            <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/>
+                            <line x1="1" y1="12" x2="4" y2="12"/>
+                            <line x1="20" y1="12" x2="23" y2="12"/>
+                            <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/>
+                            <line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>
+                        </g>
+                    `;
                     textSpan.textContent = 'حالت شب';
                 }
             }
+            
             const settingsContainer = document.getElementById('nightSettingsContainer');
             if (settingsContainer) {
                 settingsContainer.style.display = document.body.classList.contains('night-mode') ? 'block' : 'none';
@@ -1154,14 +1233,39 @@
             juzListDiv.appendChild(btn);
         }
 
-        // دکمه تغییر تم با آیکون مجزا
+        // دکمه تغییر تم با آیکون‌های جدید
         const themeBtn = document.createElement("button");
         themeBtn.className = "theme-toggle-item";
         themeBtn.id = "themeToggleMenuItem";
         const isNight = document.body.classList.contains('night-mode');
-        themeBtn.innerHTML = isNight ? 
-            '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14c-2.76 0-5-2.24-5-5 0-1.1.35-2.12.95-2.95.85.58 1.87.95 2.95.95 1.08 0 2.1-.37 2.95-.95.6.83.95 1.85.95 2.95 0 2.76-2.24 5-5 5z"/></svg><span>حالت روز</span>' : 
-            '<svg viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm0-13c-.55 0-1 .45-1 1v2c0 .55.45 1 1 1s1-.45 1-1V3c0-.55-.45-1-1-1zm8 8h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zm-2 5.66l1.41 1.41c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L18.41 16c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41zM20 12c0 .55.45 1 1 1s1-.45 1-1-.45-1-1-1-1 .45-1 1zM4 12c0-.55-.45-1-1-1s-1 .45-1 1 .45 1 1 1 1-.45 1-1zm2.59-5.66L5.18 4.93c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L5.18 7.75c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41z"/></svg><span>حالت شب</span>';
+        if (isNight) {
+            themeBtn.innerHTML = `
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79"/>
+                    <path d="M18 3.5L18.5 4.7L19.7 5.2L18.5 5.7L18 6.9L17.5 5.7L16.3 5.2L17.5 4.7Z"/>
+                    <path d="M14.5 2L14.9 3L16 3.4L14.9 3.8L14.5 4.8L14.1 3.8L13 3.4L14.1 3Z"/>
+                    <circle cx="19" cy="9" r="0.8" fill="currentColor" stroke="none"/>
+                </svg>
+                <span>حالت روز</span>
+            `;
+        } else {
+            themeBtn.innerHTML = `
+                <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <circle cx="12" cy="12" r="5"/>
+                    <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <line x1="12" y1="1" x2="12" y2="4"/>
+                        <line x1="12" y1="20" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/>
+                        <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="4" y2="12"/>
+                        <line x1="20" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/>
+                        <line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>
+                    </g>
+                </svg>
+                <span>حالت شب</span>
+            `;
+        }
         themeBtn.onclick = toggleTheme;
         juzListDiv.appendChild(themeBtn);
 
