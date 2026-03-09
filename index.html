@@ -39,9 +39,9 @@
             --image-filter: none; /* پیش‌فرض: بدون فیلتر (حالت روز) */
         }
 
-        /* حالت شب: معکوس کامل با تنظیم دقیق روشنایی و کنتراست */
+        /* حالت شب: فیلتر از طریق متغیرهای سفارشی تنظیم می‌شود */
         body.night-mode {
-            --image-filter: invert(1) brightness(0.75) contrast(1.6);
+            --image-filter: var(--night-filter);
         }
 
         body {
@@ -390,6 +390,76 @@
             transform: translateY(-2px);
         }
 
+        /* بخش تنظیمات پیشرفته حالت شب */
+        .night-settings {
+            display: block;
+            width: 100%;
+            margin: 15px 0 8px 0;
+            padding: 15px 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        .night-settings.hidden {
+            display: none;
+        }
+        .slider-container {
+            margin-bottom: 15px;
+            text-align: right;
+        }
+        .slider-container label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+        .slider-container input {
+            width: 100%;
+            cursor: pointer;
+            background: var(--button-bg);
+            border-radius: 10px;
+            height: 6px;
+            -webkit-appearance: none;
+        }
+        .slider-container input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            cursor: pointer;
+            border: none;
+        }
+        .slider-value {
+            display: inline-block;
+            margin-right: 10px;
+            color: var(--text-primary);
+            font-size: 12px;
+            background: var(--button-bg);
+            padding: 2px 8px;
+            border-radius: 10px;
+            border: 1px solid var(--border-light);
+        }
+        .reset-filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            width: 100%;
+            margin-top: 5px;
+            font-family: inherit;
+        }
+        .reset-filter-btn:hover {
+            background: var(--button-hover);
+            border-color: var(--border-hover);
+        }
+
         .delete-offline-item {
             display: block;
             width: 100%;
@@ -483,7 +553,7 @@
         <div class="juz-card">
             <button class="continue-btn" id="continueFromJuzBtn">▶ ادامه تلاوت</button>
             <div class="juz-list-container" id="juzList"></div>
-            <!-- آیتم‌های اضافی (تغییر تم و حذف آفلاین) در اینجا با جاوااسکریپت اضافه می‌شوند -->
+            <!-- آیتم‌های اضافی (تغییر تم، تنظیمات شب، حذف آفلاین) در اینجا با جاوااسکریپت اضافه می‌شوند -->
         </div>
     </div>
 
@@ -547,8 +617,30 @@
         
         let objectUrls = { right: null, left: null };
 
-        // ========== مدیریت تم (شب/روز) ==========
+        // ========== مدیریت تم (شب/روز) و تنظیمات فیلتر شب ==========
         const themeColorMeta = document.getElementById('theme-color-meta');
+        const rootStyle = document.documentElement.style;
+
+        // مقادیر پیش‌فرض فیلتر شب
+        const defaultFilter = {
+            invert: 1,
+            brightness: 0.75,
+            contrast: 1.6
+        };
+
+        // بارگذاری مقادیر ذخیره شده یا استفاده از پیش‌فرض
+        let nightFilter = JSON.parse(localStorage.getItem('quran-night-filter')) || defaultFilter;
+
+        // به‌روزرسانی متغیر CSS فیلتر
+        function updateNightFilter() {
+            const filterString = `invert(${nightFilter.invert}) brightness(${nightFilter.brightness}) contrast(${nightFilter.contrast})`;
+            rootStyle.setProperty('--night-filter', filterString);
+            // ذخیره در localStorage
+            localStorage.setItem('quran-night-filter', JSON.stringify(nightFilter));
+        }
+
+        // اعمال اولیه
+        updateNightFilter();
 
         function setTheme(mode) {
             if (mode === 'night') {
@@ -564,6 +656,15 @@
             const themeBtn = document.getElementById('themeToggleMenuItem');
             if (themeBtn) {
                 themeBtn.innerHTML = document.body.classList.contains('night-mode') ? '☀️ حالت روز' : '🌙 حالت شب';
+            }
+            // نمایش/مخفی کردن بخش تنظیمات شب بر اساس تم
+            const settingsDiv = document.getElementById('nightSettings');
+            if (settingsDiv) {
+                if (document.body.classList.contains('night-mode')) {
+                    settingsDiv.classList.remove('hidden');
+                } else {
+                    settingsDiv.classList.add('hidden');
+                }
             }
         }
 
@@ -790,6 +891,59 @@
             closeJuzOverlay(); // اختیاری: بستن منو پس از تغییر تم
         };
         juzListDiv.appendChild(themeBtn);
+
+        // بخش تنظیمات پیشرفته حالت شب
+        const settingsDiv = document.createElement("div");
+        settingsDiv.className = "night-settings" + (document.body.classList.contains('night-mode') ? '' : ' hidden');
+        settingsDiv.id = "nightSettings";
+        settingsDiv.innerHTML = `
+            <div style="text-align: center; margin-bottom: 10px; color: var(--text-primary);">⚙️ تنظیمات حالت شب</div>
+            <div class="slider-container">
+                <label>Invert <span class="slider-value" id="invertVal">${nightFilter.invert.toFixed(2)}</span></label>
+                <input type="range" id="invertSlider" min="0" max="1" step="0.01" value="${nightFilter.invert}">
+            </div>
+            <div class="slider-container">
+                <label>Brightness <span class="slider-value" id="brightnessVal">${nightFilter.brightness.toFixed(2)}</span></label>
+                <input type="range" id="brightnessSlider" min="0.2" max="2" step="0.01" value="${nightFilter.brightness}">
+            </div>
+            <div class="slider-container">
+                <label>Contrast <span class="slider-value" id="contrastVal">${nightFilter.contrast.toFixed(2)}</span></label>
+                <input type="range" id="contrastSlider" min="0.5" max="3" step="0.01" value="${nightFilter.contrast}">
+            </div>
+            <button class="reset-filter-btn" id="resetFilterBtn">↺ بازنشانی به پیش‌فرض</button>
+        `;
+        juzListDiv.appendChild(settingsDiv);
+
+        // اضافه کردن رویدادهای اسلایدرها
+        const invertSlider = document.getElementById('invertSlider');
+        const brightnessSlider = document.getElementById('brightnessSlider');
+        const contrastSlider = document.getElementById('contrastSlider');
+        const invertVal = document.getElementById('invertVal');
+        const brightnessVal = document.getElementById('brightnessVal');
+        const contrastVal = document.getElementById('contrastVal');
+
+        function updateSlidersAndFilter() {
+            nightFilter.invert = parseFloat(invertSlider.value);
+            nightFilter.brightness = parseFloat(brightnessSlider.value);
+            nightFilter.contrast = parseFloat(contrastSlider.value);
+            invertVal.textContent = nightFilter.invert.toFixed(2);
+            brightnessVal.textContent = nightFilter.brightness.toFixed(2);
+            contrastVal.textContent = nightFilter.contrast.toFixed(2);
+            updateNightFilter();
+        }
+
+        invertSlider.addEventListener('input', updateSlidersAndFilter);
+        brightnessSlider.addEventListener('input', updateSlidersAndFilter);
+        contrastSlider.addEventListener('input', updateSlidersAndFilter);
+
+        // دکمه بازنشانی
+        document.getElementById('resetFilterBtn').addEventListener('click', function() {
+            nightFilter = { ...defaultFilter };
+            invertSlider.value = nightFilter.invert;
+            brightnessSlider.value = nightFilter.brightness;
+            contrastSlider.value = nightFilter.contrast;
+            updateSlidersAndFilter();
+        });
 
         // در آخر دکمه حذف آفلاین
         const deleteBtn = document.createElement("button");
