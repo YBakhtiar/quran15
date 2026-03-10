@@ -37,6 +37,8 @@
             --juz-card-bg: rgba(20,30,45,0.7);
             --modal-bg: #111d2b;
             --image-filter: none;
+            --blue-accent: #4a90e2;
+            --blue-accent-dim: rgba(74,144,226,0.2);
         }
 
         body.night-mode {
@@ -394,12 +396,13 @@
             border-color: var(--border-hover);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
+        /* دکمه ادامه مطالعه (اولی) به رنگ آبی */
         .splash-btn:first-of-type {
-            background: rgba(255, 215, 150, 0.2);
-            border-color: rgba(255, 215, 150, 0.5);
+            background: var(--blue-accent-dim);
+            border-color: rgba(74, 144, 226, 0.5);
         }
         .splash-btn:first-of-type:hover {
-            background: rgba(255, 215, 150, 0.3);
+            background: rgba(74, 144, 226, 0.3);
         }
         .splash-btn svg {
             width: 22px;
@@ -458,9 +461,10 @@
             flex-direction: column;
             position: relative;
         }
+        /* دکمه ادامه تلاوت به رنگ آبی */
         .juz-card .continue-btn {
-            background: rgba(255, 215, 150, 0.15);
-            border: 1px solid rgba(255, 215, 150, 0.4);
+            background: var(--blue-accent-dim);
+            border: 1px solid rgba(74, 144, 226, 0.5);
             color: var(--text-primary);
             font-size: 16px;
             padding: 12px;
@@ -477,8 +481,8 @@
             gap: 8px;
         }
         .juz-card .continue-btn:hover {
-            background: rgba(255, 215, 150, 0.25);
-            border-color: rgba(255, 215, 150, 0.7);
+            background: rgba(74, 144, 226, 0.3);
+            border-color: rgba(74, 144, 226, 0.8);
             transform: translateY(-2px);
         }
         .juz-card .continue-btn svg {
@@ -529,7 +533,7 @@
             border-color: var(--border-hover);
         }
 
-        /* آیتم تغییر تم در منو */
+        /* آیتم تغییر تم در منو - استایل متمایز (مستطیلی با گوشه‌های کمتر) */
         .theme-toggle-item {
             display: flex;
             align-items: center;
@@ -540,7 +544,7 @@
             margin: 12px 0 6px 0;
             background: rgba(74, 144, 226, 0.1);
             border: 1px solid rgba(74, 144, 226, 0.4);
-            border-radius: 30px;
+            border-radius: 12px;  /* کمتر گرد شده */
             color: var(--text-primary);
             font-size: 15px;
             cursor: pointer;
@@ -557,6 +561,7 @@
             width: 18px;
             height: 18px;
             fill: currentColor;
+            stroke: currentColor;
             transition: transform 0.3s ease;
         }
         .theme-toggle-item:active svg {
@@ -565,7 +570,7 @@
 
         .night-settings-container {
             margin: 12px 0 6px 0;
-            border-radius: 30px;
+            border-radius: 12px;
             overflow: hidden;
             background: var(--button-bg);
             border: 1px solid var(--border-light);
@@ -671,6 +676,7 @@
             fill: currentColor;
         }
 
+        /* دکمه حذف آفلاین - متمایز با حاشیه خط‌چین و گوشه‌های تیزتر */
         .delete-offline-item {
             display: flex;
             align-items: center;
@@ -680,8 +686,8 @@
             padding: 12px 0;
             margin: 12px 0 6px 0;
             background: rgba(201, 106, 117, 0.1);
-            border: 1px dashed var(--danger-color);
-            border-radius: 30px;
+            border: 1px dashed var(--danger-color); /* خط‌چین */
+            border-radius: 12px; /* کمتر گرد */
             color: var(--danger-color);
             font-size: 13px;
             cursor: pointer;
@@ -738,18 +744,42 @@
             transition: filter 0.3s ease;
         }
 
+        /* دکمه‌های نویگیشن حرفه‌ای‌تر - دایره‌ای با افکت */
         .nav-btn {
-            position: absolute; top: 0; height: 100%; background: var(--button-bg);
-            backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); color: var(--text-secondary);
-            padding: 0 8px; cursor: pointer; z-index: 100; border: none; display: flex;
-            align-items: center; justify-content: center; font-size: 28px; opacity: 0.7; transition: all 0.4s ease;
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 60px; height: 60px;
+            background: var(--button-bg);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: 50%;  /* دایره */
+            cursor: pointer;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            opacity: 0.8;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
-        .nav-btn:hover { background: var(--button-hover); color: var(--text-primary); opacity: 1; }
-        .right-btn { right: 0; border-left: 1px solid var(--border-light); }
-        .left-btn { left: 0; border-right: 1px solid var(--border-light); }
+        .nav-btn:hover {
+            background: var(--button-hover);
+            color: var(--text-primary);
+            opacity: 1;
+            transform: translateY(-50%) scale(1.1);
+            border-color: var(--border-hover);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.4);
+        }
+        .nav-btn:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+        .right-btn { right: 20px; }
+        .left-btn { left: 20px; }
         .nav-btn svg {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             fill: currentColor;
         }
 
@@ -911,9 +941,10 @@
     </button>
     
     <div class="main-content" id="swipeArea">
-        <button class="nav-btn right-btn" onclick="prevPage()" title="صفحه قبل">
+        <!-- دکمه سمت راست: حالا آیکون فلش راست (که در RTL به معنی صفحه بعد است) -->
+        <button class="nav-btn right-btn" onclick="nextPage()" title="صفحه بعد">
             <svg viewBox="0 0 24 24">
-                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
             </svg>
         </button>
         
@@ -926,9 +957,10 @@
             </div>
         </div>
         
-        <button class="nav-btn left-btn" onclick="nextPage()" title="صفحه بعد">
+        <!-- دکمه سمت چپ: حالا آیکون فلش چپ (که در RTL به معنی صفحه قبل است) -->
+        <button class="nav-btn left-btn" onclick="prevPage()" title="صفحه قبل">
             <svg viewBox="0 0 24 24">
-                <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
+                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
             </svg>
         </button>
         
@@ -988,19 +1020,14 @@
                 localStorage.setItem('quran-theme', 'day');
             }
             
-            // به‌روزرسانی آیکون و متن دکمه تغییر تم با SVGهای جدید
+            // به‌روزرسانی آیکون و متن دکمه تغییر تم (ماه بدون ستاره / خورشید)
             const themeBtn = document.getElementById('themeToggleMenuItem');
             if (themeBtn) {
                 const icon = themeBtn.querySelector('svg');
                 const textSpan = themeBtn.querySelector('span');
                 if (document.body.classList.contains('night-mode')) {
-                    // حالت شب: آیکون ماه با ستاره
-                    icon.innerHTML = `
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M18 3.5L18.5 4.7L19.7 5.2L18.5 5.7L18 6.9L17.5 5.7L16.3 5.2L17.5 4.7Z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M14.5 2L14.9 3L16 3.4L14.9 3.8L14.5 4.8L14.1 3.8L13 3.4L14.1 3Z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                        <circle cx="19" cy="9" r="0.8" fill="currentColor" stroke="none"/>
-                    `;
+                    // حالت شب: فقط ماه (بدون ستاره)
+                    icon.innerHTML = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
                     textSpan.textContent = 'حالت روز';
                 } else {
                     // حالت روز: آیکون خورشید
@@ -1233,7 +1260,7 @@
             juzListDiv.appendChild(btn);
         }
 
-        // دکمه تغییر تم با آیکون‌های جدید
+        // دکمه تغییر تم با آیکون‌های جدید (ماه بدون ستاره)
         const themeBtn = document.createElement("button");
         themeBtn.className = "theme-toggle-item";
         themeBtn.id = "themeToggleMenuItem";
@@ -1242,9 +1269,6 @@
             themeBtn.innerHTML = `
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79"/>
-                    <path d="M18 3.5L18.5 4.7L19.7 5.2L18.5 5.7L18 6.9L17.5 5.7L16.3 5.2L17.5 4.7Z"/>
-                    <path d="M14.5 2L14.9 3L16 3.4L14.9 3.8L14.5 4.8L14.1 3.8L13 3.4L14.1 3Z"/>
-                    <circle cx="19" cy="9" r="0.8" fill="currentColor" stroke="none"/>
                 </svg>
                 <span>حالت روز</span>
             `;
