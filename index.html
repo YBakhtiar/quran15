@@ -744,42 +744,42 @@
             transition: filter 0.3s ease;
         }
 
-        /* دکمه‌های نویگیشن حرفه‌ای‌تر - دایره‌ای با افکت */
+        /* دکمه‌های نویگیشن به سبک قبلی (تمام‌قد در کناره‌ها) */
         .nav-btn {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            width: 60px; height: 60px;
+            position: absolute;
+            top: 0;
+            height: 100%;
             background: var(--button-bg);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
             color: var(--text-secondary);
-            border: 1px solid var(--border-light);
-            border-radius: 50%;  /* دایره */
+            padding: 0 8px;
             cursor: pointer;
             z-index: 100;
+            border: none;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 28px;
-            opacity: 0.8;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            opacity: 0.7;
+            transition: all 0.4s ease;
         }
         .nav-btn:hover {
             background: var(--button-hover);
             color: var(--text-primary);
             opacity: 1;
-            transform: translateY(-50%) scale(1.1);
-            border-color: var(--border-hover);
-            box-shadow: 0 12px 28px rgba(0,0,0,0.4);
         }
-        .nav-btn:active {
-            transform: translateY(-50%) scale(0.95);
+        .right-btn {
+            right: 0;
+            border-left: 1px solid var(--border-light);
         }
-        .right-btn { right: 20px; }
-        .left-btn { left: 20px; }
+        .left-btn {
+            left: 0;
+            border-right: 1px solid var(--border-light);
+        }
         .nav-btn svg {
-            width: 28px;
-            height: 28px;
+            width: 24px;
+            height: 24px;
             fill: currentColor;
         }
 
@@ -941,7 +941,7 @@
     </button>
     
     <div class="main-content" id="swipeArea">
-        <!-- دکمه سمت راست: حالا آیکون فلش راست (که در RTL به معنی صفحه بعد است) -->
+        <!-- دکمه سمت راست: صفحه بعد (مطابق اصلاح قبلی) -->
         <button class="nav-btn right-btn" onclick="nextPage()" title="صفحه بعد">
             <svg viewBox="0 0 24 24">
                 <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
@@ -957,7 +957,7 @@
             </div>
         </div>
         
-        <!-- دکمه سمت چپ: حالا آیکون فلش چپ (که در RTL به معنی صفحه قبل است) -->
+        <!-- دکمه سمت چپ: صفحه قبل -->
         <button class="nav-btn left-btn" onclick="prevPage()" title="صفحه قبل">
             <svg viewBox="0 0 24 24">
                 <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
