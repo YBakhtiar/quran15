@@ -30,7 +30,7 @@
             --border-light: rgba(255,255,255,0.1);
             --border-hover: rgba(255,255,255,0.3);
             --button-bg: rgba(255,255,255,0.05);
-            --button-hover: rgba(255,255,255,0.1);
+            --button-hover: rgba(255,255,255,0.15);
             --accent-color: #4ade80;
             --danger-color: #c96a75;
             --splash-bg: rgba(10,20,30,0.8);
@@ -544,7 +544,7 @@
             margin: 12px 0 6px 0;
             background: rgba(74, 144, 226, 0.1);
             border: 1px solid rgba(74, 144, 226, 0.4);
-            border-radius: 12px;  /* کمتر گرد شده */
+            border-radius: 12px;
             color: var(--text-primary);
             font-size: 15px;
             cursor: pointer;
@@ -686,8 +686,8 @@
             padding: 12px 0;
             margin: 12px 0 6px 0;
             background: rgba(201, 106, 117, 0.1);
-            border: 1px dashed var(--danger-color); /* خط‌چین */
-            border-radius: 12px; /* کمتر گرد */
+            border: 1px dashed var(--danger-color);
+            border-radius: 12px;
             color: var(--danger-color);
             font-size: 13px;
             cursor: pointer;
@@ -744,43 +744,57 @@
             transition: filter 0.3s ease;
         }
 
-        /* دکمه‌های نویگیشن به سبک قبلی (تمام‌قد در کناره‌ها) */
+        /* دکمه‌های نویگیشن تمام‌قد با استایل حرفه‌ای‌تر */
         .nav-btn {
             position: absolute;
             top: 0;
             height: 100%;
-            background: var(--button-bg);
-            backdrop-filter: blur(3px);
-            -webkit-backdrop-filter: blur(3px);
+            width: 60px; /* عرض ثابت برای یکپارچگی */
+            background: linear-gradient(90deg, transparent, var(--button-bg) 30%, var(--button-bg));
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
             color: var(--text-secondary);
-            padding: 0 8px;
+            border: none;
             cursor: pointer;
             z-index: 100;
-            border: none;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 28px;
             opacity: 0.7;
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
+            box-shadow: inset 0 0 0 0 rgba(255,255,255,0.1);
         }
         .nav-btn:hover {
-            background: var(--button-hover);
-            color: var(--text-primary);
             opacity: 1;
+            background: linear-gradient(90deg, transparent, var(--button-hover) 20%, var(--button-hover));
+            color: var(--text-primary);
+            box-shadow: inset 0 0 20px rgba(255,255,255,0.1);
+        }
+        .nav-btn:hover svg {
+            transform: scale(1.15);
+        }
+        .nav-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: currentColor;
+            transition: transform 0.3s ease;
         }
         .right-btn {
             right: 0;
             border-left: 1px solid var(--border-light);
+            background: linear-gradient(270deg, transparent, var(--button-bg) 30%, var(--button-bg));
+        }
+        .right-btn:hover {
+            background: linear-gradient(270deg, transparent, var(--button-hover) 20%, var(--button-hover));
         }
         .left-btn {
             left: 0;
             border-right: 1px solid var(--border-light);
+            background: linear-gradient(90deg, transparent, var(--button-bg) 30%, var(--button-bg));
         }
-        .nav-btn svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
+        .left-btn:hover {
+            background: linear-gradient(90deg, transparent, var(--button-hover) 20%, var(--button-hover));
         }
 
         .fullscreen-btn {
@@ -941,7 +955,7 @@
     </button>
     
     <div class="main-content" id="swipeArea">
-        <!-- دکمه سمت راست: صفحه بعد (مطابق اصلاح قبلی) -->
+        <!-- دکمه سمت راست: صفحه بعد -->
         <button class="nav-btn right-btn" onclick="nextPage()" title="صفحه بعد">
             <svg viewBox="0 0 24 24">
                 <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
@@ -1020,17 +1034,13 @@
                 localStorage.setItem('quran-theme', 'day');
             }
             
-            // به‌روزرسانی آیکون و متن دکمه تغییر تم (ماه بدون ستاره / خورشید)
+            // به‌روزرسانی آیکون و متن دکمه تغییر تم (ماه بدون ستاره / خورشید) با منطق درست
             const themeBtn = document.getElementById('themeToggleMenuItem');
             if (themeBtn) {
                 const icon = themeBtn.querySelector('svg');
                 const textSpan = themeBtn.querySelector('span');
                 if (document.body.classList.contains('night-mode')) {
-                    // حالت شب: فقط ماه (بدون ستاره)
-                    icon.innerHTML = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
-                    textSpan.textContent = 'حالت روز';
-                } else {
-                    // حالت روز: آیکون خورشید
+                    // در حالت شب: آیکون خورشید و متن "حالت روز" (برای رفتن به روز)
                     icon.innerHTML = `
                         <circle cx="12" cy="12" r="5" fill="currentColor"/>
                         <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -1044,6 +1054,10 @@
                             <line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>
                         </g>
                     `;
+                    textSpan.textContent = 'حالت روز';
+                } else {
+                    // در حالت روز: آیکون ماه و متن "حالت شب" (برای رفتن به شب)
+                    icon.innerHTML = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
                     textSpan.textContent = 'حالت شب';
                 }
             }
@@ -1260,19 +1274,13 @@
             juzListDiv.appendChild(btn);
         }
 
-        // دکمه تغییر تم با آیکون‌های جدید (ماه بدون ستاره)
+        // دکمه تغییر تم با آیکون‌های درست (با توجه به تم فعلی)
         const themeBtn = document.createElement("button");
         themeBtn.className = "theme-toggle-item";
         themeBtn.id = "themeToggleMenuItem";
-        const isNight = document.body.classList.contains('night-mode');
-        if (isNight) {
-            themeBtn.innerHTML = `
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79"/>
-                </svg>
-                <span>حالت روز</span>
-            `;
-        } else {
+        // مقداردهی اولیه توسط setTheme انجام می‌شود، اما چون در این لحظه body کلاس مناسب دارد، مستقیماً تنظیم می‌کنیم
+        const isNightMode = document.body.classList.contains('night-mode');
+        if (isNightMode) {
             themeBtn.innerHTML = `
                 <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round">
                     <circle cx="12" cy="12" r="5"/>
@@ -1286,6 +1294,13 @@
                         <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/>
                         <line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>
                     </g>
+                </svg>
+                <span>حالت روز</span>
+            `;
+        } else {
+            themeBtn.innerHTML = `
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79"/>
                 </svg>
                 <span>حالت شب</span>
             `;
