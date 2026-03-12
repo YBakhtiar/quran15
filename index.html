@@ -3,759 +3,732 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#f0f7ff" id="theme-color-meta">
-    <link rel="apple-touch-icon" href="./icon-192.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="القرآن">
     <title>القرآن الكريم</title>
-    <!-- فونت وزیرمتن از Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- فونت وزیر به عنوان پشتیبان -->
-    <link href="https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css" rel="stylesheet" type="text/css">
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png">
-    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* متغیرهای رنگ - تم روز (روشن و پررنگ) */
+        /* ═══════════════════════════════════
+           THEME VARIABLES
+           ═══════════════════════════════════ */
         :root {
-            --bg-primary: #f0f7ff;
-            --bg-secondary: #ffffff;
-            --bg-tertiary: #e6f0fa;
-            --text-primary: #1e2a44;
-            --text-secondary: #2d3a5e;
-            --text-muted: #5b6f8c;
-            --border-light: rgba(0, 50, 100, 0.1);
-            --border-hover: rgba(0, 80, 150, 0.2);
-            --button-bg: rgba(255, 255, 255, 0.8);
-            --button-hover: rgba(255, 255, 255, 0.95);
-            --accent-color: #2b6ed9;
-            --accent-soft: rgba(43, 110, 217, 0.12);
-            --danger-color: #d14545;
-            --danger-soft: rgba(209, 69, 69, 0.1);
-            --success-color: #28a745;
-            --splash-bg: rgba(240, 247, 255, 0.7);
-            --juz-card-bg: rgba(255, 255, 255, 0.75);
-            --modal-bg: #ffffff;
+            --bg-primary: #FDF8F0;
+            --bg-secondary: #FFFFFF;
+            --bg-tertiary: #F0EAE0;
+            --bg-elevated: rgba(255, 255, 255, 0.88);
+            --text-primary: #2D1F14;
+            --text-secondary: #5A4030;
+            --text-muted: #8C7A65;
+            --border-light: rgba(160, 130, 90, 0.15);
+            --border-hover: rgba(160, 130, 90, 0.3);
+            --border-decorative: rgba(200, 169, 81, 0.25);
+            --accent: #B8860B;
+            --accent-hover: #D4A017;
+            --accent-soft: rgba(184, 134, 11, 0.1);
+            --accent-glow: rgba(184, 134, 11, 0.2);
+            --danger: #C0392B;
+            --danger-soft: rgba(192, 57, 43, 0.1);
+            --success: #27AE60;
+            --modal-bg: #FFFFFF;
+            --card-bg: rgba(255, 255, 255, 0.82);
             --image-filter: none;
-            --shadow-sm: 0 2px 8px rgba(0, 40, 80, 0.08);
-            --shadow-md: 0 6px 16px rgba(0, 40, 80, 0.12);
-            --shadow-lg: 0 12px 28px rgba(0, 40, 80, 0.16);
-            --shadow-xl: 0 20px 40px rgba(0, 40, 80, 0.2);
-            --blur-amount: 12px;
-            --transition-fast: 0.2s ease;
-            --transition-base: 0.3s ease;
+            --pattern-opacity: 0.03;
+            --shadow-soft: 0 2px 12px rgba(80, 50, 20, 0.08);
+            --shadow-md: 0 8px 24px rgba(80, 50, 20, 0.12);
+            --shadow-lg: 0 16px 40px rgba(80, 50, 20, 0.16);
+            --shadow-page: 0 8px 32px rgba(80, 50, 20, 0.2);
         }
 
-        /* تم شب (همراه با فیلتر تصاویر) */
         body.night-mode {
-            --bg-primary: #0b1424;
-            --bg-secondary: #1f2a40;
-            --bg-tertiary: #2a3650;
-            --text-primary: #f0f4ff;
-            --text-secondary: #d0dcff;
-            --text-muted: #a0b0d0;
-            --border-light: rgba(255, 255, 255, 0.1);
-            --border-hover: rgba(255, 255, 255, 0.2);
-            --button-bg: rgba(30, 40, 60, 0.8);
-            --button-hover: rgba(40, 55, 80, 0.95);
-            --accent-color: #4f9eff;
-            --accent-soft: rgba(79, 158, 255, 0.2);
-            --danger-color: #ff6b6b;
-            --danger-soft: rgba(255, 107, 107, 0.15);
-            --success-color: #51cf66;
-            --splash-bg: rgba(10, 20, 35, 0.8);
-            --juz-card-bg: rgba(30, 40, 60, 0.8);
-            --modal-bg: #1f2a40;
-            --image-filter: var(--night-filter);
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
-            --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.6);
-            --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.7);
-            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.8);
+            --bg-primary: #0F1923;
+            --bg-secondary: #1A2B3E;
+            --bg-tertiary: #243548;
+            --bg-elevated: rgba(26, 43, 62, 0.92);
+            --text-primary: #E8DED0;
+            --text-secondary: #C8B89A;
+            --text-muted: #8A7A60;
+            --border-light: rgba(200, 180, 140, 0.12);
+            --border-hover: rgba(200, 180, 140, 0.25);
+            --border-decorative: rgba(212, 175, 55, 0.25);
+            --accent: #D4AF37;
+            --accent-hover: #E8C84A;
+            --accent-soft: rgba(212, 175, 55, 0.12);
+            --accent-glow: rgba(212, 175, 55, 0.25);
+            --danger: #E74C3C;
+            --danger-soft: rgba(231, 76, 60, 0.15);
+            --success: #2ECC71;
+            --modal-bg: #1A2B3E;
+            --card-bg: rgba(26, 43, 62, 0.88);
+            --image-filter: var(--night-filter-value);
+            --pattern-opacity: 0.02;
+            --shadow-soft: 0 2px 12px rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.6);
+            --shadow-page: 0 8px 32px rgba(0, 0, 0, 0.7);
         }
 
-        /* حالت پس‌زمینه تیره (بدون فیلتر تصاویر) - فقط در روز فعال می‌شود */
         body.dark-ui:not(.night-mode) {
-            --bg-primary: #1a2538;
-            --bg-secondary: #2c3a50;
-            --bg-tertiary: #3a4a64;
-            --text-primary: #eef2f8;
-            --text-secondary: #cbd5e8;
-            --text-muted: #9aafcc;
-            --border-light: rgba(255, 255, 255, 0.1);
-            --border-hover: rgba(255, 255, 255, 0.2);
-            --button-bg: rgba(40, 55, 75, 0.8);
-            --button-hover: rgba(55, 75, 100, 0.95);
-            --accent-color: #4f9eff;
-            --accent-soft: rgba(79, 158, 255, 0.2);
-            --splash-bg: rgba(20, 30, 45, 0.8);
-            --juz-card-bg: rgba(35, 50, 70, 0.8);
-            --modal-bg: #2c3a50;
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
-            --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.6);
-            --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.7);
-            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.8);
+            --bg-primary: #1A2538;
+            --bg-secondary: #253548;
+            --bg-tertiary: #2F4058;
+            --bg-elevated: rgba(37, 53, 72, 0.92);
+            --text-primary: #E0D8CC;
+            --text-secondary: #B8A890;
+            --text-muted: #807060;
+            --border-light: rgba(200, 180, 140, 0.1);
+            --border-hover: rgba(200, 180, 140, 0.2);
+            --border-decorative: rgba(184, 134, 11, 0.2);
+            --accent: #D4AF37;
+            --accent-hover: #E8C84A;
+            --accent-soft: rgba(212, 175, 55, 0.12);
+            --modal-bg: #253548;
+            --card-bg: rgba(37, 53, 72, 0.88);
+            --pattern-opacity: 0.02;
+            --shadow-soft: 0 2px 12px rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.6);
+            --shadow-page: 0 8px 32px rgba(0, 0, 0, 0.7);
         }
 
-        /* فیلتر شب */
-        body.night-mode {
-            --night-filter: var(--night-filter-value);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        /* ═══════════════════════════════════
+           BASE STYLES
+           ═══════════════════════════════════ */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            background-color: var(--bg-primary);
-            font-family: 'Vazirmatn', 'Vazir', Tahoma, sans-serif;
-            margin: 0;
-            padding: 0;
+            background: var(--bg-primary);
+            font-family: 'Vazirmatn', Tahoma, sans-serif;
+            color: var(--text-primary);
             display: flex;
             height: 100vh;
             overflow: hidden;
             overscroll-behavior-y: contain;
             touch-action: none;
-            color: var(--text-primary);
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background-color 0.4s ease, color 0.4s ease;
             line-height: 1.5;
         }
 
-        /* دکمه‌های ثابت - طراحی مدرن */
-        .menu-toggle, .settings-btn, .main-download-btn, .fullscreen-btn {
-            backdrop-filter: blur(var(--blur-amount));
-            -webkit-backdrop-filter: blur(var(--blur-amount));
-            background: var(--button-bg);
-            border: 1px solid var(--border-light);
-            box-shadow: var(--shadow-md);
-            cursor: pointer;
-            border-radius: 16px;
-            padding: 12px;
+        /* Subtle dot grid pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: var(--pattern-opacity);
+            background-image: radial-gradient(var(--accent) 0.6px, transparent 0.6px);
+            background-size: 22px 22px;
+            transition: opacity 0.4s;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 10px; }
+
+        /* ═══════════════════════════════════
+           FLOATING BUTTONS
+           ═══════════════════════════════════ */
+        .float-btn {
+            position: fixed;
+            z-index: 100;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all var(--transition-base);
-            z-index: 1002;
-            color: var(--text-primary);
-            opacity: 0.9;
-        }
-
-        .menu-toggle:hover, .settings-btn:hover, .main-download-btn:hover, .fullscreen-btn:hover {
-            opacity: 1;
-            background: var(--button-hover);
-            border-color: var(--border-hover);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .menu-toggle svg, .settings-btn svg, .main-download-btn svg, .fullscreen-btn svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-
-        /* دکمه تنظیمات (بالا چپ) */
-        .settings-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-        }
-
-        /* دکمه فهرست اجزاء (بالا راست) */
-        .menu-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-        }
-
-        /* دکمه دانلود (پایین راست) */
-        .main-download-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            font-size: 14px;
-            font-weight: 500;
-            gap: 8px;
-            padding: 10px 18px;
-            color: var(--text-secondary);
-        }
-        .main-download-btn.done {
-            color: var(--success-color);
-            border-color: var(--success-color);
-            pointer-events: none;
-            display: none;
-        }
-
-        /* دکمه تمام صفحه (پایین چپ) */
-        .fullscreen-btn {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-        }
-
-        .progress-tooltip {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            background: var(--bg-secondary);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            color: var(--text-secondary);
-            font-size: 12px;
-            padding: 8px 16px;
-            border-radius: 40px;
+            background: var(--bg-elevated);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--border-light);
-            box-shadow: var(--shadow-md);
-            display: none;
-            z-index: 1002;
+            border-radius: 50%;
+            width: 46px;
+            height: 46px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow-soft);
+        }
+        .float-btn:hover, .float-btn:active {
+            color: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md), 0 0 0 4px var(--accent-soft);
+        }
+        .float-btn svg { width: 20px; height: 20px; fill: currentColor; }
+
+        .float-btn-pill {
+            border-radius: 24px;
+            width: auto;
+            height: auto;
+            padding: 10px 18px;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            font-family: 'Vazirmatn', sans-serif;
         }
 
-        /* مودال‌ها - طراحی کارت مدرن */
-        .modal-overlay {
+        .btn-menu { top: 18px; right: 18px; }
+        .btn-settings { top: 18px; left: 18px; }
+        .btn-download { bottom: 18px; right: 18px; }
+        .btn-download.done { display: none; }
+        .btn-fullscreen { bottom: 18px; left: 18px; }
+
+        /* ═══════════════════════════════════
+           OVERLAYS & MODALS (shared)
+           ═══════════════════════════════════ */
+        .overlay {
             position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            inset: 0;
             display: none;
-            justify-content: center;
             align-items: center;
-            z-index: 2000;
+            justify-content: center;
             padding: 16px;
+            animation: overlayIn 0.25s ease;
+        }
+        .overlay.active { display: flex; }
+
+        .overlay-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
-        .modal-content {
+        .modal-card {
+            position: relative;
+            z-index: 1;
             background: var(--modal-bg);
             border: 1px solid var(--border-light);
-            border-radius: 32px;
+            border-radius: 28px;
             padding: 28px;
             max-width: 420px;
             width: 100%;
             max-height: 85vh;
             overflow-y: auto;
-            box-shadow: var(--shadow-xl);
+            box-shadow: var(--shadow-lg);
             color: var(--text-primary);
-            font-family: 'Vazirmatn', sans-serif;
-            animation: modalFadeIn 0.3s ease;
+            animation: cardIn 0.3s ease;
+            scrollbar-width: thin;
+            scrollbar-color: var(--text-muted) transparent;
         }
 
-        @keyframes modalFadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .modal-content h3 {
-            margin-top: 0;
-            margin-bottom: 16px;
-            font-size: 22px;
-            font-weight: 600;
+        .modal-header {
             display: flex;
             align-items: center;
-            gap: 8px;
-            color: var(--text-primary);
-            border-bottom: 1px solid var(--border-light);
-            padding-bottom: 12px;
-        }
-        .modal-content h3 svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-        }
-        .modal-content p {
-            color: var(--text-muted);
-            font-size: 14px;
+            gap: 10px;
+            padding-bottom: 16px;
             margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 20px;
+            font-weight: 600;
         }
+        .modal-header svg { width: 22px; height: 22px; fill: var(--accent); flex-shrink: 0; }
 
-        .dl-opt-btn, .install-btn {
+        .close-btn {
             width: 100%;
-            padding: 16px;
-            margin: 8px 0;
-            border-radius: 20px;
-            border: 1px solid var(--border-light);
-            background: var(--button-bg);
-            color: var(--text-primary);
-            font-family: inherit;
-            font-size: 15px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all var(--transition-base);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-        }
-
-        .dl-opt-btn:hover, .install-btn:hover {
-            background: var(--button-hover);
-            border-color: var(--border-hover);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .dl-opt-btn .main-text {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-        }
-        .dl-opt-btn .sub-text {
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-
-        /* بخش‌بندی تنظیمات */
-        .settings-section {
-            margin-bottom: 24px;
-        }
-        .settings-section-title {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 12px;
-            padding-right: 4px;
-        }
-
-        /* دکمه‌های تنظیمات (تم، پس‌زمینه تیره، حذف) */
-        .theme-toggle-item, .dark-ui-toggle-item, .delete-offline-item {
-            width: 100%;
-            padding: 16px;
-            border-radius: 20px;
-            font-family: inherit;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all var(--transition-base);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            margin: 8px 0;
-        }
-
-        .theme-toggle-item {
-            border: 1px solid var(--accent-color);
-            background: var(--accent-soft);
-            color: var(--accent-color);
-        }
-        body.night-mode .theme-toggle-item {
-            color: white; /* در حالت شب متن و آیکون سفید */
-            border-color: white;
-            background: rgba(255, 255, 255, 0.1);
-        }
-        .theme-toggle-item:hover {
-            filter: brightness(1.1);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .dark-ui-toggle-item {
-            border: 1px solid var(--border-light);
-            background: var(--button-bg);
-            color: var(--text-primary);
-        }
-        .dark-ui-toggle-item.active {
-            border-color: var(--accent-color);
-            background: var(--accent-soft);
-            color: var(--accent-color);
-        }
-        .dark-ui-toggle-item:hover {
-            background: var(--button-hover);
-            border-color: var(--border-hover);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .delete-offline-item {
-            border: 1px solid var(--danger-color);
-            background: var(--danger-soft);
-            color: var(--danger-color);
-        }
-        .delete-offline-item:hover {
-            filter: brightness(1.1);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .cancel-btn {
-            background: transparent;
-            border: 1px solid var(--border-light);
-            color: var(--text-muted);
-            padding: 14px 24px;
-            border-radius: 40px;
-            margin-top: 16px;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: 15px;
-            font-weight: 500;
-            transition: all var(--transition-base);
-            width: 100%;
-        }
-        .cancel-btn:hover {
-            background: var(--button-hover);
-            color: var(--text-primary);
-            border-color: var(--border-hover);
-        }
-
-        .install-section {
-            margin-top: 24px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-light);
-        }
-        .install-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        .install-instructions {
-            background: var(--bg-tertiary);
+            padding: 14px;
             border-radius: 16px;
-            padding: 16px;
-            text-align: right;
-            font-size: 13px;
-            color: var(--text-secondary);
-            line-height: 1.8;
+            border: 1px solid var(--border-light);
+            background: transparent;
+            color: var(--text-muted);
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 16px;
         }
-        .install-instructions p {
-            display: flex;
-            gap: 8px;
-            margin: 8px 0;
+        .close-btn:hover { background: var(--bg-tertiary); color: var(--text-primary); }
+
+        @keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes cardIn { from { opacity: 0; transform: translateY(16px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+        /* ═══════════════════════════════════
+           SPLASH SCREEN
+           ═══════════════════════════════════ */
+        .splash-overlay {
+            z-index: 3000;
+            background: var(--bg-primary);
         }
-        .install-instructions svg {
-            width: 16px;
-            height: 16px;
-            fill: currentColor;
-            flex-shrink: 0;
-            margin-top: 3px;
+        .splash-overlay .overlay-backdrop { background: transparent; backdrop-filter: none; }
+
+        .splash-card {
+            position: relative;
+            z-index: 1;
+            background: var(--card-bg);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--border-decorative);
+            border-radius: 40px;
+            padding: 48px 32px 36px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            animation: splashIn 0.5s ease;
         }
 
-        /* اسپلش مدرن */
-        .splash-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: var(--splash-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 3000;
-            padding: 16px;
+        @keyframes splashIn {
+            from { opacity: 0; transform: translateY(24px) scale(0.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
-        .splash-card {
-            background: var(--juz-card-bg);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1px solid var(--border-light);
-            border-radius: 48px;
-            padding: 40px 32px;
-            width: 400px;
-            max-width: 100%;
-            box-shadow: var(--shadow-xl);
-            text-align: center;
-            color: var(--text-primary);
-            animation: splashFadeIn 0.4s ease;
-        }
-        @keyframes splashFadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .splash-card h1 {
-            font-size: 32px;
-            margin-bottom: 8px;
+
+        .splash-title {
+            font-family: 'Amiri', serif;
+            font-size: 46px;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--accent-color), #8b5cf6);
+            background: linear-gradient(135deg, var(--accent), #8B6914, var(--accent-hover));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            line-height: 1.4;
+            margin-bottom: 4px;
         }
-        .splash-card .subtitle {
-            color: var(--text-muted);
-            margin-bottom: 32px;
+
+        .splash-divider {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 16px auto 20px;
+            max-width: 240px;
+            color: var(--accent);
             font-size: 14px;
         }
+        .splash-divider::before, .splash-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .splash-subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+
         .splash-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             width: 100%;
-            padding: 16px;
+            padding: 15px;
             margin: 10px 0;
-            border: none;
-            border-radius: 40px;
-            background: var(--button-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            color: var(--text-primary);
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all var(--transition-base);
             border: 1px solid var(--border-light);
-            box-shadow: var(--shadow-md);
+            border-radius: 16px;
+            background: var(--card-bg);
+            color: var(--text-primary);
+            font-size: 15px;
+            font-weight: 600;
             font-family: 'Vazirmatn', sans-serif;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow-soft);
         }
-        .splash-btn:first-of-type {
-            background: var(--accent-soft);
-            border-color: var(--accent-color);
-            color: var(--accent-color);
-        }
-        body.night-mode .splash-btn:first-of-type,
-        body.dark-ui .splash-btn:first-of-type {
-            color: white; /* در حالت شب یا پس‌زمینه تیره، متن سفید */
-            border-color: white;
-            background: rgba(255, 255, 255, 0.15);
-        }
+        .splash-btn svg { width: 20px; height: 20px; fill: currentColor; }
         .splash-btn:hover {
             transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-            background: var(--button-hover);
+            box-shadow: var(--shadow-md);
+            border-color: var(--border-hover);
         }
-        .splash-btn svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
+        .splash-btn-primary {
+            background: var(--accent-soft);
+            border-color: var(--accent);
+            color: var(--accent);
         }
-        .telegram-link {
-            margin-top: 24px;
+        body.night-mode .splash-btn-primary,
+        body.dark-ui .splash-btn-primary {
+            color: #F0E6D3;
+            background: rgba(212, 175, 55, 0.18);
+        }
+
+        .splash-link {
+            margin-top: 28px;
             font-size: 12px;
-            opacity: 0.7;
+            opacity: 0.6;
         }
-        .telegram-link a {
+        .splash-link a {
             color: var(--text-muted);
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            transition: color var(--transition-fast);
+            transition: color 0.2s;
         }
-        .telegram-link a:hover {
-            color: var(--accent-color);
-        }
-        .telegram-link svg {
-            width: 16px;
-            height: 16px;
-            fill: currentColor;
-        }
+        .splash-link a:hover { color: var(--accent); opacity: 1; }
+        .splash-link svg { width: 15px; height: 15px; fill: currentColor; }
 
-        /* مودال اجزاء */
-        .juz-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2500;
-            padding: 16px;
-        }
+        /* ═══════════════════════════════════
+           JUZ OVERLAY
+           ═══════════════════════════════════ */
+        .juz-overlay { z-index: 2500; }
+
         .juz-card {
-            background: var(--juz-card-bg);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1px solid var(--border-light);
-            border-radius: 48px;
-            padding: 32px 24px;
-            width: 420px;
-            max-width: 100%;
-            max-height: 80vh;
-            box-shadow: var(--shadow-xl);
-            color: var(--text-primary);
+            position: relative;
+            z-index: 1;
+            background: var(--card-bg);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--border-decorative);
+            border-radius: 32px;
+            padding: 28px 24px;
+            max-width: 440px;
+            width: 100%;
+            max-height: 82vh;
+            box-shadow: var(--shadow-lg);
             display: flex;
             flex-direction: column;
+            animation: cardIn 0.3s ease;
         }
-        .juz-card .continue-btn {
-            background: var(--accent-soft);
-            border: 1px solid var(--accent-color);
-            color: var(--accent-color);
-            font-size: 16px;
-            font-weight: 600;
-            padding: 16px;
-            border-radius: 40px;
-            margin-bottom: 20px;
-            cursor: pointer;
-            transition: all var(--transition-base);
+
+        .juz-continue-btn {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
+            padding: 14px;
+            border-radius: 16px;
+            border: 1px solid var(--accent);
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s;
+            margin-bottom: 18px;
+            flex-shrink: 0;
         }
-        .juz-card .continue-btn:hover {
-            filter: brightness(1.1);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+        .juz-continue-btn svg { width: 18px; height: 18px; fill: currentColor; }
+        .juz-continue-btn:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        body.night-mode .juz-continue-btn,
+        body.dark-ui .juz-continue-btn {
+            color: #F0E6D3;
+            background: rgba(212, 175, 55, 0.18);
         }
-        body.night-mode .juz-card .continue-btn,
-        body.dark-ui .juz-card .continue-btn {
-            color: white;
-            border-color: white;
-            background: rgba(255, 255, 255, 0.15);
-        }
-        .juz-card .continue-btn svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-        }
-        .juz-list-container {
+
+        .juz-grid-container {
             overflow-y: auto;
             flex-grow: 1;
             scrollbar-width: thin;
             scrollbar-color: var(--text-muted) transparent;
-            padding-left: 4px;
-        }
-        .juz-list-container::-webkit-scrollbar { width: 4px; }
-        .juz-list-container::-webkit-scrollbar-track { background: transparent; }
-        .juz-list-container::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 4px; }
-        .juz-item {
-            width: 100%;
-            padding: 14px;
-            margin: 6px 0;
-            background: var(--button-bg);
-            border: 1px solid var(--border-light);
-            border-radius: 40px;
-            color: var(--text-primary);
-            font-size: 15px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all var(--transition-fast);
-            font-family: 'Vazirmatn', sans-serif;
-            text-align: center;
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-        }
-        .juz-item:hover {
-            background: var(--button-hover);
-            border-color: var(--border-hover);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-sm);
+            padding: 4px;
         }
 
-        /* تنظیمات شب - داخل مودال */
-        .night-settings-container {
-            margin: 16px 0;
-            border-radius: 24px;
-            overflow: hidden;
+        .juz-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .juz-item {
+            padding: 14px 8px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 14px;
+            text-align: center;
+            cursor: pointer;
+            font-family: 'Amiri', serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+            animation: juzItemIn 0.3s ease backwards;
+        }
+        .juz-item:hover {
+            border-color: var(--accent);
+            background: var(--accent-soft);
+            color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-soft);
+        }
+
+        @keyframes juzItemIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ═══════════════════════════════════
+           SETTINGS MODAL
+           ═══════════════════════════════════ */
+        .settings-overlay { z-index: 2500; }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            padding-right: 4px;
+        }
+        .settings-section { margin-bottom: 22px; }
+
+        .settings-btn-row {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 1px solid var(--border-light);
+            background: var(--card-bg);
+            color: var(--text-primary);
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 6px 0;
+        }
+        .settings-btn-row svg { width: 18px; height: 18px; fill: currentColor; }
+        .settings-btn-row:hover { background: var(--bg-tertiary); border-color: var(--border-hover); transform: translateY(-1px); }
+
+        .settings-btn-row.accent {
+            border-color: var(--accent);
+            background: var(--accent-soft);
+            color: var(--accent);
+        }
+        body.night-mode .settings-btn-row.accent { color: #F0E6D3; background: rgba(212,175,55,0.18); }
+
+        .settings-btn-row.danger {
+            border-color: var(--danger);
+            background: var(--danger-soft);
+            color: var(--danger);
+        }
+
+        /* Night filter panel */
+        .filter-panel {
+            margin-top: 8px;
             background: var(--bg-tertiary);
             border: 1px solid var(--border-light);
+            border-radius: 16px;
+            overflow: hidden;
         }
-        .night-settings-toggle {
+        .filter-toggle {
             display: flex;
             align-items: center;
             justify-content: space-between;
             width: 100%;
-            padding: 16px;
+            padding: 14px 16px;
             background: transparent;
             border: none;
-            color: var(--text-primary);
-            font-family: inherit;
-            font-size: 15px;
+            color: var(--text-secondary);
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 13px;
             font-weight: 500;
             cursor: pointer;
-            transition: background var(--transition-fast);
+            transition: background 0.2s;
         }
-        .night-settings-toggle:hover {
-            background: var(--button-hover);
-        }
-        .night-settings-toggle .arrow {
-            transition: transform 0.3s;
-        }
-        .night-settings-toggle.active .arrow {
-            transform: rotate(180deg);
-        }
-        .night-settings-toggle svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-            margin-left: 8px;
-        }
-        .night-settings-panel {
+        .filter-toggle:hover { background: var(--bg-secondary); }
+        .filter-toggle .arrow { transition: transform 0.3s; font-size: 11px; }
+        .filter-toggle.open .arrow { transform: rotate(180deg); }
+
+        .filter-sliders {
             padding: 16px;
             border-top: 1px solid var(--border-light);
             background: var(--bg-secondary);
             display: none;
         }
-        .night-settings-panel.visible {
-            display: block;
-        }
-        .slider-container {
-            margin-bottom: 16px;
-        }
-        .slider-container label {
+        .filter-sliders.visible { display: block; }
+
+        .slider-row { margin-bottom: 14px; }
+        .slider-row label {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            margin-bottom: 8px;
+            align-items: center;
+            margin-bottom: 6px;
             color: var(--text-secondary);
-            font-size: 13px;
+            font-size: 12px;
         }
-        .slider-container input {
+        .slider-val {
+            background: var(--bg-tertiary);
+            padding: 2px 8px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .slider-row input[type="range"] {
             width: 100%;
             cursor: pointer;
+            -webkit-appearance: none;
             background: var(--bg-tertiary);
-            border-radius: 40px;
-            height: 6px;
-            -webkit-appearance: none;
+            border-radius: 10px;
+            height: 5px;
         }
-        .slider-container input::-webkit-slider-thumb {
+        .slider-row input::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 20px;
-            height: 20px;
+            width: 18px; height: 18px;
             border-radius: 50%;
-            background: var(--accent-color);
+            background: var(--accent);
             cursor: pointer;
             border: 2px solid var(--bg-primary);
-            box-shadow: var(--shadow-sm);
+            box-shadow: var(--shadow-soft);
         }
-        .slider-value {
-            background: var(--bg-tertiary);
-            padding: 4px 10px;
-            border-radius: 40px;
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--text-primary);
-        }
-        .reset-filter-btn {
-            background: var(--button-bg);
-            border: 1px solid var(--border-light);
-            color: var(--text-primary);
-            padding: 10px;
-            border-radius: 40px;
-            cursor: pointer;
-            font-size: 13px;
+        .filter-reset {
             width: 100%;
-            font-family: inherit;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid var(--border-light);
+            background: var(--card-bg);
+            color: var(--text-secondary);
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 6px;
-            transition: all var(--transition-fast);
         }
-        .reset-filter-btn:hover {
-            background: var(--button-hover);
-            border-color: var(--border-hover);
+        .filter-reset:hover { background: var(--bg-tertiary); }
+        .filter-reset svg { width: 14px; height: 14px; fill: currentColor; }
+
+        /* ═══════════════════════════════════
+           DOWNLOAD MODAL
+           ═══════════════════════════════════ */
+        .download-overlay { z-index: 2500; }
+
+        .dl-option {
+            width: 100%;
+            padding: 16px;
+            margin: 8px 0;
+            border-radius: 16px;
+            border: 1px solid var(--border-light);
+            background: var(--card-bg);
+            color: var(--text-primary);
+            font-family: 'Vazirmatn', sans-serif;
+            cursor: pointer;
+            transition: all 0.25s;
+            text-align: center;
+        }
+        .dl-option:hover {
+            border-color: var(--accent);
+            background: var(--accent-soft);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        .dl-option .dl-main { font-size: 15px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .dl-option .dl-main svg { width: 18px; height: 18px; fill: currentColor; }
+        .dl-option .dl-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+        .dl-option p { margin-bottom: 0; }
+
+        .progress-pill {
+            position: fixed;
+            bottom: 72px;
+            right: 18px;
+            background: var(--bg-elevated);
+            backdrop-filter: blur(10px);
+            color: var(--text-secondary);
+            font-size: 12px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-md);
+            display: none;
+            z-index: 150;
+            font-family: 'Vazirmatn', sans-serif;
         }
 
-        /* محتوای اصلی */
+        /* ═══════════════════════════════════
+           CUSTOM DIALOGS (replace alert/confirm)
+           ═══════════════════════════════════ */
+        .dialog-overlay {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 16px;
+            animation: overlayIn 0.2s ease;
+        }
+        .dialog-overlay .overlay-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .dialog-card {
+            position: relative;
+            z-index: 1;
+            background: var(--modal-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            padding: 28px;
+            max-width: 360px;
+            width: 100%;
+            box-shadow: var(--shadow-lg);
+            animation: cardIn 0.25s ease;
+        }
+        .dialog-title {
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+        .dialog-message {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+        .dialog-actions { display: flex; gap: 8px; justify-content: flex-end; }
+        .dialog-btn {
+            padding: 10px 22px;
+            border-radius: 12px;
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+        .dialog-btn-ok {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+        .dialog-btn-ok:hover { background: var(--accent-hover); }
+        .dialog-btn-cancel {
+            background: transparent;
+            color: var(--text-muted);
+            border-color: var(--border-light);
+        }
+        .dialog-btn-cancel:hover { background: var(--bg-tertiary); }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(16px);
+            background: var(--bg-elevated);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            color: var(--text-primary);
+            padding: 12px 24px;
+            border-radius: 14px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-md);
+            font-size: 14px;
+            font-family: 'Vazirmatn', sans-serif;
+            z-index: 10000;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            text-align: center;
+            max-width: 90%;
+        }
+        .toast.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        /* ═══════════════════════════════════
+           MAIN CONTENT & PAGES
+           ═══════════════════════════════════ */
         .main-content {
             position: relative;
             flex-grow: 1;
@@ -765,18 +738,18 @@
             height: 100vh;
             width: 100%;
             overflow: hidden;
+            z-index: 1;
         }
 
         .quran-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px;
+            gap: 16px;
             height: 96vh;
             width: 100%;
-            padding: 0 60px;
-            box-sizing: border-box;
-            touch-action: none;
+            padding: 0 56px;
+            transition: opacity 0.15s ease;
         }
 
         .page-wrapper {
@@ -785,908 +758,950 @@
             align-items: center;
             height: 100%;
             max-width: 48%;
-            border-radius: 24px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: var(--shadow-xl);
-            transition: box-shadow 0.3s ease;
-            background: var(--bg-primary); /* جلوگیری از حاشیه سفید */
+            box-shadow: var(--shadow-page);
+            border: 1px solid var(--border-decorative);
+            background: var(--bg-primary);
+            position: relative;
+            transform-origin: center center;
+            will-change: transform;
         }
-        body.night-mode .page-wrapper {
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+        .page-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            border-radius: inherit;
+            box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.04);
         }
+        body.night-mode .page-wrapper::after { box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.15); }
 
         .page {
             height: 100%;
             width: 100%;
             object-fit: contain;
-            border-radius: 24px;
+            border-radius: 16px;
             background-color: white;
-            transform-origin: center center;
-            will-change: transform;
             filter: var(--image-filter);
-            transition: filter 0.3s ease;
+            transition: filter 0.4s ease, opacity 0.2s ease;
+            user-select: none;
+            -webkit-user-drag: none;
         }
 
-        /* دکمه‌های نویگیشن باریک */
+        .page-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: var(--text-muted);
+            background: var(--bg-tertiary);
+            border-radius: 16px;
+        }
+        .page-placeholder .ph-num {
+            font-family: 'Amiri', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--accent);
+            opacity: 0.5;
+        }
+        .page-placeholder .ph-text { font-size: 12px; opacity: 0.6; }
+
+        /* Navigation buttons (desktop) */
         .nav-btn {
             position: absolute;
             top: 0;
             height: 100%;
-            width: 50px;
+            width: 48px;
             background: transparent;
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            color: var(--text-secondary);
+            color: var(--text-muted);
             cursor: pointer;
-            z-index: 100;
+            z-index: 10;
             border: none;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
-            opacity: 0.6;
-            transition: all var(--transition-base);
+            opacity: 0;
+            transition: all 0.3s ease;
         }
         .nav-btn:hover {
             opacity: 1;
-            background: linear-gradient(to right, var(--button-bg), transparent);
-            color: var(--text-primary);
+            background: linear-gradient(to var(--grad-dir, left), var(--bg-elevated), transparent);
+            color: var(--accent);
         }
-        .right-btn {
-            right: 0;
-            border-left: 1px solid var(--border-light);
-            background: linear-gradient(to left, var(--button-bg), transparent);
+        .nav-btn svg { width: 26px; height: 26px; fill: currentColor; }
+        .nav-right { right: 0; --grad-dir: left; }
+        .nav-left { left: 0; --grad-dir: right; }
+
+        /* Page indicator */
+        .page-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-elevated);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-family: 'Amiri', serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-muted);
+            border: 1px solid var(--border-light);
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            white-space: nowrap;
         }
-        .left-btn {
-            left: 0;
-            border-right: 1px solid var(--border-light);
-            background: linear-gradient(to right, var(--button-bg), transparent);
-        }
-        .nav-btn svg {
-            width: 28px;
-            height: 28px;
-            fill: currentColor;
+        .page-indicator.visible { opacity: 1; }
+
+        /* ═══════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════ */
+        @media (max-width: 768px) {
+            .quran-container { padding: 8px; gap: 0; }
+            .page-wrapper { max-width: 100%; width: 100%; height: auto; border-radius: 12px; }
+            .page { max-height: 95vh; border-radius: 12px; }
+            .nav-btn { display: none !important; }
+            .btn-fullscreen { display: none !important; }
+            .float-btn { width: 42px; height: 42px; }
+            .float-btn svg { width: 18px; height: 18px; }
+            .float-btn-pill { padding: 8px 14px; font-size: 12px; }
+            .splash-title { font-size: 38px; }
+            .splash-card { padding: 36px 24px 28px; border-radius: 32px; }
+            .juz-grid { grid-template-columns: repeat(2, 1fr); }
+            .juz-card { border-radius: 24px; padding: 22px 18px; }
+            .page-indicator { bottom: 16px; font-size: 13px; padding: 5px 14px; }
         }
 
-        /* ریسپانسیو */
-        @media screen and (max-width: 768px) {
-            .quran-container { padding: 10px; gap: 0; }
-            .page-wrapper { max-width: 100%; width: 100%; height: auto; border-radius: 16px; }
-            .page { max-height: 95vh; border-radius: 16px; }
-            .nav-btn { display: none !important; }
-            .fullscreen-btn { display: none !important; }
-            .menu-toggle, .settings-btn, .main-download-btn { padding: 10px; }
-            .menu-toggle svg, .settings-btn svg, .main-download-btn svg { width: 18px; height: 18px; }
+        @media (max-width: 380px) {
+            .splash-title { font-size: 32px; }
+            .splash-card { padding: 28px 18px 22px; }
         }
     </style>
 </head>
 <body>
-    <!-- اسپلش مودال -->
-    <div id="splashModal" class="splash-overlay">
+
+    <!-- ═══ SPLASH ═══ -->
+    <div class="overlay splash-overlay active" id="splashOverlay">
+        <div class="overlay-backdrop"></div>
         <div class="splash-card">
-            <h1>القرآن الكريم</h1>
-            <div class="subtitle">به نرم‌افزار قرآن کریم خوش آمدید</div>
-            <button class="splash-btn" id="continueReadingBtn">
-                <svg viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z"/>
-                </svg>
+            <div class="splash-title">القرآن الكريم</div>
+            <div class="splash-divider">◆</div>
+            <div class="splash-subtitle">به نرم‌افزار قرآن کریم خوش آمدید</div>
+            <button class="splash-btn splash-btn-primary" id="splashContinue">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 ادامه مطالعه
             </button>
-            <button class="splash-btn" id="juzListBtn">
-                <svg viewBox="0 0 24 24">
-                    <path d="M4 6h16v2H4V6zm0 4h16v2H4v-2zm0 4h16v2H4v-2zm0 4h10v2H4v-2z"/>
-                </svg>
+            <button class="splash-btn" id="splashJuzList">
+                <svg viewBox="0 0 24 24"><path d="M4 6h16v2H4V6zm0 4h16v2H4v-2zm0 4h16v2H4v-2zm0 4h10v2H4v-2z"/></svg>
                 فهرست اجزاء
             </button>
-            <div class="telegram-link">
+            <div class="splash-link">
                 <a href="https://t.me/YBAKHTIAR" target="_blank">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.05-.2-.06-.06-.15-.04-.22-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.4-1.08.39-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.37.74-.56 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .24z"/>
-                    </svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.05-.2-.06-.06-.15-.04-.22-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.4-1.08.39-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.37.74-.56 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .24z"/></svg>
                     پیشنهادات و نظریات
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- مودال مرکزی اجزاء -->
-    <div id="juzOverlay" class="juz-overlay">
+    <!-- ═══ JUZ OVERLAY ═══ -->
+    <div class="overlay juz-overlay" id="juzOverlay">
+        <div class="overlay-backdrop"></div>
         <div class="juz-card">
-            <button class="continue-btn" id="continueFromJuzBtn">
-                <svg viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z"/>
-                </svg>
+            <button class="juz-continue-btn" id="juzContinueBtn">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 ادامه تلاوت
             </button>
-            <div class="juz-list-container" id="juzList"></div>
-        </div>
-    </div>
-
-    <!-- دکمه تنظیمات (بالا چپ) -->
-    <button id="settingsBtn" class="settings-btn" onclick="openSettingsModal()">
-        <svg viewBox="0 0 24 24">
-            <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94 0 .31.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.57 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
-        </svg>
-    </button>
-
-    <!-- دکمه دانلود آفلاین (پایین راست) -->
-    <button id="mainDownloadBtn" class="main-download-btn" onclick="openDownloadModal()">
-        <svg viewBox="0 0 24 24">
-            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-        </svg>
-        دانلود آفلاین
-    </button>
-    <div id="progressTooltip" class="progress-tooltip">در حال دانلود...</div>
-    
-    <!-- مودال دانلود -->
-    <div id="downloadModal" class="modal-overlay">
-        <div class="modal-content">
-            <h3>
-                <svg viewBox="0 0 24 24">
-                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                </svg>
-                انتخاب کیفیت
-            </h3>
-            <p>کیفیت مناسب خود را انتخاب کنید:</p>
-            
-            <button class="dl-opt-btn" onclick="startDownload('standard')">
-                <span class="main-text">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/>
-                    </svg>
-                    کیفیت استاندارد (۷۰ مگابایت)
-                </span>
-                <span class="sub-text">مناسب موبایل و تبلت</span>
-            </button>
-            
-            <button class="dl-opt-btn" onclick="startDownload('hq')">
-                <span class="main-text">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/>
-                    </svg>
-                    کیفیت بالا (۵۰۰ مگابایت)
-                </span>
-                <span class="sub-text">مناسب کامپیوتر، تلویزیون و صفحات بزرگ</span>
-            </button>
-            
-            <div class="install-section" id="installSection">
-                <div class="install-title">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/>
-                    </svg>
-                    نصب روی دستگاه
-                </div>
-                <button class="install-btn" id="installPwaBtn" style="display: none;">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/>
-                    </svg>
-                    نصب اپلیکیشن
-                </button>
-                <div class="install-instructions" id="installInstructions">
-                    <p>
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                        <span><strong>اندروید و کروم:</strong> دکمه نصب یا "Install App".</span>
-                    </p>
-                    <p>
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                        <span><strong>آیفون/آیپد:</strong> "Add to Home Screen".</span>
-                    </p>
-                    <p>
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                        <span><strong>دسکتاپ:</strong> آیکون نصب در نوار آدرس.</span>
-                    </p>
-                </div>
+            <div class="juz-grid-container">
+                <div class="juz-grid" id="juzGrid"></div>
             </div>
-            
-            <button class="cancel-btn" onclick="closeDownloadModal()">
-                <svg viewBox="0 0 24 24">
-                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-                </svg>
-                لغو
-            </button>
         </div>
     </div>
 
-    <!-- مودال تنظیمات - طراحی حرفه‌ای‌تر -->
-    <div id="settingsModal" class="modal-overlay">
-        <div class="modal-content">
-            <h3>
-                <svg viewBox="0 0 24 24">
-                    <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94 0 .31.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.57 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
-                </svg>
+    <!-- ═══ SETTINGS MODAL ═══ -->
+    <div class="overlay settings-overlay" id="settingsOverlay">
+        <div class="overlay-backdrop"></div>
+        <div class="modal-card">
+            <div class="modal-header">
+                <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94 0 .31.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.57 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
                 تنظیمات
-            </h3>
-            
-            <!-- بخش ظاهر -->
+            </div>
+
             <div class="settings-section">
-                <div class="settings-section-title">ظاهر</div>
-                <!-- دکمه تغییر تم (شب/روز) -->
-                <button class="theme-toggle-item" id="settingsThemeToggle">
-                    <!-- آیکون و متن توسط JS تنظیم می‌شود -->
-                </button>
-                
-                <!-- دکمه پس‌زمینه تیره (فقط در حالت روز فعال) -->
-                <button class="dark-ui-toggle-item" id="darkUiToggle">
-                    <svg viewBox="0 0 24 24" width="20" height="20">
-                        <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7z"/>
-                    </svg>
-                    <span>پس‌زمینه تیره</span>
-                </button>
-                
-                <!-- تنظیمات حالت شب (اسلایدرها) -->
-                <div class="night-settings-container" id="settingsNightContainer">
-                    <button class="night-settings-toggle" id="settingsNightToggle">
-                        <span><svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94 0 .31.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.57 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg> تنظیمات حالت شب</span><span class="arrow">▼</span>
+                <div class="section-label">ظاهر</div>
+                <button class="settings-btn-row accent" id="themeToggle"></button>
+                <button class="settings-btn-row" id="darkUiToggle" style="display:none;"></button>
+
+                <div class="filter-panel" id="filterPanel" style="display:none;">
+                    <button class="filter-toggle" id="filterToggle">
+                        <span>⚙ تنظیمات فیلتر شب</span>
+                        <span class="arrow">▼</span>
                     </button>
-                    <div class="night-settings-panel" id="settingsNightPanel">
-                        <div class="slider-container">
-                            <label>Invert <span class="slider-value" id="settingsInvertVal">0.90</span></label>
-                            <input type="range" id="settingsInvertSlider" min="0" max="1" step="0.01" value="0.90">
+                    <div class="filter-sliders" id="filterSliders">
+                        <div class="slider-row">
+                            <label>Invert <span class="slider-val" id="valInvert">0.90</span></label>
+                            <input type="range" id="sliderInvert" min="0" max="1" step="0.01" value="0.90">
                         </div>
-                        <div class="slider-container">
-                            <label>Brightness <span class="slider-value" id="settingsBrightnessVal">1.10</span></label>
-                            <input type="range" id="settingsBrightnessSlider" min="0.2" max="2" step="0.01" value="1.10">
+                        <div class="slider-row">
+                            <label>Brightness <span class="slider-val" id="valBrightness">1.10</span></label>
+                            <input type="range" id="sliderBrightness" min="0.2" max="2" step="0.01" value="1.10">
                         </div>
-                        <div class="slider-container">
-                            <label>Contrast <span class="slider-value" id="settingsContrastVal">1.05</span></label>
-                            <input type="range" id="settingsContrastSlider" min="0.5" max="3" step="0.01" value="1.05">
+                        <div class="slider-row">
+                            <label>Contrast <span class="slider-val" id="valContrast">1.05</span></label>
+                            <input type="range" id="sliderContrast" min="0.5" max="3" step="0.01" value="1.05">
                         </div>
-                        <button class="reset-filter-btn" id="settingsResetFilterBtn">
-                            <svg viewBox="0 0 24 24" width="16" height="16"><path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+                        <button class="filter-reset" id="filterReset">
+                            <svg viewBox="0 0 24 24"><path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
                             بازنشانی
                         </button>
                     </div>
                 </div>
             </div>
-            
-            <!-- بخش مدیریت حافظه -->
+
             <div class="settings-section">
-                <div class="settings-section-title">مدیریت حافظه</div>
-                <!-- دکمه حذف فایل‌های آفلاین -->
-                <button class="delete-offline-item" id="settingsDeleteOfflineBtn">
-                    <svg viewBox="0 0 24 24" width="18" height="18"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+                <div class="section-label">مدیریت حافظه</div>
+                <button class="settings-btn-row danger" id="deleteOfflineBtn">
+                    <svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
                     حذف فایل‌های آفلاین
                 </button>
             </div>
-            
-            <button class="cancel-btn" onclick="closeSettingsModal()">
-                <svg viewBox="0 0 24 24" width="16" height="16">
-                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-                </svg>
-                بستن
-            </button>
+
+            <button class="close-btn" id="settingsClose">بستن</button>
         </div>
     </div>
 
-    <!-- دکمه فهرست اجزاء (بالا راست) -->
-    <button class="menu-toggle" onclick="openJuzOverlay()" title="فهرست اجزاء">
-        <svg viewBox="0 0 24 24">
-            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-        </svg>
+    <!-- ═══ DOWNLOAD MODAL ═══ -->
+    <div class="overlay download-overlay" id="downloadOverlay">
+        <div class="overlay-backdrop"></div>
+        <div class="modal-card">
+            <div class="modal-header">
+                <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                انتخاب کیفیت
+            </div>
+            <p style="color:var(--text-muted);font-size:13px;margin-bottom:16px;">کیفیت مناسب خود را انتخاب کنید:</p>
+
+            <button class="dl-option" id="dlStandard">
+                <div class="dl-main">
+                    <svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
+                    استاندارد (۷۰ مگابایت)
+                </div>
+                <div class="dl-sub">مناسب موبایل و تبلت</div>
+            </button>
+
+            <button class="dl-option" id="dlHQ">
+                <div class="dl-main">
+                    <svg viewBox="0 0 24 24"><path d="M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg>
+                    کیفیت بالا (۵۰۰ مگابایت)
+                </div>
+                <div class="dl-sub">مناسب کامپیوتر و صفحات بزرگ</div>
+            </button>
+
+            <button class="close-btn" id="downloadClose">لغو</button>
+        </div>
+    </div>
+
+    <!-- ═══ FLOATING BUTTONS ═══ -->
+    <button class="float-btn btn-menu" id="btnMenu" title="فهرست اجزاء">
+        <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
     </button>
-    
+    <button class="float-btn btn-settings" id="btnSettings" title="تنظیمات">
+        <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94 0 .31.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.57 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+    </button>
+    <button class="float-btn float-btn-pill btn-download" id="btnDownload" title="دانلود آفلاین">
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+        دانلود آفلاین
+    </button>
+    <button class="float-btn btn-fullscreen" id="btnFullscreen" title="تمام صفحه">
+        <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+    </button>
+
+    <div class="progress-pill" id="progressPill">در حال دانلود...</div>
+
+    <!-- ═══ MAIN CONTENT ═══ -->
     <div class="main-content" id="swipeArea">
-        <button class="nav-btn right-btn" onclick="prevPage()" title="صفحه قبل">
-            <svg viewBox="0 0 24 24">
-                <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
-            </svg>
+        <button class="nav-btn nav-right" id="navRight" title="صفحه قبل">
+            <svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
         </button>
-        
-        <div class="quran-container">
+
+        <div class="quran-container" id="quranContainer">
             <div class="page-wrapper" id="rightWrapper">
-                <img id="rightPage" class="page" alt="صفحه راست">
+                <img id="rightPage" class="page" alt="صفحه" draggable="false">
             </div>
             <div class="page-wrapper" id="leftWrapper">
-                <img id="leftPage" class="page" alt="صفحه چپ">
+                <img id="leftPage" class="page" alt="صفحه" draggable="false">
             </div>
         </div>
-        
-        <button class="nav-btn left-btn" onclick="nextPage()" title="صفحه بعد">
-            <svg viewBox="0 0 24 24">
-                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-            </svg>
-        </button>
-        
-        <button class="fullscreen-btn" onclick="toggleFullScreen()" title="تمام صفحه">
-            <svg viewBox="0 0 24 24">
-                <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
-            </svg>
+
+        <button class="nav-btn nav-left" id="navLeft" title="صفحه بعد">
+            <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
         </button>
     </div>
 
-    <script>
-        const totalPages = 623;
-        let currentPage = 1;
-        let isDownloaded = false;
+    <!-- ═══ PAGE INDICATOR ═══ -->
+    <div class="page-indicator" id="pageIndicator"></div>
 
-        let deferredPrompt = null;
-        const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+<script>
+/* ═══════════════════════════════════════════
+   STORAGE WRAPPER (graceful fallback)
+   ═══════════════════════════════════════════ */
+const store = {
+    _mem: {},
+    get(key) {
+        return this._mem[key] || null;
+    },
+    set(key, val) {
+        this._mem[key] = val;
+    }
+};
 
-        let currentScale = 1;
-        let translateX = 0; let translateY = 0;
-        let lastTranslateX = 0; let lastTranslateY = 0;
-        let initialPinchDistance = null;
-        let isPanning = false;
-        let lastTapTime = 0;
-        let hasMoved = false; 
-        
-        let objectUrls = { right: null, left: null };
-
-        // ========== مدیریت تم و پس‌زمینه تیره ==========
-        const themeColorMeta = document.getElementById('theme-color-meta');
-        const rootStyle = document.documentElement.style;
-
-        const defaultFilter = {
-            invert: 0.90,
-            brightness: 1.10,
-            contrast: 1.05
-        };
-
-        let nightFilter = JSON.parse(localStorage.getItem('quran-night-filter')) || defaultFilter;
-
-        function updateNightFilter() {
-            const filterString = `invert(${nightFilter.invert}) brightness(${nightFilter.brightness}) contrast(${nightFilter.contrast}) hue-rotate(180deg)`;
-            rootStyle.setProperty('--night-filter-value', filterString);
-            localStorage.setItem('quran-night-filter', JSON.stringify(nightFilter));
+/* ═══════════════════════════════════════════
+   CUSTOM DIALOGS
+   ═══════════════════════════════════════════ */
+function showDialogConfirm(message, title) {
+    title = title || 'تأیید';
+    return new Promise(function(resolve) {
+        var overlay = document.createElement('div');
+        overlay.className = 'dialog-overlay';
+        overlay.innerHTML =
+            '<div class="overlay-backdrop"></div>' +
+            '<div class="dialog-card">' +
+                '<div class="dialog-title">' + title + '</div>' +
+                '<div class="dialog-message">' + message + '</div>' +
+                '<div class="dialog-actions">' +
+                    '<button class="dialog-btn dialog-btn-cancel" data-action="cancel">لغو</button>' +
+                    '<button class="dialog-btn dialog-btn-ok" data-action="ok">تأیید</button>' +
+                '</div>' +
+            '</div>';
+        function cleanup(result) {
+            overlay.remove();
+            resolve(result);
         }
+        overlay.querySelector('[data-action="ok"]').addEventListener('click', function() { cleanup(true); });
+        overlay.querySelector('[data-action="cancel"]').addEventListener('click', function() { cleanup(false); });
+        overlay.querySelector('.overlay-backdrop').addEventListener('click', function() { cleanup(false); });
+        document.body.appendChild(overlay);
+    });
+}
 
-        updateNightFilter();
+function showToast(message, duration) {
+    duration = duration || 3000;
+    var toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    requestAnimationFrame(function() { toast.classList.add('visible'); });
+    setTimeout(function() {
+        toast.classList.remove('visible');
+        setTimeout(function() { toast.remove(); }, 300);
+    }, duration);
+}
 
-        // وضعیت پس‌زمینه تیره
-        let isDarkUI = localStorage.getItem('quran-dark-ui') === 'true';
+/* ═══════════════════════════════════════════
+   CONSTANTS & STATE
+   ═══════════════════════════════════════════ */
+var TOTAL_PAGES = 623;
+var GITHUB_BASE = 'https://raw.githubusercontent.com/YBakhtiar/quranh/main/';
 
-        function setTheme(mode) {
-            if (mode === 'night') {
-                document.body.classList.add('night-mode');
-                document.body.classList.remove('dark-ui'); // غیرفعال کردن dark-ui در حالت شب
-                themeColorMeta.setAttribute('content', '#0b1424');
-                localStorage.setItem('quran-theme', 'night');
-            } else {
-                document.body.classList.remove('night-mode');
-                // اعمال dark-ui اگر فعال باشد
-                if (isDarkUI) {
-                    document.body.classList.add('dark-ui');
-                    themeColorMeta.setAttribute('content', '#1a2538');
-                } else {
-                    document.body.classList.remove('dark-ui');
-                    themeColorMeta.setAttribute('content', '#f0f7ff');
-                }
-                localStorage.setItem('quran-theme', 'day');
+var currentPage = 1;
+var isDownloaded = false;
+var objectUrls = { right: null, left: null };
+var indicatorTimer = null;
+
+// Zoom & Pan state
+var currentScale = 1;
+var translateX = 0, translateY = 0;
+var lastTranslateX = 0, lastTranslateY = 0;
+var initialPinchDistance = null;
+var isPanning = false;
+var lastTapTime = 0;
+var hasMoved = false;
+
+// Night filter defaults
+var DEFAULT_FILTER = { invert: 0.90, brightness: 1.10, contrast: 1.05 };
+var nightFilter;
+try {
+    nightFilter = JSON.parse(store.get('quran-night-filter')) || Object.assign({}, DEFAULT_FILTER);
+} catch(e) {
+    nightFilter = Object.assign({}, DEFAULT_FILTER);
+}
+var isDarkUI = store.get('quran-dark-ui') === 'true';
+
+/* ═══════════════════════════════════════════
+   THEME MANAGEMENT
+   ═══════════════════════════════════════════ */
+function updateNightFilter() {
+    var f = 'invert(' + nightFilter.invert + ') brightness(' + nightFilter.brightness + ') contrast(' + nightFilter.contrast + ') hue-rotate(180deg)';
+    document.documentElement.style.setProperty('--night-filter-value', f);
+    store.set('quran-night-filter', JSON.stringify(nightFilter));
+}
+updateNightFilter();
+
+function setTheme(mode) {
+    if (mode === 'night') {
+        document.body.classList.add('night-mode');
+        document.body.classList.remove('dark-ui');
+    } else {
+        document.body.classList.remove('night-mode');
+        if (isDarkUI) {
+            document.body.classList.add('dark-ui');
+        } else {
+            document.body.classList.remove('dark-ui');
+        }
+    }
+    store.set('quran-theme', mode);
+    refreshSettingsUI();
+}
+
+function toggleTheme() {
+    setTheme(document.body.classList.contains('night-mode') ? 'day' : 'night');
+}
+
+function toggleDarkUI() {
+    if (document.body.classList.contains('night-mode')) return;
+    isDarkUI = !isDarkUI;
+    store.set('quran-dark-ui', String(isDarkUI));
+    if (isDarkUI) {
+        document.body.classList.add('dark-ui');
+    } else {
+        document.body.classList.remove('dark-ui');
+    }
+    refreshSettingsUI();
+}
+
+function refreshSettingsUI() {
+    var isNight = document.body.classList.contains('night-mode');
+    // Theme toggle button
+    var themeBtn = document.getElementById('themeToggle');
+    if (isNight) {
+        themeBtn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/></g></svg> حالت روز';
+    } else {
+        themeBtn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79"/></svg> حالت شب';
+    }
+
+    // Dark UI toggle
+    var darkBtn = document.getElementById('darkUiToggle');
+    if (isNight) {
+        darkBtn.style.display = 'none';
+    } else {
+        darkBtn.style.display = 'flex';
+        darkBtn.textContent = isDarkUI ? '☀ پس‌زمینه روشن' : '◐ پس‌زمینه تیره';
+        darkBtn.className = 'settings-btn-row' + (isDarkUI ? ' accent' : '');
+    }
+
+    // Filter panel
+    var filterPanel = document.getElementById('filterPanel');
+    filterPanel.style.display = isNight ? 'block' : 'none';
+}
+
+/* ═══════════════════════════════════════════
+   HELPERS
+   ═══════════════════════════════════════════ */
+function toPersianNum(num) {
+    var digits = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+    return num.toString().replace(/\d/g, function(x) { return digits[x]; });
+}
+
+function formatPageNumber(num) { return String(num).padStart(3, '0'); }
+
+/* ═══════════════════════════════════════════
+   PAGE INDICATOR
+   ═══════════════════════════════════════════ */
+function showPageIndicator() {
+    var el = document.getElementById('pageIndicator');
+    var isMobile = window.innerWidth <= 768;
+    var displayPage = currentPage;
+    if (!isMobile && currentPage % 2 === 0) displayPage = currentPage - 1;
+    var text = 'صفحه ' + toPersianNum(displayPage);
+    if (!isMobile) {
+        var secondPage = displayPage + 1;
+        if (secondPage <= TOTAL_PAGES) text = toPersianNum(displayPage) + ' – ' + toPersianNum(secondPage);
+    }
+    text += ' از ' + toPersianNum(TOTAL_PAGES);
+    el.textContent = text;
+    el.classList.add('visible');
+    clearTimeout(indicatorTimer);
+    indicatorTimer = setTimeout(function() { el.classList.remove('visible'); }, 2200);
+}
+
+/* ═══════════════════════════════════════════
+   PAGE MANAGEMENT
+   ═══════════════════════════════════════════ */
+function applyTransform(smooth) {
+    var rightW = document.getElementById('rightWrapper');
+    var leftW = document.getElementById('leftWrapper');
+    var t = 'translate(' + translateX + 'px, ' + translateY + 'px) scale(' + currentScale + ')';
+    [rightW, leftW].forEach(function(w) {
+        if (w) {
+            w.style.transition = smooth ? 'transform 0.3s ease-out' : 'none';
+            w.style.transform = t;
+        }
+    });
+}
+
+function resetZoom() {
+    currentScale = 1;
+    translateX = 0; translateY = 0;
+    lastTranslateX = 0; lastTranslateY = 0;
+    applyTransform(true);
+}
+
+function setupImageError(img, pageNum) {
+    img.onerror = function() {
+        var wrapper = this.parentElement;
+        if (wrapper && !wrapper.querySelector('.page-placeholder')) {
+            this.style.display = 'none';
+            var ph = document.createElement('div');
+            ph.className = 'page-placeholder';
+            ph.innerHTML = '<span class="ph-num">' + toPersianNum(pageNum) + '</span><span class="ph-text">بارگذاری نشد</span>';
+            wrapper.appendChild(ph);
+        }
+    };
+    img.onload = function() {
+        this.style.display = '';
+        var ph = this.parentElement && this.parentElement.querySelector('.page-placeholder');
+        if (ph) ph.remove();
+    };
+}
+
+async function loadPageImage(imgId, cacheKey, side, pageNum) {
+    var img = document.getElementById(imgId);
+    if (!img) return;
+
+    if (objectUrls[side]) { URL.revokeObjectURL(objectUrls[side]); objectUrls[side] = null; }
+
+    setupImageError(img, pageNum);
+
+    try {
+        var cache = await caches.open('quran-cache-v1');
+        var response = await cache.match(cacheKey);
+        if (response) {
+            var blob = await response.blob();
+            objectUrls[side] = URL.createObjectURL(blob);
+            img.src = objectUrls[side];
+            return;
+        }
+    } catch(e) { /* cache unavailable */ }
+
+    // Fallback to GitHub
+    var fileName = cacheKey.split('/').pop();
+    img.src = GITHUB_BASE + fileName;
+}
+
+function updatePages() {
+    resetZoom();
+    var isMobile = window.innerWidth <= 768;
+    var rightW = document.getElementById('rightWrapper');
+    var leftW = document.getElementById('leftWrapper');
+
+    if (isMobile) {
+        var url = 'images/Quran' + formatPageNumber(currentPage) + '.jpg';
+        loadPageImage('rightPage', url, 'right', currentPage);
+        leftW.style.display = 'none';
+        rightW.style.display = 'flex';
+    } else {
+        var rightPN = (currentPage % 2 !== 0) ? currentPage : currentPage - 1;
+        var leftPN = rightPN + 1;
+
+        loadPageImage('rightPage', 'images/Quran' + formatPageNumber(rightPN) + '.jpg', 'right', rightPN);
+
+        if (leftPN <= TOTAL_PAGES) {
+            loadPageImage('leftPage', 'images/Quran' + formatPageNumber(leftPN) + '.jpg', 'left', leftPN);
+            leftW.style.display = 'flex';
+        } else {
+            leftW.style.display = 'none';
+        }
+        rightW.style.display = 'flex';
+        if (currentPage % 2 === 0) currentPage = rightPN;
+    }
+
+    store.set('lastQuranPage', currentPage.toString());
+    try { if (window.location.protocol !== 'file:') history.replaceState(null, null, '#' + currentPage); } catch(e) { /* ignore */ }
+    showPageIndicator();
+}
+
+function animateNav(direction, callback) {
+    var container = document.getElementById('quranContainer');
+    container.style.opacity = '0.4';
+    container.style.transition = 'opacity 0.12s';
+    setTimeout(function() {
+        callback();
+        container.style.opacity = '1';
+    }, 120);
+}
+
+function nextPage() {
+    var step = window.innerWidth <= 768 ? 1 : 2;
+    if (currentPage + step <= TOTAL_PAGES) currentPage += step;
+    else if (currentPage < TOTAL_PAGES) currentPage++;
+    else return;
+    animateNav(1, updatePages);
+}
+
+function prevPage() {
+    var step = window.innerWidth <= 768 ? 1 : 2;
+    if (currentPage - step >= 1) currentPage -= step;
+    else if (currentPage > 1) currentPage--;
+    else return;
+    animateNav(-1, updatePages);
+}
+
+/* ═══════════════════════════════════════════
+   DOWNLOAD & OFFLINE
+   ═══════════════════════════════════════════ */
+async function startDownload(quality) {
+    closeOverlay('downloadOverlay');
+    var sizeText = quality === 'hq' ? '۵۰۰ مگابایت' : '۷۰ مگابایت';
+    var confirmed = await showDialogConfirm('فایل‌های آفلاین حدود ' + sizeText + ' حجم دارد. ادامه می‌دهید؟', 'دانلود آفلاین');
+    if (!confirmed) return;
+
+    var dlBtn = document.getElementById('btnDownload');
+    var progress = document.getElementById('progressPill');
+
+    dlBtn.style.pointerEvents = 'none';
+    dlBtn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" fill="currentColor"/></svg> در حال دانلود...';
+    progress.style.display = 'block';
+    progress.textContent = 'در حال دانلود...';
+
+    var hqBaseUrl = GITHUB_BASE;
+
+    try {
+        var cache = await caches.open('quran-cache-v1');
+        var downloaded = 0;
+        var batch = 10;
+
+        for (var i = 1; i <= TOTAL_PAGES; i += batch) {
+            var promises = [];
+            for (var j = 0; j < batch && (i + j) <= TOTAL_PAGES; j++) {
+                (function(pageIdx) {
+                    var fileName = 'Quran' + String(pageIdx).padStart(3, '0') + '.jpg';
+                    var cacheKey = 'images/' + fileName;
+                    var fetchUrl = quality === 'hq' ? (hqBaseUrl + fileName) : cacheKey;
+                    promises.push(
+                        fetch(fetchUrl, { cache: 'reload' })
+                            .then(function(resp) {
+                                if (resp.ok) return cache.put(cacheKey, resp.clone()).then(function() { return true; });
+                                return false;
+                            })
+                            .catch(function() { return false; })
+                    );
+                })(i + j);
             }
-            
-            // به‌روزرسانی دکمه تغییر تم در مودال تنظیمات
-            updateThemeToggleButton();
-            
-            // به‌روزرسانی وضعیت دکمه dark-ui
-            updateDarkUIToggleButton();
-
-            const settingsNightContainer = document.getElementById('settingsNightContainer');
-            if (settingsNightContainer) {
-                settingsNightContainer.style.display = document.body.classList.contains('night-mode') ? 'block' : 'none';
-            }
+            await Promise.all(promises);
+            downloaded += batch;
+            progress.textContent = 'پیشرفت: ' + toPersianNum(Math.min(downloaded, TOTAL_PAGES)) + ' از ' + toPersianNum(TOTAL_PAGES);
         }
 
-        function toggleTheme() {
-            setTheme(document.body.classList.contains('night-mode') ? 'day' : 'night');
-        }
+        setDownloadedUI();
+        showToast('دانلود با موفقیت انجام شد! ✓', 4000);
+        updatePages();
+    } catch(err) {
+        progress.textContent = '❌ خطا در دانلود';
+        dlBtn.style.pointerEvents = 'auto';
+        dlBtn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18"><path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" fill="currentColor"/></svg> تلاش مجدد';
+    }
+}
 
-        function toggleDarkUI() {
-            if (document.body.classList.contains('night-mode')) return; // غیرفعال در حالت شب
-            isDarkUI = !isDarkUI;
-            localStorage.setItem('quran-dark-ui', isDarkUI);
-            if (isDarkUI) {
-                document.body.classList.add('dark-ui');
-                themeColorMeta.setAttribute('content', '#1a2538');
-            } else {
-                document.body.classList.remove('dark-ui');
-                themeColorMeta.setAttribute('content', '#f0f7ff');
-            }
-            updateDarkUIToggleButton();
-        }
+function setDownloadedUI() {
+    var dlBtn = document.getElementById('btnDownload');
+    var progress = document.getElementById('progressPill');
+    if (dlBtn) { dlBtn.style.display = 'none'; dlBtn.classList.add('done'); }
+    if (progress) progress.style.display = 'none';
+    isDownloaded = true;
+}
 
-        function updateThemeToggleButton() {
-            const themeBtn = document.getElementById('settingsThemeToggle');
-            if (!themeBtn) return;
-            themeBtn.innerHTML = '';
-            if (document.body.classList.contains('night-mode')) {
-                themeBtn.innerHTML = `
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                        <circle cx="12" cy="12" r="5"/>
-                        <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                            <line x1="12" y1="1" x2="12" y2="4"/>
-                            <line x1="12" y1="20" x2="12" y2="23"/>
-                            <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/>
-                            <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/>
-                            <line x1="1" y1="12" x2="4" y2="12"/>
-                            <line x1="20" y1="12" x2="23" y2="12"/>
-                            <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/>
-                            <line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>
-                        </g>
-                    </svg>
-                    <span>حالت روز</span>
-                `;
-            } else {
-                themeBtn.innerHTML = `
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79"/>
-                    </svg>
-                    <span>حالت شب</span>
-                `;
-            }
-        }
+function resetDownloadedUI() {
+    var dlBtn = document.getElementById('btnDownload');
+    if (dlBtn) {
+        dlBtn.style.display = 'flex';
+        dlBtn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/></svg> دانلود آفلاین';
+        dlBtn.style.pointerEvents = 'auto';
+        dlBtn.classList.remove('done');
+    }
+    isDownloaded = false;
+}
 
-        function updateDarkUIToggleButton() {
-            const darkBtn = document.getElementById('darkUiToggle');
-            if (!darkBtn) return;
-            if (document.body.classList.contains('night-mode')) {
-                darkBtn.style.display = 'none'; // در حالت شب مخفی است
-            } else {
-                darkBtn.style.display = 'flex';
-                if (isDarkUI) {
-                    darkBtn.classList.add('active');
-                    darkBtn.innerHTML = `
-                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                            <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7z"/>
-                        </svg>
-                        <span>پس‌زمینه روشن</span>
-                    `;
-                } else {
-                    darkBtn.classList.remove('active');
-                    darkBtn.innerHTML = `
-                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                            <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7z"/>
-                        </svg>
-                        <span>پس‌زمینه تیره</span>
-                    `;
-                }
-            }
-        }
+async function deleteOfflineFiles() {
+    var confirmed = await showDialogConfirm('تمام فایل‌های دانلود شده حذف میشوند. ادامه می‌دهید؟', 'حذف فایل‌ها');
+    if (!confirmed) return;
+    try {
+        var progress = document.getElementById('progressPill');
+        progress.style.display = 'block';
+        progress.textContent = 'در حال حذف...';
+        await caches.delete('quran-cache-v1');
+        resetDownloadedUI();
+        progress.style.display = 'none';
+        showToast('فایل‌های آفلاین حذف شدند');
+        updatePages();
+    } catch(e) {
+        showToast('خطا در حذف فایل‌ها');
+    }
+}
 
-        const savedTheme = localStorage.getItem('quran-theme') || 'day';
+/* ═══════════════════════════════════════════
+   OVERLAY HELPERS
+   ═══════════════════════════════════════════ */
+function openOverlay(id) { document.getElementById(id).classList.add('active'); }
+function closeOverlay(id) { document.getElementById(id).classList.remove('active'); }
+
+/* ═══════════════════════════════════════════
+   FULLSCREEN
+   ═══════════════════════════════════════════ */
+function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(function() {});
+    } else if (document.exitFullscreen) {
+        document.exitFullscreen();
+    }
+}
+
+/* ═══════════════════════════════════════════
+   TOUCH & GESTURE HANDLING
+   ═══════════════════════════════════════════ */
+var touchstartX = 0, touchstartY = 0, touchendX = 0, touchendY = 0, touchStartTime = 0;
+var swipeArea = document.getElementById('swipeArea');
+
+swipeArea.addEventListener('touchstart', function(e) {
+    if (e.touches.length >= 2) {
+        initialPinchDistance = Math.hypot(
+            e.touches[0].clientX - e.touches[1].clientX,
+            e.touches[0].clientY - e.touches[1].clientY
+        );
+        isPanning = false;
+    } else if (e.touches.length === 1) {
+        touchstartX = e.touches[0].clientX;
+        touchstartY = e.touches[0].clientY;
+        touchStartTime = Date.now();
+        hasMoved = false;
+        if (currentScale > 1) isPanning = true;
+    }
+}, { passive: false });
+
+swipeArea.addEventListener('touchmove', function(e) {
+    e.preventDefault();
+    hasMoved = true;
+    if (e.touches.length >= 2 && initialPinchDistance) {
+        var dist = Math.hypot(
+            e.touches[0].clientX - e.touches[1].clientX,
+            e.touches[0].clientY - e.touches[1].clientY
+        );
+        currentScale = Math.min(Math.max(1, currentScale * (dist / initialPinchDistance)), 4);
+        initialPinchDistance = dist;
+        applyTransform(false);
+    } else if (e.touches.length === 1 && isPanning && currentScale > 1) {
+        translateX = lastTranslateX + (e.touches[0].clientX - touchstartX);
+        translateY = lastTranslateY + (e.touches[0].clientY - touchstartY);
+        applyTransform(false);
+    }
+}, { passive: false });
+
+swipeArea.addEventListener('touchend', function(e) {
+    if (e.touches.length > 0) {
+        initialPinchDistance = null;
+        if (e.touches.length === 1 && currentScale > 1) {
+            touchstartX = e.touches[0].clientX;
+            touchstartY = e.touches[0].clientY;
+            lastTranslateX = translateX;
+            lastTranslateY = translateY;
+            isPanning = true;
+        }
+        return;
+    }
+
+    initialPinchDistance = null;
+    if (isPanning) { lastTranslateX = translateX; lastTranslateY = translateY; isPanning = false; }
+
+    if (!hasMoved) {
+        var now = Date.now();
+        if (now - lastTapTime < 300 && now - lastTapTime > 0) {
+            resetZoom();
+            lastTapTime = 0;
+            return;
+        }
+        lastTapTime = now;
+    } else {
+        lastTapTime = 0;
+    }
+
+    if (currentScale <= 1.05 && e.changedTouches.length === 1 && hasMoved) {
+        touchendX = e.changedTouches[0].clientX;
+        touchendY = e.changedTouches[0].clientY;
+        var diffX = Math.abs(touchendX - touchstartX);
+        var diffY = Math.abs(touchendY - touchstartY);
+        var timeDiff = Date.now() - touchStartTime;
+
+        if (diffX > 80 && diffX > diffY * 2 && timeDiff < 600) {
+            if (touchendX > touchstartX) nextPage(); else prevPage();
+        }
+    }
+}, { passive: false });
+
+/* ═══════════════════════════════════════════
+   KEYBOARD NAVIGATION
+   ═══════════════════════════════════════════ */
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft') { e.preventDefault(); nextPage(); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); prevPage(); }
+});
+
+/* ═══════════════════════════════════════════
+   BUILD JUZ GRID
+   ═══════════════════════════════════════════ */
+(function buildJuzGrid() {
+    var grid = document.getElementById('juzGrid');
+    for (var i = 1; i <= 30; i++) {
+        var startPage;
+        if (i === 1) startPage = 3;
+        else if (i === 30) startPage = 588;
+        else startPage = 4 + ((i - 1) * 20);
+
+        var btn = document.createElement('button');
+        btn.className = 'juz-item';
+        btn.textContent = 'جزء ' + toPersianNum(i);
+        btn.style.animationDelay = (i * 25) + 'ms';
+        (function(sp) {
+            btn.addEventListener('click', function() {
+                var target = sp;
+                if (window.innerWidth > 768 && target % 2 === 0) target -= 1;
+                currentPage = target;
+                updatePages();
+                closeOverlay('juzOverlay');
+            });
+        })(startPage);
+        grid.appendChild(btn);
+    }
+})();
+
+/* ═══════════════════════════════════════════
+   EVENT BINDINGS
+   ═══════════════════════════════════════════ */
+// Floating buttons
+document.getElementById('btnMenu').addEventListener('click', function() { openOverlay('juzOverlay'); });
+document.getElementById('btnSettings').addEventListener('click', function() { openOverlay('settingsOverlay'); });
+document.getElementById('btnDownload').addEventListener('click', function() { openOverlay('downloadOverlay'); });
+document.getElementById('btnFullscreen').addEventListener('click', toggleFullScreen);
+
+// Nav buttons
+document.getElementById('navRight').addEventListener('click', prevPage);
+document.getElementById('navLeft').addEventListener('click', nextPage);
+
+// Splash
+document.getElementById('splashContinue').addEventListener('click', function() { closeOverlay('splashOverlay'); });
+document.getElementById('splashJuzList').addEventListener('click', function() { closeOverlay('splashOverlay'); openOverlay('juzOverlay'); });
+
+// Juz overlay
+document.getElementById('juzContinueBtn').addEventListener('click', function() { closeOverlay('juzOverlay'); });
+
+// Settings
+document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+document.getElementById('darkUiToggle').addEventListener('click', toggleDarkUI);
+document.getElementById('settingsClose').addEventListener('click', function() { closeOverlay('settingsOverlay'); });
+document.getElementById('deleteOfflineBtn').addEventListener('click', deleteOfflineFiles);
+
+// Filter panel
+document.getElementById('filterToggle').addEventListener('click', function() {
+    this.classList.toggle('open');
+    document.getElementById('filterSliders').classList.toggle('visible');
+});
+
+var sliderInvert = document.getElementById('sliderInvert');
+var sliderBrightness = document.getElementById('sliderBrightness');
+var sliderContrast = document.getElementById('sliderContrast');
+var valInvert = document.getElementById('valInvert');
+var valBrightness = document.getElementById('valBrightness');
+var valContrast = document.getElementById('valContrast');
+
+function syncSliders() {
+    nightFilter.invert = parseFloat(sliderInvert.value);
+    nightFilter.brightness = parseFloat(sliderBrightness.value);
+    nightFilter.contrast = parseFloat(sliderContrast.value);
+    valInvert.textContent = nightFilter.invert.toFixed(2);
+    valBrightness.textContent = nightFilter.brightness.toFixed(2);
+    valContrast.textContent = nightFilter.contrast.toFixed(2);
+    updateNightFilter();
+}
+
+sliderInvert.value = nightFilter.invert;
+sliderBrightness.value = nightFilter.brightness;
+sliderContrast.value = nightFilter.contrast;
+valInvert.textContent = nightFilter.invert.toFixed(2);
+valBrightness.textContent = nightFilter.brightness.toFixed(2);
+valContrast.textContent = nightFilter.contrast.toFixed(2);
+
+sliderInvert.addEventListener('input', syncSliders);
+sliderBrightness.addEventListener('input', syncSliders);
+sliderContrast.addEventListener('input', syncSliders);
+
+document.getElementById('filterReset').addEventListener('click', function() {
+    nightFilter = Object.assign({}, DEFAULT_FILTER);
+    sliderInvert.value = nightFilter.invert;
+    sliderBrightness.value = nightFilter.brightness;
+    sliderContrast.value = nightFilter.contrast;
+    syncSliders();
+});
+
+// Download modal
+document.getElementById('dlStandard').addEventListener('click', function() { startDownload('standard'); });
+document.getElementById('dlHQ').addEventListener('click', function() { startDownload('hq'); });
+document.getElementById('downloadClose').addEventListener('click', function() { closeOverlay('downloadOverlay'); });
+
+// Close overlays on backdrop click
+['juzOverlay', 'settingsOverlay', 'downloadOverlay'].forEach(function(id) {
+    var el = document.getElementById(id);
+    var backdrop = el.querySelector('.overlay-backdrop');
+    if (backdrop) backdrop.addEventListener('click', function() { closeOverlay(id); });
+});
+
+// Resize & orientation
+window.addEventListener('resize', updatePages);
+window.addEventListener('orientationchange', function() { setTimeout(updatePages, 50); });
+
+/* ═══════════════════════════════════════════
+   INITIALIZATION
+   ═══════════════════════════════════════════ */
+(function init() {
+    // Detect system dark mode
+    var systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var savedTheme = store.get('quran-theme');
+
+    if (savedTheme) {
         setTheme(savedTheme);
+    } else {
+        setTheme(systemDark ? 'night' : 'day');
+    }
 
-        // ========== Service Worker ==========
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
-                    .then(reg => console.log('Service Worker ثبت شد:', reg))
-                    .catch(err => console.log('خطا در ثبت Service Worker:', err));
-            });
-        }
-
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            if (!isStandalone) {
-                document.getElementById('installPwaBtn').style.display = 'flex';
+    // Listen for system theme changes
+    if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+            if (!store.get('quran-theme')) {
+                setTheme(e.matches ? 'night' : 'day');
             }
         });
+    }
 
-        document.getElementById('installPwaBtn').addEventListener('click', async () => {
-            if (!deferredPrompt) return;
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            console.log('User response to the install prompt:', outcome);
-            deferredPrompt = null;
-            document.getElementById('installPwaBtn').style.display = 'none';
-        });
+    // Load saved page
+    var saved = store.get('lastQuranPage');
+    if (saved && !isNaN(parseInt(saved))) {
+        currentPage = parseInt(saved);
+    }
+    updatePages();
 
-        // ======== توابع مودال اجزاء ========
-        function openJuzOverlay() {
-            document.getElementById('juzOverlay').style.display = 'flex';
-            document.getElementById('splashModal').style.display = 'none';
-        }
-        function closeJuzOverlay() {
-            document.getElementById('juzOverlay').style.display = 'none';
-        }
-
-        document.getElementById('juzOverlay').addEventListener('click', function(e) {
-            if (e.target === this) closeJuzOverlay();
-        });
-
-        document.getElementById('downloadModal').addEventListener('click', function(e) {
-            if (e.target === this) closeDownloadModal();
-        });
-
-        document.getElementById('settingsModal').addEventListener('click', function(e) {
-            if (e.target === this) closeSettingsModal();
-        });
-
-        // ======== توابع اسپلش ========
-        function hideSplash() {
-            document.getElementById('splashModal').style.display = 'none';
-        }
-
-        document.getElementById('continueReadingBtn').addEventListener('click', hideSplash);
-        document.getElementById('juzListBtn').addEventListener('click', function() {
-            hideSplash();
-            openJuzOverlay();
-        });
-        document.getElementById('continueFromJuzBtn').addEventListener('click', closeJuzOverlay);
-
-        // ======== مقداردهی اولیه ========
-        (function initialize() {
-            let saved = localStorage.getItem('lastQuranPage');
-            if (saved && !isNaN(parseInt(saved))) {
-                currentPage = parseInt(saved);
-            } else {
-                currentPage = 1;
-            }
-            updatePages();
-            document.getElementById('splashModal').style.display = 'flex';
-        })();
-
-        // ======== توابع دانلود و کش ========
-        function openDownloadModal() { 
-            document.getElementById('downloadModal').style.display = 'flex'; 
-            if (deferredPrompt && !isStandalone) {
-                document.getElementById('installPwaBtn').style.display = 'flex';
-            } else {
-                document.getElementById('installPwaBtn').style.display = 'none';
-            }
-        }
-        function closeDownloadModal() { document.getElementById('downloadModal').style.display = 'none'; }
-
-        function openSettingsModal() {
-            document.getElementById('settingsModal').style.display = 'flex';
-        }
-        function closeSettingsModal() {
-            document.getElementById('settingsModal').style.display = 'none';
-        }
-
-        function setDownloadedUI() {
-            const dlBtn = document.getElementById('mainDownloadBtn');
-            const progress = document.getElementById('progressTooltip');
-            if (dlBtn) { dlBtn.style.display = "none"; dlBtn.classList.add('done'); }
-            if (progress) progress.style.display = "none";
-            isDownloaded = true;
-        }
-
-        function resetDownloadedUI() {
-            const dlBtn = document.getElementById('mainDownloadBtn');
-            if (dlBtn) {
-                dlBtn.style.display = "flex"; 
-                dlBtn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>دانلود آفلاین`;
-                dlBtn.style.pointerEvents = "auto"; 
-                dlBtn.classList.remove('done');
-            }
-            isDownloaded = false;
-        }
-
-        async function startDownload(quality) {
-            closeDownloadModal();
-            let sizeText = quality === 'hq' ? '۵۰۰ مگابایت' : '۷۰ مگابایت';
-            if (!confirm(`آیا مطمئن هستید؟ فایل های آفلاین حدود ${sizeText} حجم دارد.`)) return;
-            
-            const dlBtn = document.getElementById('mainDownloadBtn');
-            const progress = document.getElementById('progressTooltip');
-            
-            dlBtn.style.pointerEvents = "none"; 
-            dlBtn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>در حال دانلود...`;
-            progress.style.display = "block"; progress.style.color = "var(--text-secondary)";
-            progress.innerText = "در حال دانلود...";
-
-            const hqBaseUrl = 'https://raw.githubusercontent.com/YBakhtiar/quranh/main/'; 
-
-            try {
-                const cache = await caches.open('quran-cache-v1');
-                let downloadedCount = 0;
-                const batchSize = 10;
-                
-                for (let i = 1; i <= totalPages; i += batchSize) {
-                    const promises = [];
-                    for (let j = 0; j < batchSize && (i + j) <= totalPages; j++) {
-                        let pageNum = String(i + j).padStart(3, '0');
-                        let fileName = 'Quran' + pageNum + '.jpg';
-                        
-                        let cacheKey = 'images/' + fileName;
-                        let fetchUrl = quality === 'hq' ? (hqBaseUrl + fileName) : cacheKey;
-                        
-                        promises.push(
-                            fetch(fetchUrl, { cache: 'reload' })
-                                .then(async (response) => {
-                                    if (response.ok) {
-                                        await cache.put(cacheKey, response.clone());
-                                        return true;
-                                    }
-                                    return false;
-                                })
-                                .catch(e => false)
-                        );
-                    }
-                    await Promise.all(promises);
-                    downloadedCount += batchSize;
-                    progress.innerText = 'پیشرفت: ' + Math.min(downloadedCount, totalPages) + ' از ' + totalPages;
-                }
-                
-                setDownloadedUI();
-                alert("دانلود با موفقیت انجام شد! اکنون میتوانید به صورت کاملا آفلاین و بدون اینترنت استفاده کنید.");
-                updatePages();
-                
-            } catch (error) {
-                progress.innerText = "❌ خطا در دانلود"; progress.style.color = "var(--danger-color)";
-                dlBtn.style.pointerEvents = "auto"; 
-                dlBtn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>تلاش مجدد`;
-            }
-        }
-
-        async function deleteOfflineFiles() {
-            if (!confirm("فایل‌های آفلاین حذف شوند؟ تمام فایل های دانلود شده حذف میشوند و برای استفاده آفلاین باید دوباره دانلود کنید.")) return;
-            try {
-                const progress = document.getElementById('progressTooltip');
-                progress.style.display = "block"; progress.innerText = "در حال حذف...";
-                progress.style.color = "var(--text-secondary)";
-                
-                await caches.delete('quran-cache-v1');
-                resetDownloadedUI();
-                progress.style.display = "none";
-                alert("فایل‌های آفلاین با موفقیت حذف شدند.");
-                updatePages(); 
-            } catch(e) { alert("خطا در حذف فایل‌ها"); }
-        }
-
-        function toggleFullScreen() {
-            if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(err => {});
-            else if (document.exitFullscreen) document.exitFullscreen();
-        }
-
-        function toPersianNum(num) {
-            const farsiDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
-            return num.toString().replace(/\d/g, x => farsiDigits[x]);
-        }
-
-        // ======== تولید لیست اجزاء (فقط اجزاء) ========
-        const juzListDiv = document.getElementById("juzList");
-        
-        for (let i = 1; i <= 30; i++) {
-            let startPage;
-            if (i === 1) startPage = 3; else if (i === 30) startPage = 588; else startPage = 4 + ((i - 1) * 20);
-
-            let btn = document.createElement("button"); 
-            btn.className = "juz-item";
-            btn.innerText = "جزء " + toPersianNum(i);
-            btn.onclick = function() {
-                let targetPage = startPage;
-                if (window.innerWidth > 768 && targetPage % 2 === 0) targetPage -= 1;
-                currentPage = targetPage; 
-                updatePages();
-                closeJuzOverlay();
-            };
-            juzListDiv.appendChild(btn);
-        }
-
-        // ======== راه‌اندازی تنظیمات مودال تنظیمات ========
-        (function setupSettingsModal() {
-            const themeToggle = document.getElementById('settingsThemeToggle');
-            if (themeToggle) {
-                themeToggle.addEventListener('click', toggleTheme);
-            }
-
-            const darkToggle = document.getElementById('darkUiToggle');
-            if (darkToggle) {
-                darkToggle.addEventListener('click', toggleDarkUI);
-            }
-
-            const nightToggle = document.getElementById('settingsNightToggle');
-            const nightPanel = document.getElementById('settingsNightPanel');
-            if (nightToggle && nightPanel) {
-                nightToggle.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    nightPanel.classList.toggle('visible');
-                    nightToggle.classList.toggle('active');
-                });
-            }
-
-            const invertSlider = document.getElementById('settingsInvertSlider');
-            const brightnessSlider = document.getElementById('settingsBrightnessSlider');
-            const contrastSlider = document.getElementById('settingsContrastSlider');
-            const invertVal = document.getElementById('settingsInvertVal');
-            const brightnessVal = document.getElementById('settingsBrightnessVal');
-            const contrastVal = document.getElementById('settingsContrastVal');
-
-            function updateSlidersAndFilter() {
-                nightFilter.invert = parseFloat(invertSlider.value);
-                nightFilter.brightness = parseFloat(brightnessSlider.value);
-                nightFilter.contrast = parseFloat(contrastSlider.value);
-                invertVal.textContent = nightFilter.invert.toFixed(2);
-                brightnessVal.textContent = nightFilter.brightness.toFixed(2);
-                contrastVal.textContent = nightFilter.contrast.toFixed(2);
-                updateNightFilter();
-            }
-
-            if (invertSlider) {
-                invertSlider.value = nightFilter.invert;
-                brightnessSlider.value = nightFilter.brightness;
-                contrastSlider.value = nightFilter.contrast;
-                invertVal.textContent = nightFilter.invert.toFixed(2);
-                brightnessVal.textContent = nightFilter.brightness.toFixed(2);
-                contrastVal.textContent = nightFilter.contrast.toFixed(2);
-
-                invertSlider.addEventListener('input', updateSlidersAndFilter);
-                brightnessSlider.addEventListener('input', updateSlidersAndFilter);
-                contrastSlider.addEventListener('input', updateSlidersAndFilter);
-            }
-
-            const resetBtn = document.getElementById('settingsResetFilterBtn');
-            if (resetBtn) {
-                resetBtn.addEventListener('click', function() {
-                    nightFilter = { ...defaultFilter };
-                    invertSlider.value = nightFilter.invert;
-                    brightnessSlider.value = nightFilter.brightness;
-                    contrastSlider.value = nightFilter.contrast;
-                    updateSlidersAndFilter();
-                });
-            }
-
-            const deleteBtn = document.getElementById('settingsDeleteOfflineBtn');
-            if (deleteBtn) {
-                deleteBtn.addEventListener('click', deleteOfflineFiles);
-            }
-        })();
-
-        // ======== توابع مدیریت صفحات ========
-        function formatPageNumber(num) { return String(num).padStart(3, '0'); }
-
-        function applyTransform(withTransition = false) {
-            const rightWrapper = document.getElementById('rightWrapper');
-            const leftWrapper = document.getElementById('leftWrapper');
-            const transformStyle = `translate(${translateX}px, ${translateY}px) scale(${currentScale})`;
-            [rightWrapper, leftWrapper].forEach(wrapper => {
-                if(wrapper) {
-                    wrapper.style.transition = withTransition ? 'transform 0.3s ease-out' : 'none';
-                    wrapper.style.transform = transformStyle;
-                }
-            });
-        }
-
-        function resetZoom() {
-            currentScale = 1; translateX = 0; translateY = 0; lastTranslateX = 0; lastTranslateY = 0;
-            applyTransform(true);
-        }
-
-        async function loadPageImage(imgElementId, urlPath, side) {
-            const img = document.getElementById(imgElementId);
-            if (!img) return;
-
-            if (objectUrls[side]) { URL.revokeObjectURL(objectUrls[side]); objectUrls[side] = null; }
-
-            try {
-                const cache = await caches.open('quran-cache-v1');
-                const response = await cache.match(urlPath);
-                if (response) {
-                    const blob = await response.blob();
-                    const objUrl = URL.createObjectURL(blob);
-                    objectUrls[side] = objUrl; img.src = objUrl;
-                } else { img.src = urlPath; }
-            } catch (e) { img.src = urlPath; }
-        }
-
-        function updatePages() {
-            resetZoom(); 
-            let isMobile = window.innerWidth <= 768;
-            const rightWrapper = document.getElementById('rightWrapper');
-            const leftWrapper = document.getElementById('leftWrapper');
-            const leftImg = document.getElementById('leftPage');
-
-            if (isMobile) {
-                let url = 'images/Quran' + formatPageNumber(currentPage) + '.jpg';
-                loadPageImage("rightPage", url, 'right');
-                leftWrapper.style.display = 'none';
-                rightWrapper.style.display = 'flex';
-            } else {
-                let rightPageNum = (currentPage % 2 !== 0) ? currentPage : currentPage - 1;
-                let leftPageNum = rightPageNum + 1;
-
-                let rightUrl = 'images/Quran' + formatPageNumber(rightPageNum) + '.jpg';
-                loadPageImage("rightPage", rightUrl, 'right');
-
-                if (leftPageNum <= totalPages) {
-                    let leftUrl = 'images/Quran' + formatPageNumber(leftPageNum) + '.jpg';
-                    loadPageImage("leftPage", leftUrl, 'left');
-                    leftWrapper.style.display = 'flex';
-                } else {
-                    leftWrapper.style.display = 'none';
-                }
-
-                rightWrapper.style.display = 'flex';
-                
-                if (currentPage % 2 === 0) currentPage = rightPageNum;
-            }
-            
-            try { localStorage.setItem('lastQuranPage', currentPage.toString()); } catch(e) {}
-            try { if (window.location.protocol !== 'file:') history.replaceState(null, null, '#' + currentPage); } catch(e) {}
-        }
-
-        function nextPage() {
-            let step = window.innerWidth <= 768 ? 1 : 2;
-            if (currentPage + step <= totalPages) currentPage += step;
-            else if (currentPage < totalPages) currentPage++;
-            updatePages();
-        }
-
-        function prevPage() {
-            let step = window.innerWidth <= 768 ? 1 : 2;
-            if (currentPage - step >= 1) currentPage -= step;
-            else if (currentPage > 1) currentPage--;
-            updatePages();
-        }
-
-        // رویدادهای لمسی
-        let touchstartX = 0; let touchstartY = 0; let touchendX = 0; let touchendY = 0; let touchStartTime = 0;
-        const swipeArea = document.getElementById('swipeArea');
-        
-        swipeArea.addEventListener('touchstart', e => {
-            if (e.touches.length >= 2) {
-                initialPinchDistance = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
-                isPanning = false; 
-            } else if (e.touches.length === 1) {
-                touchstartX = e.touches[0].clientX; touchstartY = e.touches[0].clientY;
-                touchStartTime = new Date().getTime(); hasMoved = false; 
-                if (currentScale > 1) isPanning = true;
-            }
-        }, {passive: false});
-
-        swipeArea.addEventListener('touchmove', e => {
-            e.preventDefault(); hasMoved = true; 
-            if (e.touches.length >= 2 && initialPinchDistance) {
-                let currentDistance = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
-                let scaleChange = currentDistance / initialPinchDistance;
-                currentScale = Math.min(Math.max(1, currentScale * scaleChange), 4);
-                initialPinchDistance = currentDistance; 
-                applyTransform(false);
-            } else if (e.touches.length === 1 && isPanning && currentScale > 1) {
-                let deltaX = e.touches[0].clientX - touchstartX; let deltaY = e.touches[0].clientY - touchstartY;
-                translateX = lastTranslateX + deltaX; translateY = lastTranslateY + deltaY;
-                applyTransform(false);
-            }
-        }, {passive: false});
-
-        swipeArea.addEventListener('touchend', e => {
-            if (e.touches.length > 0) {
-                initialPinchDistance = null;
-                if (e.touches.length === 1 && currentScale > 1) {
-                    touchstartX = e.touches[0].clientX; touchstartY = e.touches[0].clientY;
-                    lastTranslateX = translateX; lastTranslateY = translateY; isPanning = true;
-                }
-                return; 
-            }
-
-            initialPinchDistance = null;
-            if (isPanning) { lastTranslateX = translateX; lastTranslateY = translateY; isPanning = false; }
-
-            if (!hasMoved) {
-                let currentTime = new Date().getTime(); let tapLength = currentTime - lastTapTime;
-                if (tapLength < 300 && tapLength > 0) { resetZoom(); lastTapTime = 0; return; }
-                lastTapTime = currentTime;
-            } else { lastTapTime = 0; }
-
-            if (currentScale <= 1.05 && e.changedTouches.length === 1 && hasMoved) {
-                touchendX = e.changedTouches[0].clientX; touchendY = e.changedTouches[0].clientY;
-                let diffX = Math.abs(touchendX - touchstartX); let diffY = Math.abs(touchendY - touchstartY);
-                let timeDiff = new Date().getTime() - touchStartTime;
-                
-                if (diffX > 80 && diffX > diffY * 2 && timeDiff < 600) {
-                    if (touchendX > touchstartX) nextPage(); else prevPage(); 
-                }
-            }
-        }, {passive: false});
-
-        document.addEventListener('keydown', e => {
-            if (e.key === 'ArrowLeft') { e.preventDefault(); nextPage(); }
-            if (e.key === 'ArrowRight') { e.preventDefault(); prevPage(); }
-        });
-
-        window.addEventListener('orientationchange', function() {
-            setTimeout(updatePages, 50);
-        });
-
-        window.addEventListener('resize', updatePages);
-
-        document.addEventListener('DOMContentLoaded', function() {
-            caches.open('quran-cache-v1').then(cache => {
-                cache.match('images/Quran001.jpg').then(res => { if (res) setDownloadedUI(); });
+    // Check offline cache
+    try {
+        caches.open('quran-cache-v1').then(function(cache) {
+            cache.match('images/Quran001.jpg').then(function(res) {
+                if (res) setDownloadedUI();
             });
         });
-    </script>
+    } catch(e) { /* cache unavailable */ }
+})();
+</script>
+
 </body>
 </html>
