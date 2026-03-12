@@ -839,14 +839,15 @@
             .page-wrapper { max-width: 100%; width: 100%; height: auto; border-radius: 12px; }
             .nav-btn { display: none !important; }
             .btn-fullscreen { display: none !important; }
-            .float-btn { width: 42px; height: 42px; }
+            .float-btn { width: 38px; height: 38px; } /* کوچک‌تر برای موبایل */
+            .float-btn svg { width: 18px; height: 18px; }
             .juz-grid { grid-template-columns: repeat(2, 1fr); }
             .surah-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body class="theme-zard">
-    <!-- اسپلش مودال (همانند قبل) -->
+    <!-- اسپلش مودال -->
     <div class="overlay splash-overlay active" id="splashOverlay">
         <div class="overlay-backdrop"></div>
         <div class="splash-card">
@@ -885,21 +886,20 @@
                 <button class="tab-btn" id="tabSurahBtn">سوره‌ها</button>
             </div>
 
-            <!-- محتوای اجزاء (پیش‌فرض فعال) -->
+            <!-- محتوای اجزاء -->
             <div class="tab-content" id="juzTabContent">
                 <div class="juz-grid" id="juzGrid"></div>
             </div>
 
-            <!-- محتوای سوره‌ها (مخفی در ابتدا) -->
+            <!-- محتوای سوره‌ها -->
             <div class="tab-content" id="surahTabContent" style="display: none;">
                 <div class="surah-grid" id="surahGrid"></div>
             </div>
         </div>
     </div>
 
-    <!-- مودال تنظیمات (همانند قبل) -->
+    <!-- مودال تنظیمات -->
     <div class="overlay settings-overlay" id="settingsOverlay">
-        <!-- محتوای تنظیمات (بدون تغییر) ... -->
         <div class="overlay-backdrop"></div>
         <div class="modal-card">
             <div class="modal-header">
@@ -922,7 +922,7 @@
                 </div>
             </div>
 
-            <!-- انتخاب زبان -->
+            <!-- انتخاب زبان (فقط فارسی و عربی) -->
             <div class="settings-section">
                 <div class="section-label" id="languageLabel">زبان</div>
                 <div class="language-selector-group">
@@ -933,10 +933,6 @@
                     <button class="lang-btn" id="langAr">
                         <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
                         <span>العربية</span>
-                    </button>
-                    <button class="lang-btn" id="langEn">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
-                        <span>English</span>
                     </button>
                 </div>
             </div>
@@ -961,9 +957,8 @@
         </div>
     </div>
 
-    <!-- مودال دانلود (همانند قبل) -->
+    <!-- مودال دانلود -->
     <div class="overlay download-overlay" id="downloadOverlay">
-        <!-- ... محتوای دانلود ... -->
         <div class="overlay-backdrop"></div>
         <div class="modal-card">
             <div class="modal-header">
@@ -1056,7 +1051,7 @@
             deferredPrompt = e;
         });
 
-        // ================== ترجمه ==================
+        // ================== ترجمه (فقط فارسی و عربی) ==================
         const translations = {
             fa: {
                 splashSubtitle: 'به نرم‌افزار قرآن کریم خوش آمدید',
@@ -1078,6 +1073,7 @@
                 hq: 'کیفیت بالا (۵۰۰ مگابایت)',
                 hqSub: 'مناسب کامپیوتر و صفحات بزرگ',
                 cancel: 'لغو',
+                ok: 'باشه',
                 confirmDeleteTitle: 'تأیید',
                 confirmDeleteMsg: 'تمام فایل‌های دانلود شده حذف میشوند. ادامه می‌دهید؟',
                 confirmDownloadTitle: 'دانلود آفلاین',
@@ -1087,6 +1083,20 @@
                 tabSurah: 'سوره‌ها',
                 juzPrefix: 'جزء ',
                 surahPrefix: '',
+                menuTitle: 'فهرست اجزاء و سوره‌ها',
+                settingsBtnTitle: 'تنظیمات',
+                downloadBtnTitle: 'دانلود آفلاین',
+                fullscreenTitle: 'تمام صفحه',
+                themeZard: 'زرد',
+                themeAbi: 'آبی',
+                dayMode: 'حالت روز',
+                nightMode: 'حالت شب',
+                lightBg: 'پس‌زمینه روشن',
+                darkBg: 'پس‌زمینه تیره',
+                downloadSuccess: 'دانلود با موفقیت انجام شد!',
+                deleteSuccess: 'فایل‌های آفلاین حذف شدند.',
+                downloadError: 'خطا در دانلود!',
+                deleteError: 'خطا در حذف!',
             },
             ar: {
                 splashSubtitle: 'مرحباً بكم في تطبيق القرآن الكريم',
@@ -1108,6 +1118,7 @@
                 hq: 'جودة عالية (۵۰۰ م.ب)',
                 hqSub: 'مناسب للكمبيوتر والشاشات الكبيرة',
                 cancel: 'إلغاء',
+                ok: 'موافق',
                 confirmDeleteTitle: 'تأكيد',
                 confirmDeleteMsg: 'سيتم حذف جميع الملفات التي تم تنزيلها. هل تريد المتابعة؟',
                 confirmDownloadTitle: 'تنزيل للاستخدام دون اتصال',
@@ -1117,47 +1128,44 @@
                 tabSurah: 'السور',
                 juzPrefix: 'جزء ',
                 surahPrefix: '',
-            },
-            en: {
-                splashSubtitle: 'Welcome to the Holy Quran App',
-                splashContinue: 'Continue Reading',
-                splashJuz: 'Juz & Surah List',
-                splashLink: 'Suggestions & Feedback',
-                juzContinue: 'Continue Recitation',
-                settingsTitle: 'Settings',
-                themeLabel: 'Main Theme',
-                languageLabel: 'Language',
-                appearanceLabel: 'Appearance',
-                storageLabel: 'Storage Management',
-                deleteBtn: 'Delete Offline Files',
-                closeBtn: 'Close',
-                downloadTitle: 'Select Quality',
-                downloadDesc: 'Choose the appropriate quality:',
-                standard: 'Standard (70 MB)',
-                standardSub: 'Suitable for mobile & tablet',
-                hq: 'High Quality (500 MB)',
-                hqSub: 'Suitable for computer & large screens',
-                cancel: 'Cancel',
-                confirmDeleteTitle: 'Confirmation',
-                confirmDeleteMsg: 'All downloaded files will be deleted. Continue?',
-                confirmDownloadTitle: 'Offline Download',
-                confirmDownloadMsg: 'Offline files size about {size}. Continue?',
-                page: 'Page',
-                tabJuz: 'Juz',
-                tabSurah: 'Surahs',
-                juzPrefix: 'Juz ',
-                surahPrefix: '',
+                menuTitle: 'قائمة الأجزاء والسور',
+                settingsBtnTitle: 'الإعدادات',
+                downloadBtnTitle: 'تحميل دون اتصال',
+                fullscreenTitle: 'ملء الشاشة',
+                themeZard: 'الأصفر',
+                themeAbi: 'الأزرق',
+                dayMode: 'وضع النهار',
+                nightMode: 'وضع الليل',
+                lightBg: 'خلفية فاتحة',
+                darkBg: 'خلفية داكنة',
+                downloadSuccess: 'تم التحميل بنجاح!',
+                deleteSuccess: 'تم حذف الملفات غير المتصلة.',
+                downloadError: 'خطأ في التحميل!',
+                deleteError: 'خطأ في الحذف!',
             }
         };
 
         let currentLang = localStorage.getItem('quran-language') || 'fa';
+        if (!['fa', 'ar'].includes(currentLang)) currentLang = 'fa'; // fallback
+
+        // توابع فرمت اعداد بر اساس زبان
+        function formatNumber(num) {
+            if (currentLang === 'fa') {
+                return num.toString().replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+            } else { // عربی
+                return num.toString().replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+            }
+        }
 
         function setLanguage(lang) {
             currentLang = lang;
             localStorage.setItem('quran-language', lang);
             applyTranslations();
             updateLangButtons();
-            rebuildSurahGrid(); // بازسازی سوره‌ها با نام جدید
+            rebuildSurahGrid();
+            updateTitles();
+            updateThemeToggleButton();
+            updateDarkUIToggleButton();
         }
 
         function applyTranslations() {
@@ -1192,7 +1200,16 @@
         function updateLangButtons() {
             document.getElementById('langFa').classList.toggle('active', currentLang === 'fa');
             document.getElementById('langAr').classList.toggle('active', currentLang === 'ar');
-            document.getElementById('langEn').classList.toggle('active', currentLang === 'en');
+        }
+
+        function updateTitles() {
+            const t = translations[currentLang];
+            document.getElementById('btnMenu').title = t.menuTitle;
+            document.getElementById('btnSettings').title = t.settingsBtnTitle;
+            document.getElementById('btnDownload').title = t.downloadBtnTitle;
+            document.getElementById('btnFullscreen').title = t.fullscreenTitle;
+            document.querySelector('#themeZardBtn span').textContent = t.themeZard;
+            document.querySelector('#themeAbiBtn span').textContent = t.themeAbi;
         }
 
         // ================== دیالوگ سفارشی ==================
@@ -1207,7 +1224,7 @@
                         <div class="dialog-message">${message}</div>
                         <div class="dialog-actions">
                             <button class="dialog-btn dialog-btn-cancel" data-action="cancel">${translations[currentLang].cancel}</button>
-                            <button class="dialog-btn dialog-btn-ok" data-action="ok">${translations[currentLang].confirmDeleteTitle === 'تأیید' ? 'تأیید' : 'OK'}</button>
+                            <button class="dialog-btn dialog-btn-ok" data-action="ok">${translations[currentLang].ok}</button>
                         </div>
                     </div>
                 `;
@@ -1218,6 +1235,32 @@
                 overlay.querySelector('[data-action="ok"]').addEventListener('click', () => cleanup(true));
                 overlay.querySelector('[data-action="cancel"]').addEventListener('click', () => cleanup(false));
                 overlay.querySelector('.overlay-backdrop').addEventListener('click', () => cleanup(false));
+                document.body.appendChild(overlay);
+            });
+        }
+
+        function showDialogAlert(message, title) {
+            return new Promise(resolve => {
+                const overlay = document.createElement('div');
+                overlay.className = 'dialog-overlay';
+                overlay.innerHTML = `
+                    <div class="overlay-backdrop"></div>
+                    <div class="dialog-card">
+                        <div class="dialog-title">${title}</div>
+                        <div class="dialog-message">${message}</div>
+                        <div class="dialog-actions" style="justify-content:center;">
+                            <button class="dialog-btn dialog-btn-ok" data-action="ok">${translations[currentLang].ok}</button>
+                        </div>
+                    </div>
+                `;
+                overlay.querySelector('[data-action="ok"]').addEventListener('click', () => {
+                    overlay.remove();
+                    resolve();
+                });
+                overlay.querySelector('.overlay-backdrop').addEventListener('click', () => {
+                    overlay.remove();
+                    resolve();
+                });
                 document.body.appendChild(overlay);
             });
         }
@@ -1276,26 +1319,28 @@
         function updateThemeToggleButton() {
             const btn = document.getElementById('themeToggle');
             if (!btn) return;
+            const t = translations[currentLang];
             if (currentThemeMode === 'night') {
-                btn.innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/></g></svg> ${currentLang === 'fa' ? 'حالت روز' : (currentLang === 'ar' ? 'وضع النهار' : 'Day mode')}`;
+                btn.innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/></g></svg> ${t.dayMode}`;
             } else {
-                btn.innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79"/></svg> ${currentLang === 'fa' ? 'حالت شب' : (currentLang === 'ar' ? 'وضع الليل' : 'Night mode')}`;
+                btn.innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79"/></svg> ${t.nightMode}`;
             }
         }
 
         function updateDarkUIToggleButton() {
             const btn = document.getElementById('darkUiToggle');
             if (!btn) return;
+            const t = translations[currentLang];
             if (currentThemeMode === 'night') {
                 btn.style.display = 'none';
                 return;
             }
             btn.style.display = 'flex';
             if (currentThemeMode === 'dark-ui') {
-                btn.innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7z"/></svg> ${currentLang === 'fa' ? 'پس‌زمینه روشن' : (currentLang === 'ar' ? 'خلفية فاتحة' : 'Light background')}`;
+                btn.innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7z"/></svg> ${t.lightBg}`;
                 btn.classList.add('accent');
             } else {
-                btn.innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7z"/></svg> ${currentLang === 'fa' ? 'پس‌زمینه تیره' : (currentLang === 'ar' ? 'خلفية داكنة' : 'Dark background')}`;
+                btn.innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7z"/></svg> ${t.darkBg}`;
                 btn.classList.remove('accent');
             }
         }
@@ -1306,15 +1351,6 @@
         }
 
         // ================== توابع کمکی ==================
-        function toPersianNum(num) {
-            const digits = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
-            return num.toString().replace(/\d/g, d => digits[d]);
-        }
-
-        function toEnglishNum(str) { return str; }
-
-        function formatPageNumber(num) { return String(num).padStart(3, '0'); }
-
         function showPageIndicator() {
             const el = document.getElementById('pageIndicator');
             const isMobile = window.innerWidth <= 768;
@@ -1324,8 +1360,8 @@
             } else {
                 displayPage = (currentPage % 2 !== 0) ? currentPage : currentPage - 1;
             }
-            const pageZeroBased = displayPage - 1;
-            const pageText = translations[currentLang].page + ' ' + (currentLang === 'fa' ? toPersianNum(pageZeroBased) : pageZeroBased);
+            const pageZeroBased = displayPage; // صفحه از 1 شروع می‌شود
+            const pageText = translations[currentLang].page + ' ' + formatNumber(pageZeroBased);
             el.textContent = pageText;
             el.classList.add('visible');
             clearTimeout(indicatorTimer);
@@ -1352,6 +1388,8 @@
                 img.src = urlPath;
             }
         }
+
+        function formatPageNumber(num) { return String(num).padStart(3, '0'); }
 
         function updatePages() {
             resetZoom();
@@ -1451,13 +1489,14 @@
                     }
                     await Promise.all(promises);
                     downloaded += batch;
-                    progress.textContent = 'پیشرفت: ' + toPersianNum(Math.min(downloaded, totalPages)) + ' از ' + toPersianNum(totalPages);
+                    progress.textContent = 'پیشرفت: ' + formatNumber(Math.min(downloaded, totalPages)) + ' از ' + formatNumber(totalPages);
                 }
                 setDownloadedUI();
-                alert(translations[currentLang].standard === 'استاندارد (۷۰ مگابایت)' ? 'دانلود با موفقیت انجام شد!' : 'Download completed successfully!');
+                await showDialogAlert(translations[currentLang].downloadSuccess, translations[currentLang].confirmDownloadTitle);
                 updatePages();
             } catch (err) {
                 progress.textContent = '❌ خطا در دانلود';
+                await showDialogAlert(translations[currentLang].downloadError, translations[currentLang].confirmDownloadTitle);
                 dlBtn.style.pointerEvents = 'auto';
                 dlBtn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18"><path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" fill="currentColor"/></svg>';
             }
@@ -1491,11 +1530,11 @@
                 await caches.delete('quran-cache-v1');
                 resetDownloadedUI();
                 prog.style.display = 'none';
-                alert(translations[currentLang].standard === 'استاندارد (۷۰ مگابایت)' ? 'فایل‌های آفلاین حذف شدند.' : 'Offline files deleted.');
+                await showDialogAlert(translations[currentLang].deleteSuccess, translations[currentLang].confirmDeleteTitle);
                 updatePages();
             } catch {
                 prog.style.display = 'none';
-                alert('خطا در حذف');
+                await showDialogAlert(translations[currentLang].deleteError, translations[currentLang].confirmDeleteTitle);
             }
         }
 
@@ -1517,9 +1556,11 @@
                 if (i === 1) startPage = 3;
                 else if (i === 30) startPage = 588;
                 else startPage = 4 + ((i - 1) * 20);
+                // اعمال تغییر +2 طبق درخواست
+                startPage = startPage + 2;
                 const btn = document.createElement('button');
                 btn.className = 'juz-item';
-                btn.textContent = translations[currentLang].juzPrefix + (currentLang === 'fa' ? toPersianNum(i) : i);
+                btn.textContent = translations[currentLang].juzPrefix + formatNumber(i);
                 btn.onclick = () => {
                     let target = startPage;
                     if (window.innerWidth > 768 && target % 2 === 0) target--;
@@ -1531,18 +1572,16 @@
             }
         }
 
-        // ================== داده‌های سوره‌ها ==================
-        const surahPages = [
+        // ================== داده‌های سوره‌ها (با تغییر +2) ==================
+        let surahPages = [
             1,2,50,77,106,128,151,177,187,208,221,235,249,255,262,267,282,293,305,312,322,332,342,350,359,367,377,385,396,404,409,415,418,428,434,440,446,453,458,467,477,483,489,496,499,502,507,511,515,518,520,523,526,529,531,534,537,541,544,547,549,551,553,555,557,558,560,562,564,566,568,570,572,574,577,578,580,582,583,585,586,587,587,589,590,591,591,592,593,594,595,595,596,596,597,597,598,598,599,599,600,600,601,601,601,602,602,602,603,603,603,604,604,604
-        ];
+        ].map(p => p + 2); // طبق درخواست: فاتحه (قبلی 1) => 3، بقره (2) => 4، آل‌عمران (50) => 52
+
         const surahNamesAr = [
             "الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه","الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم","لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر","فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق","الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة","الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج","نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس","التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد","الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات","القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر","المسد","الإخلاص","الفلق","الناس"
         ];
         const surahNamesFa = [
             "فاتحه","بقره","آل‌عمران","نساء","مائده","انعام","اعراف","انفال","توبه","یونس","هود","یوسف","رعد","ابراهیم","حجر","نحل","اسراء","کهف","مریم","طه","انبیاء","حج","مؤمنون","نور","فرقان","شعراء","نمل","قصص","عنکبوت","روم","لقمان","سجده","احزاب","سبأ","فاطر","یس","صافات","ص","زمر","غافر","فصلت","شوری","زخرف","دخان","جاثیه","احقاف","محمد","فتح","حجرات","ق","ذاریات","طور","نجم","قمر","الرحمن","واقعه","حدید","مجادله","حشر","ممتحنه","صف","جمعه","منافقون","تغابن","طلاق","تحریم","ملک","قلم","حاقه","معارج","نوح","جن","مزمل","مدثر","قیامت","انسان","مرسلات","نبأ","نازعات","عبس","تکویر","انفطار","مطففین","انشقاق","بروج","طارق","اعلی","غاشیه","فجر","بلد","شمس","لیل","ضحی","شرح","تین","علق","قدر","بینه","زلزله","عادیات","قارعه","تکاثر","عصر","همزه","فیل","قریش","ماعون","کوثر","کافرون","نصر","مسد","اخلاص","فلق","ناس"
-        ];
-        const surahNamesEn = [
-            "Al-Fatiha","Al-Baqarah","Ali 'Imran","An-Nisa","Al-Ma'idah","Al-An'am","Al-A'raf","Al-Anfal","At-Tawbah","Yunus","Hud","Yusuf","Ar-Ra'd","Ibrahim","Al-Hijr","An-Nahl","Al-Isra","Al-Kahf","Maryam","Taha","Al-Anbiya","Al-Hajj","Al-Mu'minun","An-Nur","Al-Furqan","Ash-Shu'ara","An-Naml","Al-Qasas","Al-'Ankabut","Ar-Rum","Luqman","As-Sajdah","Al-Ahzab","Saba","Fatir","Ya-Sin","As-Saffat","Sad","Az-Zumar","Ghafir","Fussilat","Ash-Shura","Az-Zukhruf","Ad-Dukhan","Al-Jathiyah","Al-Ahqaf","Muhammad","Al-Fath","Al-Hujurat","Qaf","Adh-Dhariyat","At-Tur","An-Najm","Al-Qamar","Ar-Rahman","Al-Waqi'ah","Al-Hadid","Al-Mujadila","Al-Hashr","Al-Mumtahanah","As-Saff","Al-Jumu'ah","Al-Munafiqun","At-Taghabun","At-Talaq","At-Tahrim","Al-Mulk","Al-Qalam","Al-Haqqah","Al-Ma'arij","Nuh","Al-Jinn","Al-Muzzammil","Al-Muddaththir","Al-Qiyamah","Al-Insan","Al-Mursalat","An-Naba","An-Nazi'at","'Abasa","At-Takwir","Al-Infitar","Al-Mutaffifin","Al-Inshiqaq","Al-Buruj","At-Tariq","Al-A'la","Al-Ghashiyah","Al-Fajr","Al-Balad","Ash-Shams","Al-Layl","Ad-Duha","Ash-Sharh","At-Tin","Al-'Alaq","Al-Qadr","Al-Bayyinah","Az-Zalzalah","Al-'Adiyat","Al-Qari'ah","At-Takathur","Al-'Asr","Al-Humazah","Al-Fil","Quraysh","Al-Ma'un","Al-Kawthar","Al-Kafirun","An-Nasr","Al-Masad","Al-Ikhlas","Al-Falaq","An-Nas"
         ];
 
         function rebuildSurahGrid() {
@@ -1551,13 +1590,10 @@
             for (let i = 0; i < 114; i++) {
                 const surahNumber = i + 1;
                 const page = surahPages[i];
-                let name = '';
-                if (currentLang === 'fa') name = surahNamesFa[i];
-                else if (currentLang === 'ar') name = surahNamesAr[i];
-                else name = surahNamesEn[i];
+                let name = (currentLang === 'fa') ? surahNamesFa[i] : surahNamesAr[i];
                 const btn = document.createElement('button');
                 btn.className = 'surah-item';
-                btn.textContent = `${surahNumber}. ${name} (صفحه ${currentLang === 'fa' ? toPersianNum(page) : page})`;
+                btn.textContent = `${surahNumber}. ${name}`; // بدون شماره صفحه
                 btn.onclick = () => {
                     let target = page;
                     if (window.innerWidth > 768 && target % 2 === 0) target--;
@@ -1591,7 +1627,6 @@
         // زبان
         document.getElementById('langFa').addEventListener('click', () => setLanguage('fa'));
         document.getElementById('langAr').addEventListener('click', () => setLanguage('ar'));
-        document.getElementById('langEn').addEventListener('click', () => setLanguage('en'));
 
         // دانلود
         document.getElementById('dlStandard').addEventListener('click', () => startDownload('standard'));
