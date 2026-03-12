@@ -210,7 +210,7 @@
 
         .btn-menu { top: 18px; right: 18px; }
         .btn-settings { top: 18px; left: 18px; }
-        .btn-download { bottom: 18px; right: 18px; }  /* دکمه دایره‌ای بدون متن */
+        .btn-download { bottom: 18px; right: 18px; }
         .btn-download.done { display: none; }
         .btn-fullscreen { bottom: 18px; left: 18px; }
 
@@ -282,7 +282,7 @@
         @keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes cardIn { from { opacity: 0; transform: translateY(16px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
-        /* ========== دیالوگ سفارشی (مشابه فایل 01) ========== */
+        /* دیالوگ سفارشی */
         .dialog-overlay {
             position: fixed;
             inset: 0;
@@ -458,7 +458,7 @@
         .splash-link a:hover { color: var(--accent); }
         .splash-link svg { width: 15px; height: 15px; fill: currentColor; }
 
-        /* JUZ overlay */
+        /* JUZ/Surah overlay با تب */
         .juz-overlay { z-index: 2500; }
         .juz-card {
             position: relative;
@@ -469,7 +469,7 @@
             border: 1px solid var(--border-decorative);
             border-radius: 32px;
             padding: 28px 24px;
-            max-width: 440px;
+            max-width: 480px;
             width: 100%;
             max-height: 82vh;
             box-shadow: var(--shadow-lg);
@@ -497,31 +497,63 @@
         }
         .juz-continue-btn svg { width: 18px; height: 18px; fill: currentColor; }
         .juz-continue-btn:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: var(--shadow-md); }
-        .juz-grid-container {
+
+        /* تب‌های اجزاء/سوره‌ها */
+        .tab-bar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 18px;
+            flex-shrink: 0;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 30px;
+            border: 1px solid var(--border-light);
+            background: var(--card-bg);
+            color: var(--text-secondary);
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        .tab-btn.active {
+            background: var(--accent-soft);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .tab-content {
             overflow-y: auto;
             flex-grow: 1;
             scrollbar-width: thin;
             padding: 4px;
         }
-        .juz-grid {
+        .juz-grid, .surah-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 8px;
         }
-        .juz-item {
+        .surah-grid {
+            grid-template-columns: repeat(2, 1fr); /* برای سوره‌ها دو ستون */
+        }
+        .juz-item, .surah-item {
             padding: 14px 8px;
             background: var(--card-bg);
             border: 1px solid var(--border-light);
             border-radius: 14px;
             text-align: center;
             cursor: pointer;
-            font-family: 'Vazirmatn', sans-serif;  /* تغییر به وزیر */
-            font-size: 15px;
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 14px;
             font-weight: 500;
             color: var(--text-primary);
             transition: all 0.2s ease;
+            line-height: 1.4;
         }
-        .juz-item:hover {
+        .juz-item:hover, .surah-item:hover {
             border-color: var(--accent);
             background: var(--accent-soft);
             color: var(--accent);
@@ -543,7 +575,6 @@
             text-transform: uppercase;
         }
 
-        /* انتخاب تم اصلی (کوچکتر و مرتب) */
         .theme-selector-group {
             display: flex;
             gap: 12px;
@@ -583,7 +614,6 @@
             opacity: 0.9;
         }
 
-        /* انتخاب زبان */
         .language-selector-group {
             display: flex;
             gap: 8px;
@@ -729,7 +759,7 @@
             max-width: 48%;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: var(--shadow-page);  /* فقط سایه، بدون border */
+            box-shadow: var(--shadow-page);
             background: var(--bg-primary);
             position: relative;
             transform-origin: center center;
@@ -781,7 +811,6 @@
         .nav-right { right: 0; --grad-dir: left; }
         .nav-left { left: 0; --grad-dir: right; }
 
-        /* صفحه‌نما با عبارت "صفحه" */
         .page-indicator {
             position: fixed;
             bottom: 20px;
@@ -812,11 +841,12 @@
             .btn-fullscreen { display: none !important; }
             .float-btn { width: 42px; height: 42px; }
             .juz-grid { grid-template-columns: repeat(2, 1fr); }
+            .surah-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body class="theme-zard">
-    <!-- اسپلش مودال -->
+    <!-- اسپلش مودال (همانند قبل) -->
     <div class="overlay splash-overlay active" id="splashOverlay">
         <div class="overlay-backdrop"></div>
         <div class="splash-card">
@@ -829,7 +859,7 @@
             </button>
             <button class="splash-btn" id="splashJuzList">
                 <svg viewBox="0 0 24 24"><path d="M4 6h16v2H4V6zm0 4h16v2H4v-2zm0 4h16v2H4v-2zm0 4h10v2H4v-2z"/></svg>
-                <span id="splashJuzText">فهرست اجزاء</span>
+                <span id="splashJuzText">فهرست اجزاء و سوره‌ها</span>
             </button>
             <div class="splash-link">
                 <a href="https://t.me/YBAKHTIAR" target="_blank">
@@ -840,7 +870,7 @@
         </div>
     </div>
 
-    <!-- JUZ overlay -->
+    <!-- مودال اجزاء و سوره‌ها (تب‌دار) -->
     <div class="overlay juz-overlay" id="juzOverlay">
         <div class="overlay-backdrop"></div>
         <div class="juz-card">
@@ -848,14 +878,28 @@
                 <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 <span id="juzContinueText">ادامه تلاوت</span>
             </button>
-            <div class="juz-grid-container">
+
+            <!-- تب‌ها -->
+            <div class="tab-bar" id="tabBar">
+                <button class="tab-btn active" id="tabJuzBtn">اجزاء</button>
+                <button class="tab-btn" id="tabSurahBtn">سوره‌ها</button>
+            </div>
+
+            <!-- محتوای اجزاء (پیش‌فرض فعال) -->
+            <div class="tab-content" id="juzTabContent">
                 <div class="juz-grid" id="juzGrid"></div>
+            </div>
+
+            <!-- محتوای سوره‌ها (مخفی در ابتدا) -->
+            <div class="tab-content" id="surahTabContent" style="display: none;">
+                <div class="surah-grid" id="surahGrid"></div>
             </div>
         </div>
     </div>
 
-    <!-- مودال تنظیمات -->
+    <!-- مودال تنظیمات (همانند قبل) -->
     <div class="overlay settings-overlay" id="settingsOverlay">
+        <!-- محتوای تنظیمات (بدون تغییر) ... -->
         <div class="overlay-backdrop"></div>
         <div class="modal-card">
             <div class="modal-header">
@@ -868,15 +912,11 @@
                 <div class="section-label" id="themeLabel">تم اصلی</div>
                 <div class="theme-selector-group">
                     <button class="theme-selector-btn" id="themeZardBtn">
-                        <svg viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="10" fill="currentColor"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor"/></svg>
                         <span>زرد</span>
                     </button>
                     <button class="theme-selector-btn" id="themeAbiBtn">
-                        <svg viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="10" fill="currentColor"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor"/></svg>
                         <span>آبی</span>
                     </button>
                 </div>
@@ -921,8 +961,9 @@
         </div>
     </div>
 
-    <!-- مودال دانلود -->
+    <!-- مودال دانلود (همانند قبل) -->
     <div class="overlay download-overlay" id="downloadOverlay">
+        <!-- ... محتوای دانلود ... -->
         <div class="overlay-backdrop"></div>
         <div class="modal-card">
             <div class="modal-header">
@@ -949,7 +990,7 @@
     </div>
 
     <!-- دکمه‌های شناور -->
-    <button class="float-btn btn-menu" id="btnMenu" title="فهرست اجزاء">
+    <button class="float-btn btn-menu" id="btnMenu" title="فهرست اجزاء و سوره‌ها">
         <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
     </button>
     <button class="float-btn btn-settings" id="btnSettings" title="تنظیمات">
@@ -1002,16 +1043,14 @@
         let lastTapTime = 0;
         let hasMoved = false;
 
-        // ================== PWA & Service Worker ==================
+        // PWA
         let deferredPrompt = null;
         const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('sw.js').catch(err => console.log('SW reg error:', err));
             });
         }
-
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
@@ -1022,7 +1061,7 @@
             fa: {
                 splashSubtitle: 'به نرم‌افزار قرآن کریم خوش آمدید',
                 splashContinue: 'ادامه مطالعه',
-                splashJuz: 'فهرست اجزاء',
+                splashJuz: 'فهرست اجزاء و سوره‌ها',
                 splashLink: 'پیشنهادات و نظریات',
                 juzContinue: 'ادامه تلاوت',
                 settingsTitle: 'تنظیمات',
@@ -1044,11 +1083,15 @@
                 confirmDownloadTitle: 'دانلود آفلاین',
                 confirmDownloadMsg: 'فایل‌های آفلاین حدود {size} حجم دارد. ادامه می‌دهید؟',
                 page: 'صفحه',
+                tabJuz: 'اجزاء',
+                tabSurah: 'سوره‌ها',
+                juzPrefix: 'جزء ',
+                surahPrefix: '',
             },
             ar: {
                 splashSubtitle: 'مرحباً بكم في تطبيق القرآن الكريم',
                 splashContinue: 'متابعة القراءة',
-                splashJuz: 'قائمة الأجزاء',
+                splashJuz: 'قائمة الأجزاء والسور',
                 splashLink: 'اقتراحات وملاحظات',
                 juzContinue: 'متابعة التلاوة',
                 settingsTitle: 'الإعدادات',
@@ -1070,11 +1113,15 @@
                 confirmDownloadTitle: 'تنزيل للاستخدام دون اتصال',
                 confirmDownloadMsg: 'الملفات غير المتصلة بالإنترنت بحجم {size}. هل تريد المتابعة؟',
                 page: 'صفحة',
+                tabJuz: 'الأجزاء',
+                tabSurah: 'السور',
+                juzPrefix: 'جزء ',
+                surahPrefix: '',
             },
             en: {
                 splashSubtitle: 'Welcome to the Holy Quran App',
                 splashContinue: 'Continue Reading',
-                splashJuz: 'Juz List',
+                splashJuz: 'Juz & Surah List',
                 splashLink: 'Suggestions & Feedback',
                 juzContinue: 'Continue Recitation',
                 settingsTitle: 'Settings',
@@ -1096,6 +1143,10 @@
                 confirmDownloadTitle: 'Offline Download',
                 confirmDownloadMsg: 'Offline files size about {size}. Continue?',
                 page: 'Page',
+                tabJuz: 'Juz',
+                tabSurah: 'Surahs',
+                juzPrefix: 'Juz ',
+                surahPrefix: '',
             }
         };
 
@@ -1106,6 +1157,7 @@
             localStorage.setItem('quran-language', lang);
             applyTranslations();
             updateLangButtons();
+            rebuildSurahGrid(); // بازسازی سوره‌ها با نام جدید
         }
 
         function applyTranslations() {
@@ -1130,7 +1182,10 @@
             document.getElementById('hqSub').textContent = t.hqSub;
             document.getElementById('cancelText').textContent = t.cancel;
 
-            // به‌روزرسانی صفحه‌نما در فراخوانی بعدی
+            // بروزرسانی تب‌ها
+            document.getElementById('tabJuzBtn').textContent = t.tabJuz;
+            document.getElementById('tabSurahBtn').textContent = t.tabSurah;
+
             if (typeof showPageIndicator === 'function') showPageIndicator();
         }
 
@@ -1167,7 +1222,7 @@
             });
         }
 
-        // ================== تم اصلی (زرد/آبی) و حالت ==================
+        // ================== تم اصلی ==================
         let currentThemeStyle = localStorage.getItem('quran-theme-style') || 'zard';
         let currentThemeMode = localStorage.getItem('quran-theme-mode') || 'day';
 
@@ -1256,10 +1311,7 @@
             return num.toString().replace(/\d/g, d => digits[d]);
         }
 
-        function toEnglishNum(str) {
-            // اگر لازم باشد، فعلاً ساده
-            return str;
-        }
+        function toEnglishNum(str) { return str; }
 
         function formatPageNumber(num) { return String(num).padStart(3, '0'); }
 
@@ -1272,7 +1324,6 @@
             } else {
                 displayPage = (currentPage % 2 !== 0) ? currentPage : currentPage - 1;
             }
-            // از ۰ شروع شود: page - 1
             const pageZeroBased = displayPage - 1;
             const pageText = translations[currentLang].page + ' ' + (currentLang === 'fa' ? toPersianNum(pageZeroBased) : pageZeroBased);
             el.textContent = pageText;
@@ -1366,7 +1417,7 @@
             setTimeout(() => { updatePages(); document.getElementById('quranContainer').style.opacity = '1'; }, 120);
         }
 
-        // ================== دانلود و کش با دیالوگ سفارشی ==================
+        // ================== دانلود و کش ==================
         async function startDownload(quality) {
             closeOverlay('downloadOverlay');
             let sizeText = quality === 'hq' ? '۵۰۰ مگابایت' : '۷۰ مگابایت';
@@ -1458,8 +1509,9 @@
         }
 
         // ================== تولید JUZ grid ==================
-        (function buildJuzGrid() {
+        function buildJuzGrid() {
             const grid = document.getElementById('juzGrid');
+            grid.innerHTML = '';
             for (let i = 1; i <= 30; i++) {
                 let startPage;
                 if (i === 1) startPage = 3;
@@ -1467,7 +1519,7 @@
                 else startPage = 4 + ((i - 1) * 20);
                 const btn = document.createElement('button');
                 btn.className = 'juz-item';
-                btn.textContent = (currentLang === 'fa' ? 'جزء ' : (currentLang === 'ar' ? 'جزء ' : 'Juz ')) + (currentLang === 'fa' ? toPersianNum(i) : i);
+                btn.textContent = translations[currentLang].juzPrefix + (currentLang === 'fa' ? toPersianNum(i) : i);
                 btn.onclick = () => {
                     let target = startPage;
                     if (window.innerWidth > 768 && target % 2 === 0) target--;
@@ -1477,7 +1529,45 @@
                 };
                 grid.appendChild(btn);
             }
-        })();
+        }
+
+        // ================== داده‌های سوره‌ها ==================
+        const surahPages = [
+            1,2,50,77,106,128,151,177,187,208,221,235,249,255,262,267,282,293,305,312,322,332,342,350,359,367,377,385,396,404,409,415,418,428,434,440,446,453,458,467,477,483,489,496,499,502,507,511,515,518,520,523,526,529,531,534,537,541,544,547,549,551,553,555,557,558,560,562,564,566,568,570,572,574,577,578,580,582,583,585,586,587,587,589,590,591,591,592,593,594,595,595,596,596,597,597,598,598,599,599,600,600,601,601,601,602,602,602,603,603,603,604,604,604
+        ];
+        const surahNamesAr = [
+            "الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه","الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم","لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر","فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق","الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة","الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج","نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس","التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد","الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات","القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر","المسد","الإخلاص","الفلق","الناس"
+        ];
+        const surahNamesFa = [
+            "فاتحه","بقره","آل‌عمران","نساء","مائده","انعام","اعراف","انفال","توبه","یونس","هود","یوسف","رعد","ابراهیم","حجر","نحل","اسراء","کهف","مریم","طه","انبیاء","حج","مؤمنون","نور","فرقان","شعراء","نمل","قصص","عنکبوت","روم","لقمان","سجده","احزاب","سبأ","فاطر","یس","صافات","ص","زمر","غافر","فصلت","شوری","زخرف","دخان","جاثیه","احقاف","محمد","فتح","حجرات","ق","ذاریات","طور","نجم","قمر","الرحمن","واقعه","حدید","مجادله","حشر","ممتحنه","صف","جمعه","منافقون","تغابن","طلاق","تحریم","ملک","قلم","حاقه","معارج","نوح","جن","مزمل","مدثر","قیامت","انسان","مرسلات","نبأ","نازعات","عبس","تکویر","انفطار","مطففین","انشقاق","بروج","طارق","اعلی","غاشیه","فجر","بلد","شمس","لیل","ضحی","شرح","تین","علق","قدر","بینه","زلزله","عادیات","قارعه","تکاثر","عصر","همزه","فیل","قریش","ماعون","کوثر","کافرون","نصر","مسد","اخلاص","فلق","ناس"
+        ];
+        const surahNamesEn = [
+            "Al-Fatiha","Al-Baqarah","Ali 'Imran","An-Nisa","Al-Ma'idah","Al-An'am","Al-A'raf","Al-Anfal","At-Tawbah","Yunus","Hud","Yusuf","Ar-Ra'd","Ibrahim","Al-Hijr","An-Nahl","Al-Isra","Al-Kahf","Maryam","Taha","Al-Anbiya","Al-Hajj","Al-Mu'minun","An-Nur","Al-Furqan","Ash-Shu'ara","An-Naml","Al-Qasas","Al-'Ankabut","Ar-Rum","Luqman","As-Sajdah","Al-Ahzab","Saba","Fatir","Ya-Sin","As-Saffat","Sad","Az-Zumar","Ghafir","Fussilat","Ash-Shura","Az-Zukhruf","Ad-Dukhan","Al-Jathiyah","Al-Ahqaf","Muhammad","Al-Fath","Al-Hujurat","Qaf","Adh-Dhariyat","At-Tur","An-Najm","Al-Qamar","Ar-Rahman","Al-Waqi'ah","Al-Hadid","Al-Mujadila","Al-Hashr","Al-Mumtahanah","As-Saff","Al-Jumu'ah","Al-Munafiqun","At-Taghabun","At-Talaq","At-Tahrim","Al-Mulk","Al-Qalam","Al-Haqqah","Al-Ma'arij","Nuh","Al-Jinn","Al-Muzzammil","Al-Muddaththir","Al-Qiyamah","Al-Insan","Al-Mursalat","An-Naba","An-Nazi'at","'Abasa","At-Takwir","Al-Infitar","Al-Mutaffifin","Al-Inshiqaq","Al-Buruj","At-Tariq","Al-A'la","Al-Ghashiyah","Al-Fajr","Al-Balad","Ash-Shams","Al-Layl","Ad-Duha","Ash-Sharh","At-Tin","Al-'Alaq","Al-Qadr","Al-Bayyinah","Az-Zalzalah","Al-'Adiyat","Al-Qari'ah","At-Takathur","Al-'Asr","Al-Humazah","Al-Fil","Quraysh","Al-Ma'un","Al-Kawthar","Al-Kafirun","An-Nasr","Al-Masad","Al-Ikhlas","Al-Falaq","An-Nas"
+        ];
+
+        function rebuildSurahGrid() {
+            const grid = document.getElementById('surahGrid');
+            grid.innerHTML = '';
+            for (let i = 0; i < 114; i++) {
+                const surahNumber = i + 1;
+                const page = surahPages[i];
+                let name = '';
+                if (currentLang === 'fa') name = surahNamesFa[i];
+                else if (currentLang === 'ar') name = surahNamesAr[i];
+                else name = surahNamesEn[i];
+                const btn = document.createElement('button');
+                btn.className = 'surah-item';
+                btn.textContent = `${surahNumber}. ${name} (صفحه ${currentLang === 'fa' ? toPersianNum(page) : page})`;
+                btn.onclick = () => {
+                    let target = page;
+                    if (window.innerWidth > 768 && target % 2 === 0) target--;
+                    currentPage = target;
+                    updatePages();
+                    closeOverlay('juzOverlay');
+                };
+                grid.appendChild(btn);
+            }
+        }
 
         // ================== Event Listeners ==================
         document.getElementById('btnMenu').addEventListener('click', () => openOverlay('juzOverlay'));
@@ -1507,6 +1597,25 @@
         document.getElementById('dlStandard').addEventListener('click', () => startDownload('standard'));
         document.getElementById('dlHQ').addEventListener('click', () => startDownload('hq'));
         document.getElementById('downloadClose').addEventListener('click', () => closeOverlay('downloadOverlay'));
+
+        // تب‌ها
+        const tabJuz = document.getElementById('tabJuzBtn');
+        const tabSurah = document.getElementById('tabSurahBtn');
+        const contentJuz = document.getElementById('juzTabContent');
+        const contentSurah = document.getElementById('surahTabContent');
+        tabJuz.addEventListener('click', () => {
+            tabJuz.classList.add('active');
+            tabSurah.classList.remove('active');
+            contentJuz.style.display = 'block';
+            contentSurah.style.display = 'none';
+        });
+        tabSurah.addEventListener('click', () => {
+            tabSurah.classList.add('active');
+            tabJuz.classList.remove('active');
+            contentSurah.style.display = 'block';
+            contentJuz.style.display = 'none';
+            rebuildSurahGrid(); // اطمینان از نمایش با زبان جاری
+        });
 
         // بستن مودال‌ها با کلیک روی backdrop
         ['juzOverlay', 'settingsOverlay', 'downloadOverlay'].forEach(id => {
@@ -1578,14 +1687,15 @@
         // ================== مقداردهی اولیه ==================
         (function init() {
             applyTheme();
-            setLanguage(currentLang); // اعمال ترجمه
+            setLanguage(currentLang);
+            buildJuzGrid();
+            rebuildSurahGrid();
             let saved = localStorage.getItem('lastQuranPage');
             if (saved && !isNaN(parseInt(saved))) currentPage = parseInt(saved);
             updatePages();
             caches.open('quran-cache-v1').then(cache => {
                 cache.match('images/Quran001.jpg').then(res => { if (res) setDownloadedUI(); });
             });
-            updateLangButtons();
         })();
     </script>
 </body>
