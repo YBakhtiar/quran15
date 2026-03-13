@@ -1553,11 +1553,10 @@
             grid.innerHTML = '';
             for (let i = 1; i <= 30; i++) {
                 let startPage;
-                if (i === 1) startPage = 3;
-                else if (i === 30) startPage = 588;
-                else startPage = 4 + ((i - 1) * 20);
-                // اعمال تغییر +2 طبق درخواست
-                startPage = startPage + 2;
+                if (i === 1) startPage = 3;          // جزء 1 = صفحه 3
+                else if (i === 30) startPage = 588;   // جزء 30 = صفحه 588
+                else startPage = 4 + ((i - 1) * 20);  // جزء 2 = 4+20=24, جزء 3 = 4+40=44, ...
+                // بدون اضافه کردن +2 اضافی (طبق درخواست کاربر)
                 const btn = document.createElement('button');
                 btn.className = 'juz-item';
                 btn.textContent = translations[currentLang].juzPrefix + formatNumber(i);
