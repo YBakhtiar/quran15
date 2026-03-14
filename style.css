@@ -1,0 +1,938 @@
+/* تم زرد (پیش‌فرض) */
+:root {
+    --bg-primary: #FDF8F0;
+    --bg-secondary: #FFFFFF;
+    --bg-tertiary: #F0EAE0;
+    --bg-elevated: rgba(255, 255, 255, 0.88);
+    --text-primary: #2D1F14;
+    --text-secondary: #5A4030;
+    --text-muted: #8C7A65;
+    --border-light: rgba(160, 130, 90, 0.15);
+    --border-hover: rgba(160, 130, 90, 0.3);
+    --border-decorative: rgba(200, 169, 81, 0.25);
+    --accent: #B8860B;
+    --accent-hover: #D4A017;
+    --accent-soft: rgba(184, 134, 11, 0.1);
+    --danger: #C0392B;
+    --danger-soft: rgba(192, 57, 43, 0.1);
+    --success: #27AE60;
+    --modal-bg: #FFFFFF;
+    --card-bg: rgba(255, 255, 255, 0.82);
+    --pattern-opacity: 0.03;
+    --shadow-soft: 0 2px 12px rgba(80, 50, 20, 0.08);
+    --shadow-md: 0 8px 24px rgba(80, 50, 20, 0.12);
+    --shadow-lg: 0 16px 40px rgba(80, 50, 20, 0.16);
+    --shadow-page: 0 8px 32px rgba(80, 50, 20, 0.2);
+    --scrollbar-thumb: #B8860B;
+    --scrollbar-track: rgba(184, 134, 11, 0.08);
+}
+
+/* تم زرد - شب */
+body.theme-zard.night-mode {
+    --bg-primary: #0F1923;
+    --bg-secondary: #1A2B3E;
+    --bg-tertiary: #243548;
+    --bg-elevated: rgba(26, 43, 62, 0.92);
+    --text-primary: #E8DED0;
+    --text-secondary: #C8B89A;
+    --text-muted: #8A7A60;
+    --border-light: rgba(200, 180, 140, 0.12);
+    --border-hover: rgba(200, 180, 140, 0.25);
+    --border-decorative: rgba(212, 175, 55, 0.25);
+    --accent: #D4AF37;
+    --accent-hover: #E8C84A;
+    --accent-soft: rgba(212, 175, 55, 0.12);
+    --danger: #E74C3C;
+    --danger-soft: rgba(231, 76, 60, 0.15);
+    --success: #2ECC71;
+    --modal-bg: #1A2B3E;
+    --card-bg: rgba(26, 43, 62, 0.88);
+    --scrollbar-thumb: #D4AF37;
+    --scrollbar-track: rgba(212, 175, 55, 0.08);
+}
+
+/* تم زرد - dark-ui (فقط روز) */
+body.theme-zard.dark-ui:not(.night-mode) {
+    --bg-primary: #1A2538;
+    --bg-secondary: #253548;
+    --bg-tertiary: #2F4058;
+    --bg-elevated: rgba(37, 53, 72, 0.92);
+    --text-primary: #E0D8CC;
+    --text-secondary: #B8A890;
+    --text-muted: #807060;
+    --border-light: rgba(200, 180, 140, 0.1);
+    --border-hover: rgba(200, 180, 140, 0.2);
+    --border-decorative: rgba(184, 134, 11, 0.2);
+    --accent: #D4AF37;
+    --accent-hover: #E8C84A;
+    --accent-soft: rgba(212, 175, 55, 0.12);
+    --modal-bg: #253548;
+    --card-bg: rgba(37, 53, 72, 0.88);
+    --scrollbar-thumb: #D4AF37;
+    --scrollbar-track: rgba(212, 175, 55, 0.08);
+}
+
+/* تم آبی */
+body.theme-abi {
+    --bg-primary: #f0f7ff;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #e6f0fa;
+    --bg-elevated: rgba(255, 255, 255, 0.88);
+    --text-primary: #1e2a44;
+    --text-secondary: #2d3a5e;
+    --text-muted: #5b6f8c;
+    --border-light: rgba(0, 50, 100, 0.1);
+    --border-hover: rgba(0, 80, 150, 0.2);
+    --border-decorative: rgba(43, 110, 217, 0.2);
+    --accent: #2b6ed9;
+    --accent-hover: #4f9eff;
+    --accent-soft: rgba(43, 110, 217, 0.12);
+    --danger: #d14545;
+    --danger-soft: rgba(209, 69, 69, 0.1);
+    --success: #28a745;
+    --modal-bg: #ffffff;
+    --card-bg: rgba(255, 255, 255, 0.82);
+    --scrollbar-thumb: #2b6ed9;
+    --scrollbar-track: rgba(43, 110, 217, 0.08);
+}
+
+body.theme-abi.night-mode {
+    --bg-primary: #0b1424;
+    --bg-secondary: #1f2a40;
+    --bg-tertiary: #2a3650;
+    --bg-elevated: rgba(31, 42, 64, 0.92);
+    --text-primary: #f0f4ff;
+    --text-secondary: #d0dcff;
+    --text-muted: #a0b0d0;
+    --border-light: rgba(255, 255, 255, 0.1);
+    --border-hover: rgba(255, 255, 255, 0.2);
+    --border-decorative: rgba(79, 158, 255, 0.25);
+    --accent: #4f9eff;
+    --accent-hover: #7bb3ff;
+    --accent-soft: rgba(79, 158, 255, 0.2);
+    --danger: #ff6b6b;
+    --danger-soft: rgba(255, 107, 107, 0.15);
+    --success: #51cf66;
+    --modal-bg: #1f2a40;
+    --card-bg: rgba(31, 42, 64, 0.88);
+    --scrollbar-thumb: #4f9eff;
+    --scrollbar-track: rgba(79, 158, 255, 0.08);
+}
+
+body.theme-abi.dark-ui:not(.night-mode) {
+    --bg-primary: #1a2538;
+    --bg-secondary: #2c3a50;
+    --bg-tertiary: #3a4a64;
+    --bg-elevated: rgba(44, 58, 80, 0.92);
+    --text-primary: #eef2f8;
+    --text-secondary: #cbd5e8;
+    --text-muted: #9aafcc;
+    --border-light: rgba(255, 255, 255, 0.1);
+    --border-hover: rgba(255, 255, 255, 0.2);
+    --border-decorative: rgba(79, 158, 255, 0.2);
+    --accent: #4f9eff;
+    --accent-hover: #7bb3ff;
+    --accent-soft: rgba(79, 158, 255, 0.2);
+    --modal-bg: #2c3a50;
+    --card-bg: rgba(44, 58, 80, 0.88);
+    --scrollbar-thumb: #4f9eff;
+    --scrollbar-track: rgba(79, 158, 255, 0.08);
+}
+
+/* فیلتر شب ثابت */
+body.night-mode {
+    --image-filter: invert(0.9) brightness(1.1) contrast(1.05) hue-rotate(180deg);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background: var(--bg-primary);
+    font-family: 'Vazirmatn', Tahoma, sans-serif;
+    color: var(--text-primary);
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    overscroll-behavior-y: contain;
+    touch-action: none;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    line-height: 1.5;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: var(--pattern-opacity);
+    background-image: radial-gradient(var(--accent) 0.6px, transparent 0.6px);
+    background-size: 22px 22px;
+    transition: opacity 0.4s;
+}
+
+/* اسکرول بار مدرن و حرفه‌ای (عمومی) */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+    border-radius: 12px;
+    margin: 4px;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 12px;
+    border: 1px solid transparent;
+    background-clip: content-box;
+    min-height: 40px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-hover);
+    border: 1px solid transparent;
+    background-clip: content-box;
+}
+
+/* استایل اختصاصی برای اسکرول‌بار مدرن فهرست اجزاء و سوره‌ها */
+.modern-scroll::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+.modern-scroll::-webkit-scrollbar-track {
+    background: var(--bg-tertiary);
+    border-radius: 20px;
+    margin: 8px 2px;
+}
+.modern-scroll::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: inset 0 0 4px rgba(0,0,0,0.1);
+    transition: background 0.2s;
+}
+.modern-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-hover);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+/* برای فایرفاکس */
+.modern-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) var(--bg-tertiary);
+}
+
+/* دکمه‌های شناور */
+.float-btn {
+    position: fixed;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-elevated);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-light);
+    border-radius: 50%;
+    width: 46px;
+    height: 46px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all 0.25s ease;
+    box-shadow: var(--shadow-soft);
+}
+.float-btn:hover, .float-btn:active {
+    color: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md), 0 0 0 4px var(--accent-soft);
+}
+.float-btn svg { width: 20px; height: 20px; fill: currentColor; }
+
+.btn-menu { top: 18px; right: 18px; }
+.btn-settings { top: 18px; left: 18px; }
+.btn-download { bottom: 18px; right: 18px; }
+.btn-download.done { display: none; }
+.btn-fullscreen { bottom: 18px; left: 18px; }
+
+/* مودال‌ها */
+.overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    animation: overlayIn 0.25s ease;
+    z-index: 2500;
+}
+.overlay.active { display: flex; }
+
+.overlay-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.modal-card {
+    position: relative;
+    z-index: 1;
+    background: var(--modal-bg);
+    border: 1px solid var(--border-light);
+    border-radius: 28px;
+    padding: 28px;
+    max-width: 420px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+    color: var(--text-primary);
+    animation: cardIn 0.3s ease;
+    font-family: 'Vazirmatn', sans-serif;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-light);
+    font-size: 20px;
+    font-weight: 600;
+}
+.modal-header svg { width: 22px; height: 22px; fill: var(--accent); flex-shrink: 0; }
+
+/* استایل جدید تنظیمات - شبیه پنل */
+.setting-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--border-light);
+    font-family: 'Vazirmatn', sans-serif;
+}
+.setting-item:last-child {
+    border-bottom: none;
+}
+.setting-label {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+.setting-label svg {
+    width: 1.3rem;
+    height: 1.3rem;
+    fill: var(--accent);
+}
+.setting-value {
+    display: flex;
+    gap: 0.5rem;
+}
+.theme-selector-group, .language-selector-group {
+    display: flex;
+    gap: 8px;
+}
+.theme-selector-btn, .lang-btn {
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border-light);
+    background: var(--card-bg);
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: 'Vazirmatn', sans-serif;
+}
+.theme-selector-btn.active, .lang-btn.active {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+.theme-selector-btn svg, .lang-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+.settings-btn-row {
+    width: 100%;
+    padding: 12px;
+    border-radius: 16px;
+    border: 1px solid var(--border-light);
+    background: var(--card-bg);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: 'Vazirmatn', sans-serif;
+}
+.settings-btn-row.danger {
+    border-color: var(--danger);
+    background: var(--danger-soft);
+    color: var(--danger);
+}
+.settings-btn-row.accent {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+/* دکمه حذف کوچک و با آیکون مناسب */
+.delete-option {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 16px;
+    border: 1px solid var(--danger);
+    background: var(--danger-soft);
+    color: var(--danger);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+.delete-option svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+.delete-option:hover {
+    background: var(--danger);
+    color: white;
+    border-color: var(--danger);
+}
+
+.storage-toggle {
+    cursor: pointer;
+}
+
+.close-btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 16px;
+    border: 1px solid var(--border-light);
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'Vazirmatn', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 16px;
+}
+.close-btn:hover { background: var(--bg-tertiary); color: var(--text-primary); }
+
+@keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes cardIn { from { opacity: 0; transform: translateY(16px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+/* دیالوگ سفارشی */
+.dialog-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 16px;
+    animation: overlayIn 0.2s ease;
+}
+.dialog-overlay .overlay-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+.dialog-card {
+    position: relative;
+    z-index: 1;
+    background: var(--modal-bg);
+    border: 1px solid var(--border-light);
+    border-radius: 24px;
+    padding: 28px;
+    max-width: 360px;
+    width: 100%;
+    box-shadow: var(--shadow-lg);
+    animation: cardIn 0.25s ease;
+}
+.dialog-title {
+    font-family: 'Vazirmatn', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+}
+.dialog-message {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+.dialog-actions { display: flex; gap: 8px; justify-content: flex-end; }
+.dialog-btn {
+    padding: 10px 22px;
+    border-radius: 12px;
+    font-family: 'Vazirmatn', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+}
+.dialog-btn-ok {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+.dialog-btn-ok:hover { background: var(--accent-hover); }
+.dialog-btn-cancel {
+    background: transparent;
+    color: var(--text-muted);
+    border-color: var(--border-light);
+}
+.dialog-btn-cancel:hover { background: var(--bg-tertiary); }
+
+/* اسپلش */
+.splash-overlay {
+    z-index: 3000;
+    background: var(--bg-primary);
+}
+.splash-overlay .overlay-backdrop { background: transparent; backdrop-filter: none; }
+
+.splash-card {
+    position: relative;
+    z-index: 1;
+    background: var(--card-bg);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--border-decorative);
+    border-radius: 40px;
+    padding: 48px 32px 36px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    animation: splashIn 0.5s ease;
+}
+
+@keyframes splashIn {
+    from { opacity: 0; transform: translateY(24px) scale(0.96); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.splash-title {
+    font-family: 'Amiri', serif;
+    font-size: 46px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), #8B6914, var(--accent-hover));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.4;
+    margin-bottom: 4px;
+}
+
+.splash-divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 16px auto 20px;
+    max-width: 240px;
+    color: var(--accent);
+    font-size: 14px;
+}
+.splash-divider::before, .splash-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+.splash-subtitle {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 32px;
+}
+
+.splash-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid var(--border-light);
+    border-radius: 16px;
+    background: var(--card-bg);
+    color: var(--text-primary);
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Vazirmatn', sans-serif;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: var(--shadow-soft);
+}
+.splash-btn svg { width: 20px; height: 20px; fill: currentColor; }
+.splash-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-hover);
+}
+.splash-btn-primary {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.splash-link {
+    margin-top: 28px;
+    font-size: 12px;
+    opacity: 0.6;
+}
+.splash-link a {
+    color: var(--text-muted);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+}
+.splash-link a:hover { color: var(--accent); }
+.splash-link svg { width: 15px; height: 15px; fill: currentColor; }
+
+/* JUZ/Surah overlay با تب */
+.juz-overlay { z-index: 2500; }
+.juz-card {
+    position: relative;
+    z-index: 1;
+    background: var(--card-bg);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--border-decorative);
+    border-radius: 32px;
+    padding: 28px 24px;
+    max-width: 480px;
+    width: 100%;
+    max-height: 82vh;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+    animation: cardIn 0.3s ease;
+}
+.juz-continue-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px;
+    border-radius: 16px;
+    border: 1px solid var(--accent);
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: 'Vazirmatn', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    margin-bottom: 18px;
+    flex-shrink: 0;
+}
+.juz-continue-btn svg { width: 18px; height: 18px; fill: currentColor; }
+.juz-continue-btn:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+/* تب‌های اجزاء/سوره‌ها */
+.tab-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 18px;
+    flex-shrink: 0;
+}
+.tab-btn {
+    flex: 1;
+    padding: 10px;
+    border-radius: 30px;
+    border: 1px solid var(--border-light);
+    background: var(--card-bg);
+    color: var(--text-secondary);
+    font-family: 'Vazirmatn', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+}
+.tab-btn.active {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.tab-content {
+    overflow-y: auto;
+    flex-grow: 1;
+    padding: 4px;
+}
+
+/* مخفی‌سازی اسکرول‌بار در موبایل */
+@media (max-width: 768px) {
+    .modern-scroll {
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE/Edge */
+    }
+    .modern-scroll::-webkit-scrollbar {
+        display: none; /* Chrome/Safari */
+        width: 0;
+        height: 0;
+    }
+}
+
+.juz-grid, .surah-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+.surah-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+.juz-item, .surah-item {
+    padding: 14px 8px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-light);
+    border-radius: 14px;
+    text-align: center;
+    cursor: pointer;
+    font-family: 'Vazirmatn', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+    line-height: 1.4;
+}
+.juz-item:hover, .surah-item:hover {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
+/* دکمه‌های دانلود (مودال) */
+.dl-option {
+    width: 100%;
+    padding: 18px;
+    margin: 10px 0;
+    border-radius: 20px;
+    border: 1px solid var(--border-light);
+    background: var(--card-bg);
+    color: var(--text-primary);
+    font-family: 'Vazirmatn', sans-serif;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-align: center;
+}
+.dl-option:hover {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+.dl-option .dl-main {
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.dl-option .dl-main svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--accent);
+}
+.dl-option .dl-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+/* بخش نصب اپلیکیشن */
+.install-section {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-light);
+}
+.install-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+.install-btn {
+    width: 100%;
+    padding: 16px;
+    margin: 8px 0;
+    border-radius: 20px;
+    border: 1px solid var(--accent);
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.install-btn:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+.install-btn svg { width: 20px; height: 20px; fill: currentColor; }
+.install-instructions {
+    background: var(--bg-tertiary);
+    border-radius: 16px;
+    padding: 16px;
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+.install-instructions p {
+    display: flex;
+    gap: 8px;
+    margin: 8px 0;
+}
+.install-instructions svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+.progress-pill {
+    position: fixed;
+    bottom: 72px;
+    right: 18px;
+    background: var(--bg-elevated);
+    backdrop-filter: blur(10px);
+    color: var(--text-secondary);
+    font-size: 12px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-md);
+    display: none;
+    z-index: 150;
+}
+
+/* main content */
+.main-content {
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.quran-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    height: 96vh;
+    width: 100%;
+    padding: 0 56px;
+    transition: none;
+}
+
+.page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    max-width: 48%;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-page);
+    background: var(--bg-primary);
+    position: relative;
+    transform-origin: center center;
+    will-change: transform;
+}
+.page-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.04);
+}
+
+.page {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    border-radius: 16px;
+    background-color: white;
+    filter: var(--image-filter);
+    transition: filter 0.4s ease;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.nav-btn {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 48px;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    z-index: 10;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+.nav-btn:hover {
+    opacity: 1;
+    background: linear-gradient(to var(--grad-dir, left), var(--bg-elevated), transparent);
+    color: var(--accent);
+}
+.nav-btn svg { width: 26px; height: 26px; fill: currentColor; }
+.nav-right { right: 0; --grad-dir: left; }
+.nav-left { left: 0; --grad-dir: right; }
+
+@media (max-width: 768px) {
+    .quran-container { padding: 8px; gap: 0; }
+    .page-wrapper { max-width: 100%; width: 100%; height: auto; border-radius: 12px; }
+    .nav-btn { display: none !important; }
+    .btn-fullscreen { display: none !important; }
+    .float-btn { width: 38px; height: 38px; }
+    .float-btn svg { width: 16px; height: 16px; }
+    .juz-grid { grid-template-columns: repeat(2, 1fr); }
+    .surah-grid { grid-template-columns: repeat(2, 1fr); }
+}
