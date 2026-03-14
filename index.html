@@ -6,7 +6,7 @@
     <title>القرآن الكريم</title>
     <!-- PWA & manifest -->
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#FDF8F0" id="theme-color-meta">
+    <meta name="theme-color" content="#f0f7ff" id="theme-color-meta">
     <link rel="apple-touch-icon" href="./icon-192.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -16,82 +16,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* تم زرد (پیش‌فرض) */
+        /* تم آبی (پیش‌فرض جدید) */
         :root {
-            --bg-primary: #FDF8F0;
-            --bg-secondary: #FFFFFF;
-            --bg-tertiary: #F0EAE0;
-            --bg-elevated: rgba(255, 255, 255, 0.88);
-            --text-primary: #2D1F14;
-            --text-secondary: #5A4030;
-            --text-muted: #8C7A65;
-            --border-light: rgba(160, 130, 90, 0.15);
-            --border-hover: rgba(160, 130, 90, 0.3);
-            --border-decorative: rgba(200, 169, 81, 0.25);
-            --accent: #B8860B;
-            --accent-hover: #D4A017;
-            --accent-soft: rgba(184, 134, 11, 0.1);
-            --danger: #C0392B;
-            --danger-soft: rgba(192, 57, 43, 0.1);
-            --success: #27AE60;
-            --modal-bg: #FFFFFF;
-            --card-bg: rgba(255, 255, 255, 0.82);
-            --pattern-opacity: 0.03;
-            --shadow-soft: 0 2px 12px rgba(80, 50, 20, 0.08);
-            --shadow-md: 0 8px 24px rgba(80, 50, 20, 0.12);
-            --shadow-lg: 0 16px 40px rgba(80, 50, 20, 0.16);
-            --shadow-page: 0 8px 32px rgba(80, 50, 20, 0.2);
-            --scrollbar-thumb: #B8860B;
-            --scrollbar-track: rgba(184, 134, 11, 0.08);
-        }
-
-        /* تم زرد - شب */
-        body.theme-zard.night-mode {
-            --bg-primary: #0F1923;
-            --bg-secondary: #1A2B3E;
-            --bg-tertiary: #243548;
-            --bg-elevated: rgba(26, 43, 62, 0.92);
-            --text-primary: #E8DED0;
-            --text-secondary: #C8B89A;
-            --text-muted: #8A7A60;
-            --border-light: rgba(200, 180, 140, 0.12);
-            --border-hover: rgba(200, 180, 140, 0.25);
-            --border-decorative: rgba(212, 175, 55, 0.25);
-            --accent: #D4AF37;
-            --accent-hover: #E8C84A;
-            --accent-soft: rgba(212, 175, 55, 0.12);
-            --danger: #E74C3C;
-            --danger-soft: rgba(231, 76, 60, 0.15);
-            --success: #2ECC71;
-            --modal-bg: #1A2B3E;
-            --card-bg: rgba(26, 43, 62, 0.88);
-            --scrollbar-thumb: #D4AF37;
-            --scrollbar-track: rgba(212, 175, 55, 0.08);
-        }
-
-        /* تم زرد - dark-ui (فقط روز) */
-        body.theme-zard.dark-ui:not(.night-mode) {
-            --bg-primary: #1A2538;
-            --bg-secondary: #253548;
-            --bg-tertiary: #2F4058;
-            --bg-elevated: rgba(37, 53, 72, 0.92);
-            --text-primary: #E0D8CC;
-            --text-secondary: #B8A890;
-            --text-muted: #807060;
-            --border-light: rgba(200, 180, 140, 0.1);
-            --border-hover: rgba(200, 180, 140, 0.2);
-            --border-decorative: rgba(184, 134, 11, 0.2);
-            --accent: #D4AF37;
-            --accent-hover: #E8C84A;
-            --accent-soft: rgba(212, 175, 55, 0.12);
-            --modal-bg: #253548;
-            --card-bg: rgba(37, 53, 72, 0.88);
-            --scrollbar-thumb: #D4AF37;
-            --scrollbar-track: rgba(212, 175, 55, 0.08);
-        }
-
-        /* تم آبی */
-        body.theme-abi {
             --bg-primary: #f0f7ff;
             --bg-secondary: #ffffff;
             --bg-tertiary: #e6f0fa;
@@ -110,10 +36,16 @@
             --success: #28a745;
             --modal-bg: #ffffff;
             --card-bg: rgba(255, 255, 255, 0.82);
+            --pattern-opacity: 0.03;
+            --shadow-soft: 0 2px 12px rgba(80, 50, 20, 0.08);
+            --shadow-md: 0 8px 24px rgba(80, 50, 20, 0.12);
+            --shadow-lg: 0 16px 40px rgba(80, 50, 20, 0.16);
+            --shadow-page: 0 8px 32px rgba(80, 50, 20, 0.2);
             --scrollbar-thumb: #2b6ed9;
             --scrollbar-track: rgba(43, 110, 217, 0.08);
         }
 
+        /* تم آبی - شب */
         body.theme-abi.night-mode {
             --bg-primary: #0b1424;
             --bg-secondary: #1f2a40;
@@ -137,6 +69,7 @@
             --scrollbar-track: rgba(79, 158, 255, 0.08);
         }
 
+        /* تم آبی - dark-ui */
         body.theme-abi.dark-ui:not(.night-mode) {
             --bg-primary: #1a2538;
             --bg-secondary: #2c3a50;
@@ -156,6 +89,31 @@
             --scrollbar-thumb: #4f9eff;
             --scrollbar-track: rgba(79, 158, 255, 0.08);
         }
+
+        /* تم زرد (ثانویه) */
+        body.theme-zard {
+            --bg-primary: #FDF8F0;
+            --bg-secondary: #FFFFFF;
+            --bg-tertiary: #F0EAE0;
+            --bg-elevated: rgba(255, 255, 255, 0.88);
+            --text-primary: #2D1F14;
+            --text-secondary: #5A4030;
+            --text-muted: #8C7A65;
+            --border-light: rgba(160, 130, 90, 0.15);
+            --border-hover: rgba(160, 130, 90, 0.3);
+            --border-decorative: rgba(200, 169, 81, 0.25);
+            --accent: #B8860B;
+            --accent-hover: #D4A017;
+            --accent-soft: rgba(184, 134, 11, 0.1);
+            --danger: #C0392B;
+            --danger-soft: rgba(192, 57, 43, 0.1);
+            --modal-bg: #FFFFFF;
+            --card-bg: rgba(255, 255, 255, 0.82);
+            --scrollbar-thumb: #B8860B;
+            --scrollbar-track: rgba(184, 134, 11, 0.08);
+        }
+        body.theme-zard.night-mode { /* ... (مشابه قبل) ... */ }
+        body.theme-zard.dark-ui:not(.night-mode) { /* ... */ }
 
         /* فیلتر شب ثابت */
         body.night-mode {
@@ -189,55 +147,16 @@
             transition: opacity 0.4s;
         }
 
-        /* اسکرول بار مدرن و حرفه‌ای (عمومی) */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--scrollbar-track);
-            border-radius: 12px;
-            margin: 4px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--scrollbar-thumb);
-            border-radius: 12px;
-            border: 1px solid transparent;
-            background-clip: content-box;
-            min-height: 40px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-hover);
-            border: 1px solid transparent;
-            background-clip: content-box;
-        }
+        /* اسکرول بار */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: var(--scrollbar-track); border-radius: 12px; margin: 4px; }
+        ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 12px; border: 1px solid transparent; background-clip: content-box; min-height: 40px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-hover); }
 
-        /* استایل اختصاصی برای اسکرول‌بار مدرن فهرست اجزاء و سوره‌ها */
-        .modern-scroll::-webkit-scrollbar {
-            width: 5px;
-            height: 5px;
-        }
-        .modern-scroll::-webkit-scrollbar-track {
-            background: var(--bg-tertiary);
-            border-radius: 20px;
-            margin: 8px 2px;
-        }
-        .modern-scroll::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: inset 0 0 4px rgba(0,0,0,0.1);
-            transition: background 0.2s;
-        }
-        .modern-scroll::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-hover);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-        /* برای فایرفاکس */
-        .modern-scroll {
-            scrollbar-width: thin;
-            scrollbar-color: var(--accent) var(--bg-tertiary);
-        }
+        .modern-scroll::-webkit-scrollbar { width: 5px; height: 5px; }
+        .modern-scroll::-webkit-scrollbar-track { background: var(--bg-tertiary); border-radius: 20px; margin: 8px 2px; }
+        .modern-scroll::-webkit-scrollbar-thumb { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%); border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.15); }
+        .modern-scroll { scrollbar-width: thin; scrollbar-color: var(--accent) var(--bg-tertiary); }
 
         /* دکمه‌های شناور */
         .float-btn {
@@ -284,7 +203,6 @@
             z-index: 2500;
         }
         .overlay.active { display: flex; }
-
         .overlay-backdrop {
             position: absolute;
             inset: 0;
@@ -292,7 +210,6 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
         }
-
         .modal-card {
             position: relative;
             z-index: 1;
@@ -309,7 +226,6 @@
             animation: cardIn 0.3s ease;
             font-family: 'Vazirmatn', sans-serif;
         }
-
         .modal-header {
             display: flex;
             align-items: center;
@@ -322,7 +238,7 @@
         }
         .modal-header svg { width: 22px; height: 22px; fill: var(--accent); flex-shrink: 0; }
 
-        /* استایل جدید تنظیمات - شبیه پنل */
+        /* تنظیمات */
         .setting-item {
             display: flex;
             align-items: center;
@@ -331,9 +247,7 @@
             border-bottom: 1px solid var(--border-light);
             font-family: 'Vazirmatn', sans-serif;
         }
-        .setting-item:last-child {
-            border-bottom: none;
-        }
+        .setting-item:last-child { border-bottom: none; }
         .setting-label {
             display: flex;
             align-items: center;
@@ -341,17 +255,9 @@
             font-size: 0.95rem;
             color: var(--text-primary);
         }
-        .setting-label svg {
-            width: 1.3rem;
-            height: 1.3rem;
-            fill: var(--accent);
-        }
-        .setting-value {
-            display: flex;
-            gap: 0.5rem;
-        }
+        .setting-label svg { width: 1.3rem; height: 1.3rem; fill: var(--accent); }
+        .setting-value { display: flex; gap: 0.5rem; }
 
-        /* دکمه‌های تم و زبان (بدون آیکون) */
         .theme-selector-btn, .lang-btn {
             padding: 6px 12px;
             border-radius: 20px;
@@ -374,7 +280,6 @@
             color: var(--accent);
         }
 
-        /* دکمه‌های ردیف تنظیمات (ظاهر و پس‌زمینه) */
         .settings-btn-row {
             width: 100%;
             padding: 6px 12px;
@@ -398,7 +303,6 @@
             color: var(--accent);
         }
 
-        /* دکمه حذف کوچک و با آیکون مناسب */
         .delete-option {
             margin-top: 10px;
             padding: 10px;
@@ -414,21 +318,10 @@
             font-size: 0.9rem;
             transition: all 0.2s;
         }
-        .delete-option svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-        }
-        .delete-option:hover {
-            background: var(--danger);
-            color: white;
-            border-color: var(--danger);
-        }
+        .delete-option svg { width: 18px; height: 18px; fill: currentColor; }
+        .delete-option:hover { background: var(--danger); color: white; border-color: var(--danger); }
 
-        .storage-toggle {
-            cursor: pointer;
-        }
-
+        .storage-toggle { cursor: pointer; }
         .close-btn {
             width: 100%;
             padding: 14px;
@@ -478,19 +371,8 @@
             box-shadow: var(--shadow-lg);
             animation: cardIn 0.25s ease;
         }
-        .dialog-title {
-            font-family: 'Vazirmatn', sans-serif;
-            font-size: 17px;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 10px;
-        }
-        .dialog-message {
-            color: var(--text-secondary);
-            font-size: 14px;
-            line-height: 1.7;
-            margin-bottom: 24px;
-        }
+        .dialog-title { font-size: 17px; font-weight: 600; color: var(--text-primary); margin-bottom: 10px; }
+        .dialog-message { color: var(--text-secondary); font-size: 14px; line-height: 1.7; margin-bottom: 24px; }
         .dialog-actions { display: flex; gap: 8px; justify-content: flex-end; }
         .dialog-btn {
             padding: 10px 22px;
@@ -502,26 +384,14 @@
             transition: all 0.2s;
             border: 1px solid transparent;
         }
-        .dialog-btn-ok {
-            background: var(--accent);
-            color: #fff;
-            border-color: var(--accent);
-        }
+        .dialog-btn-ok { background: var(--accent); color: #fff; border-color: var(--accent); }
         .dialog-btn-ok:hover { background: var(--accent-hover); }
-        .dialog-btn-cancel {
-            background: transparent;
-            color: var(--text-muted);
-            border-color: var(--border-light);
-        }
+        .dialog-btn-cancel { background: transparent; color: var(--text-muted); border-color: var(--border-light); }
         .dialog-btn-cancel:hover { background: var(--bg-tertiary); }
 
         /* اسپلش */
-        .splash-overlay {
-            z-index: 3000;
-            background: var(--bg-primary);
-        }
+        .splash-overlay { z-index: 3000; background: var(--bg-primary); }
         .splash-overlay .overlay-backdrop { background: transparent; backdrop-filter: none; }
-
         .splash-card {
             position: relative;
             z-index: 1;
@@ -537,24 +407,21 @@
             box-shadow: var(--shadow-lg);
             animation: splashIn 0.5s ease;
         }
-
         @keyframes splashIn {
             from { opacity: 0; transform: translateY(24px) scale(0.96); }
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
-
         .splash-title {
             font-family: 'Amiri', serif;
             font-size: 46px;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--accent), #8B6914, var(--accent-hover));
+            background: linear-gradient(135deg, var(--accent), #2b6ed9, var(--accent-hover));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             line-height: 1.4;
             margin-bottom: 4px;
         }
-
         .splash-divider {
             display: flex;
             align-items: center;
@@ -570,13 +437,7 @@
             height: 1px;
             background: linear-gradient(90deg, transparent, var(--accent), transparent);
         }
-
-        .splash-subtitle {
-            color: var(--text-muted);
-            font-size: 14px;
-            margin-bottom: 32px;
-        }
-
+        .splash-subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 32px; }
         .splash-btn {
             display: flex;
             align-items: center;
@@ -597,34 +458,14 @@
             box-shadow: var(--shadow-soft);
         }
         .splash-btn svg { width: 20px; height: 20px; fill: currentColor; }
-        .splash-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--border-hover);
-        }
-        .splash-btn-primary {
-            background: var(--accent-soft);
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        .splash-link {
-            margin-top: 28px;
-            font-size: 12px;
-            opacity: 0.6;
-        }
-        .splash-link a {
-            color: var(--text-muted);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: color 0.2s;
-        }
+        .splash-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--border-hover); }
+        .splash-btn-primary { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+        .splash-link { margin-top: 28px; font-size: 12px; opacity: 0.6; }
+        .splash-link a { color: var(--text-muted); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: color 0.2s; }
         .splash-link a:hover { color: var(--accent); }
         .splash-link svg { width: 15px; height: 15px; fill: currentColor; }
 
-        /* JUZ/Surah overlay با تب */
+        /* JUZ/Surah overlay */
         .juz-overlay { z-index: 2500; }
         .juz-card {
             position: relative;
@@ -664,7 +505,6 @@
         .juz-continue-btn svg { width: 18px; height: 18px; fill: currentColor; }
         .juz-continue-btn:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: var(--shadow-md); }
 
-        /* تب‌های اجزاء/سوره‌ها */
         .tab-bar {
             display: flex;
             gap: 8px;
@@ -685,29 +525,16 @@
             transition: all 0.2s;
             text-align: center;
         }
-        .tab-btn.active {
-            background: var(--accent-soft);
-            border-color: var(--accent);
-            color: var(--accent);
-        }
+        .tab-btn.active { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
 
         .tab-content {
             overflow-y: auto;
             flex-grow: 1;
             padding: 4px;
         }
-
-        /* مخفی‌سازی اسکرول‌بار در موبایل */
         @media (max-width: 768px) {
-            .modern-scroll {
-                scrollbar-width: none; /* Firefox */
-                -ms-overflow-style: none; /* IE/Edge */
-            }
-            .modern-scroll::-webkit-scrollbar {
-                display: none; /* Chrome/Safari */
-                width: 0;
-                height: 0;
-            }
+            .modern-scroll { scrollbar-width: none; -ms-overflow-style: none; }
+            .modern-scroll::-webkit-scrollbar { display: none; }
         }
 
         .juz-grid, .surah-grid {
@@ -715,9 +542,7 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 8px;
         }
-        .surah-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
+        .surah-grid { grid-template-columns: repeat(2, 1fr); }
         .juz-item, .surah-item {
             padding: 14px 8px;
             background: var(--card-bg);
@@ -740,7 +565,7 @@
             box-shadow: var(--shadow-soft);
         }
 
-        /* دکمه‌های دانلود (مودال) */
+        /* دانلود */
         .dl-option {
             width: 100%;
             padding: 18px;
@@ -768,14 +593,10 @@
             justify-content: center;
             gap: 8px;
         }
-        .dl-option .dl-main svg {
-            width: 24px;
-            height: 24px;
-            fill: var(--accent);
-        }
+        .dl-option .dl-main svg { width: 24px; height: 24px; fill: var(--accent); }
         .dl-option .dl-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
 
-        /* بخش نصب اپلیکیشن (بدون تکرار) */
+        /* نصب */
         .install-section {
             margin-top: 20px;
             padding-top: 20px;
@@ -791,11 +612,7 @@
             color: var(--text-primary);
             margin-bottom: 14px;
         }
-        .install-title svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-        }
+        .install-title svg { width: 18px; height: 18px; fill: currentColor; }
         .install-btn {
             width: 100%;
             padding: 12px 16px;
@@ -813,17 +630,8 @@
             justify-content: center;
             gap: 8px;
         }
-        .install-btn svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-            flex-shrink: 0;
-        }
-        .install-btn:hover {
-            filter: brightness(1.1);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
+        .install-btn svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
+        .install-btn:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: var(--shadow-md); }
         .install-instructions {
             background: var(--bg-tertiary);
             border-radius: 16px;
@@ -833,47 +641,16 @@
             color: var(--text-secondary);
             line-height: 1.7;
         }
-        .install-instructions p {
-            display: flex;
-            gap: 8px;
-            margin: 6px 0;
-        }
-        .install-instructions svg {
-            width: 15px;
-            height: 15px;
-            fill: currentColor;
-            flex-shrink: 0;
-            margin-top: 3px;
-        }
+        .install-instructions p { display: flex; gap: 8px; margin: 6px 0; }
+        .install-instructions svg { width: 15px; height: 15px; fill: currentColor; flex-shrink: 0; margin-top: 3px; }
 
-        /* تنظیمات برای موبایل (بدون تکرار) */
         @media (max-width: 768px) {
-            .install-title {
-                font-size: 14px;
-                gap: 5px;
-                margin-bottom: 12px;
-            }
-            .install-title svg {
-                width: 16px;
-                height: 16px;
-            }
-            .install-btn {
-                padding: 10px 14px;
-                font-size: 13px;
-                gap: 6px;
-            }
-            .install-btn svg {
-                width: 16px;
-                height: 16px;
-            }
-            .install-instructions {
-                padding: 12px;
-                font-size: 12px;
-            }
-            .install-instructions svg {
-                width: 14px;
-                height: 14px;
-            }
+            .install-title { font-size: 14px; gap: 5px; margin-bottom: 12px; }
+            .install-title svg { width: 16px; height: 16px; }
+            .install-btn { padding: 10px 14px; font-size: 13px; gap: 6px; }
+            .install-btn svg { width: 16px; height: 16px; }
+            .install-instructions { padding: 12px; font-size: 12px; }
+            .install-instructions svg { width: 14px; height: 14px; }
         }
 
         .progress-pill {
@@ -904,7 +681,6 @@
             overflow: hidden;
             z-index: 1;
         }
-
         .quran-container {
             display: flex;
             justify-content: center;
@@ -915,7 +691,6 @@
             padding: 0 56px;
             transition: none;
         }
-
         .page-wrapper {
             display: flex;
             justify-content: center;
@@ -938,7 +713,6 @@
             border-radius: inherit;
             box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.04);
         }
-
         .page {
             height: 100%;
             width: 100%;
@@ -950,7 +724,6 @@
             user-select: none;
             -webkit-user-drag: none;
         }
-
         .nav-btn {
             position: absolute;
             top: 0;
@@ -988,42 +761,42 @@
         }
     </style>
 </head>
-<body class="theme-zard">
+<body class="theme-abi"> <!-- تم پیش‌فرض آبی -->
     <!-- اسپلش مودال -->
     <div class="overlay splash-overlay active" id="splashOverlay">
         <div class="overlay-backdrop"></div>
         <div class="splash-card">
             <div class="splash-title">القرآن الكريم</div>
             <div class="splash-divider">◆</div>
-            <div class="splash-subtitle" id="splashSubtitle">به نرم‌افزار قرآن کریم خوش آمدید</div>
+            <div class="splash-subtitle" id="splashSubtitle">مرحباً بكم في تطبيق القرآن الكريم</div>
             <button class="splash-btn splash-btn-primary" id="splashContinue">
                 <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                <span id="splashContinueText">ادامه مطالعه</span>
+                <span id="splashContinueText">متابعة القراءة</span>
             </button>
             <button class="splash-btn" id="splashJuzList">
                 <svg viewBox="0 0 24 24"><path d="M4 6h16v2H4V6zm0 4h16v2H4v-2zm0 4h16v2H4v-2zm0 4h10v2H4v-2z"/></svg>
-                <span id="splashJuzText">فهرست اجزاء و سوره‌ها</span>
+                <span id="splashJuzText">قائمة الأجزاء والسور</span>
             </button>
             <div class="splash-link">
                 <a href="https://t.me/YBAKHTIAR" target="_blank">
                     <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.05-.2-.06-.06-.15-.04-.22-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.4-1.08.39-.36-.1-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.37.74-.56 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .24z"/></svg>
-                    <span id="splashLinkText">پیشنهادات و نظریات</span>
+                    <span id="splashLinkText">اقتراحات وملاحظات</span>
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- مودال اجزاء و سوره‌ها (تب‌دار) -->
+    <!-- مودال اجزاء و سوره‌ها -->
     <div class="overlay juz-overlay" id="juzOverlay">
         <div class="overlay-backdrop"></div>
         <div class="juz-card">
             <button class="juz-continue-btn" id="juzContinueBtn">
                 <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                <span id="juzContinueText">ادامه تلاوت</span>
+                <span id="juzContinueText">متابعة التلاوة</span>
             </button>
             <div class="tab-bar">
-                <button class="tab-btn active" id="tabJuzBtn">اجزاء</button>
-                <button class="tab-btn" id="tabSurahBtn">سوره‌ها</button>
+                <button class="tab-btn active" id="tabJuzBtn">الأجزاء</button>
+                <button class="tab-btn" id="tabSurahBtn">السور</button>
             </div>
             <div class="tab-content modern-scroll" id="juzTabContent">
                 <div class="juz-grid" id="juzGrid"></div>
@@ -1040,35 +813,35 @@
         <div class="modal-card">
             <div class="modal-header">
                 <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94 0 .31.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.57 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
-                <span id="settingsTitle">تنظیمات</span>
+                <span id="settingsTitle">الإعدادات</span>
             </div>
 
             <div class="setting-item">
                 <span class="setting-label">
                     <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v2h-2zm0 4h2v6h-2z"/></svg>
-                    <span id="themeLabel">تم اصلی</span>
+                    <span id="themeLabel">السمة الرئيسية</span>
                 </span>
                 <span class="setting-value">
-                    <button class="theme-selector-btn" id="themeZardBtn"><span>زرد</span></button>
-                    <button class="theme-selector-btn" id="themeAbiBtn"><span>آبی</span></button>
+                    <button class="theme-selector-btn" id="themeZardBtn"><span>الأصفر</span></button>
+                    <button class="theme-selector-btn active" id="themeAbiBtn"><span>الأزرق</span></button>
                 </span>
             </div>
 
             <div class="setting-item">
                 <span class="setting-label">
                     <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-                    <span id="languageLabel">زبان</span>
+                    <span id="languageLabel">اللغة</span>
                 </span>
                 <span class="setting-value">
                     <button class="lang-btn" id="langFa"><span>فارسی</span></button>
-                    <button class="lang-btn" id="langAr"><span>العربية</span></button>
+                    <button class="lang-btn active" id="langAr"><span>العربية</span></button>
                 </span>
             </div>
 
             <div class="setting-item">
                 <span class="setting-label">
                     <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7z"/></svg>
-                    <span id="appearanceLabel">ظاهر</span>
+                    <span id="appearanceLabel">المظهر</span>
                 </span>
                 <span class="setting-value">
                     <button class="settings-btn-row accent" id="themeToggle"></button>
@@ -1078,7 +851,7 @@
             <div class="setting-item">
                 <span class="setting-label">
                     <svg viewBox="0 0 24 24"><path d="M20 3H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4v2h8v-2h4c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 14H4V5h16v12z"/></svg>
-                    <span>پس‌زمینه</span>
+                    <span id="backgroundLabelSpan">الخلفية</span>  <!-- برچسب ترجمه‌شده -->
                 </span>
                 <span class="setting-value">
                     <button class="settings-btn-row" id="darkUiToggle"></button>
@@ -1088,7 +861,7 @@
             <div class="setting-item storage-toggle" id="storageToggle">
                 <span class="setting-label">
                     <svg viewBox="0 0 24 24"><path d="M20 8h-2.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5s-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H4v2h2.09c-.05.33-.09.66-.09 1v1H4v2h2v1c0 .34.04.67.09 1H4v2h2.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H20v-2h-2.09c.05-.33.09-.66.09-1v-1h2v-2h-2v-1c0-.34-.04-.67-.09-1H20V8zm-6 8h-4v-2h4v2zm0-4h-4v-2h4v2z"/></svg>
-                    <span id="storageLabel">مدیریت حافظه</span>
+                    <span id="storageLabel">إدارة التخزين</span>
                 </span>
                 <span class="setting-value">
                     <svg viewBox="0 0 24 24" width="20" height="20" fill="var(--text-muted)"><path d="M7 10l5 5 5-5H7z"/></svg>
@@ -1097,11 +870,11 @@
             <div id="deleteOptionContainer" style="display: none; margin-top: 10px;">
                 <div class="delete-option" id="deleteOfflineBtn">
                     <svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
-                    <span id="deleteBtnText">حذف فایل‌های آفلاین</span>
+                    <span id="deleteBtnText">حذف الملفات المحفوظة</span>
                 </div>
             </div>
 
-            <button class="close-btn" id="settingsClose"><span id="closeBtnText">بستن</span></button>
+            <button class="close-btn" id="settingsClose"><span id="closeBtnText">إغلاق</span></button>
         </div>
     </div>
 
@@ -1111,84 +884,75 @@
         <div class="modal-card">
             <div class="modal-header">
                 <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                <span id="downloadTitle">انتخاب کیفیت</span>
+                <span id="downloadTitle">اختيار الجودة</span>
             </div>
-            <p style="color:var(--text-muted);font-size:13px;margin-bottom:16px;" id="downloadDesc">کیفیت مناسب خود را انتخاب کنید:</p>
+            <p style="color:var(--text-muted);font-size:13px;margin-bottom:16px;" id="downloadDesc">اختر الجودة المناسبة:</p>
             <button class="dl-option" id="dlStandard">
                 <div class="dl-main">
                     <svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
-                    <span id="standardText">استاندارد (۷۰ مگابایت)</span>
+                    <span id="standardText">قياسي (۷۰ م.ب)</span>
                 </div>
-                <div class="dl-sub" id="standardSub">مناسب موبایل و تبلت</div>
+                <div class="dl-sub" id="standardSub">مناسب للجوال والتابلت</div>
             </button>
             <button class="dl-option" id="dlHQ">
                 <div class="dl-main">
                     <svg viewBox="0 0 24 24"><path d="M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg>
-                    <span id="hqText">کیفیت بالا (۵۰۰ مگابایت)</span>
+                    <span id="hqText">جودة عالية (۵۰۰ م.ب)</span>
                 </div>
-                <div class="dl-sub" id="hqSub">مناسب کامپیوتر و صفحات بزرگ</div>
+                <div class="dl-sub" id="hqSub">مناسب للكمبيوتر والشاشات الكبيرة</div>
             </button>
 
-            <!-- بخش نصب اپلیکیشن -->
+            <!-- بخش نصب -->
             <div class="install-section" id="installSection">
                 <div class="install-title">
                     <svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
-                    <span id="installTitle">نصب روی دستگاه</span>
+                    <span id="installTitle">تثبيت على الجهاز</span>
                 </div>
                 <button class="install-btn" id="installPwaBtn" style="display: none;">
                     <svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
-                    <span id="installBtnText">نصب اپلیکیشن</span>
+                    <span id="installBtnText">تثبيت التطبيق</span>
                 </button>
                 <div class="install-instructions" id="installInstructions">
-                    <p>
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                        <span id="installInstr1"><strong>اندروید و کروم:</strong> دکمه نصب یا "Install App".</span>
-                    </p>
-                    <p>
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                        <span id="installInstr2"><strong>آیفون/آیپد:</strong> "Add to Home Screen".</span>
-                    </p>
-                    <p>
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                        <span id="installInstr3"><strong>دسکتاپ:</strong> آیکون نصب در نوار آدرس.</span>
-                    </p>
+                    <p><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg><span id="installInstr1"><strong>أندرويد وكروم:</strong> زر التثبيت أو "Install App".</span></p>
+                    <p><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg><span id="installInstr2"><strong>آيفون/آيباد:</strong> "Add to Home Screen".</span></p>
+                    <p><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg><span id="installInstr3"><strong>سطح المكتب:</strong> أيقونة التثبيت في شريط العنوان.</span></p>
                 </div>
             </div>
 
-            <button class="close-btn" id="downloadClose"><span id="cancelText">لغو</span></button>
+            <button class="close-btn" id="downloadClose"><span id="cancelText">إلغاء</span></button>
         </div>
     </div>
 
     <!-- دکمه‌های شناور -->
-    <button class="float-btn btn-menu" id="btnMenu" title="فهرست اجزاء و سوره‌ها">
+    <button class="float-btn btn-menu" id="btnMenu" title="قائمة الأجزاء والسور">
         <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
     </button>
-    <button class="float-btn btn-settings" id="btnSettings" title="تنظیمات">
+    <button class="float-btn btn-settings" id="btnSettings" title="الإعدادات">
         <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94 0 .31.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.57 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
     </button>
-    <button class="float-btn btn-download" id="btnDownload" title="دانلود آفلاین">
+    <button class="float-btn btn-download" id="btnDownload" title="تحميل دون اتصال">
         <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
     </button>
-    <button class="float-btn btn-fullscreen" id="btnFullscreen" title="تمام صفحه">
+    <button class="float-btn btn-fullscreen" id="btnFullscreen" title="ملء الشاشة">
         <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
     </button>
 
-    <div class="progress-pill" id="progressPill">در حال دانلود...</div>
+    <div class="progress-pill" id="progressPill"></div>
 
     <!-- محتوای اصلی -->
     <div class="main-content" id="swipeArea">
-        <button class="nav-btn nav-right" id="navRight" title="صفحه قبل">
+        <button class="nav-btn nav-right" id="navRight" title="الصفحة السابقة">
             <svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
         </button>
         <div class="quran-container" id="quranContainer">
             <div class="page-wrapper" id="rightWrapper">
-                <img id="rightPage" class="page" alt="صفحه" draggable="false">
+                <img id="rightPage" class="page" alt="صفحة" draggable="false">
             </div>
             <div class="page-wrapper" id="leftWrapper">
-                <img id="leftPage" class="page" alt="صفحه" draggable="false">
+                <img id="leftPage" class="page" alt="صفحة" draggable="false">
             </div>
         </div>
-        <button class="nav-btn nav-left" id="navLeft" title="صفحه بعد">
+        <button class="nav-btn nav-left" id="navLeft" title="الصفحة التالية">
             <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
         </button>
     </div>
@@ -1228,7 +992,7 @@
             }
         });
 
-        // ================== ترجمه (فقط فارسی و عربی) ==================
+        // ================== ترجمه (فارسی و عربی) با اضافات ==================
         const translations = {
             fa: {
                 splashSubtitle: 'به نرم‌افزار قرآن کریم خوش آمدید',
@@ -1240,6 +1004,7 @@
                 themeLabel: 'تم اصلی',
                 languageLabel: 'زبان',
                 appearanceLabel: 'ظاهر',
+                backgroundLabel: 'پس‌زمینه',
                 storageLabel: 'مدیریت حافظه',
                 deleteBtn: 'حذف فایل‌های آفلاین',
                 closeBtn: 'بستن',
@@ -1279,6 +1044,8 @@
                 installInstr1: '<strong>اندروید و کروم:</strong> دکمه نصب یا "Install App".',
                 installInstr2: '<strong>آیفون/آیپد:</strong> "Add to Home Screen".',
                 installInstr3: '<strong>دسکتاپ:</strong> آیکون نصب در نوار آدرس.',
+                downloading: 'در حال دانلود...',
+                progress: 'پیشرفت: {current} از {total}'
             },
             ar: {
                 splashSubtitle: 'مرحباً بكم في تطبيق القرآن الكريم',
@@ -1290,6 +1057,7 @@
                 themeLabel: 'السمة الرئيسية',
                 languageLabel: 'اللغة',
                 appearanceLabel: 'المظهر',
+                backgroundLabel: 'الخلفية',
                 storageLabel: 'إدارة التخزين',
                 deleteBtn: 'حذف الملفات المحفوظة',
                 closeBtn: 'إغلاق',
@@ -1329,11 +1097,13 @@
                 installInstr1: '<strong>أندرويد وكروم:</strong> زر التثبيت أو "Install App".',
                 installInstr2: '<strong>آيفون/آيباد:</strong> "Add to Home Screen".',
                 installInstr3: '<strong>سطح المكتب:</strong> أيقونة التثبيت في شريط العنوان.',
+                downloading: 'جاري التحميل...',
+                progress: 'التقدم: {current} من {total}'
             }
         };
 
-        let currentLang = localStorage.getItem('quran-language') || 'fa';
-        if (!['fa', 'ar'].includes(currentLang)) currentLang = 'fa';
+        let currentLang = localStorage.getItem('quran-language') || 'ar'; // پیش‌فرض عربی
+        if (!['fa', 'ar'].includes(currentLang)) currentLang = 'ar';
 
         function formatNumber(num) {
             if (currentLang === 'fa') {
@@ -1365,6 +1135,7 @@
             document.getElementById('themeLabel').textContent = t.themeLabel;
             document.getElementById('languageLabel').textContent = t.languageLabel;
             document.getElementById('appearanceLabel').textContent = t.appearanceLabel;
+            document.getElementById('backgroundLabelSpan').textContent = t.backgroundLabel; // برچسب پس‌زمینه
             document.getElementById('storageLabel').textContent = t.storageLabel;
             document.getElementById('deleteBtnText').textContent = t.deleteBtn;
             document.getElementById('closeBtnText').textContent = t.closeBtn;
@@ -1377,7 +1148,6 @@
             document.getElementById('cancelText').textContent = t.cancel;
             document.getElementById('tabJuzBtn').textContent = t.tabJuz;
             document.getElementById('tabSurahBtn').textContent = t.tabSurah;
-            // نصب
             document.getElementById('installTitle').textContent = t.installTitle;
             document.getElementById('installBtnText').textContent = t.installBtn;
             document.getElementById('installInstr1').innerHTML = t.installInstr1;
@@ -1454,7 +1224,7 @@
         }
 
         // ================== تم اصلی ==================
-        let currentThemeStyle = localStorage.getItem('quran-theme-style') || 'zard';
+        let currentThemeStyle = localStorage.getItem('quran-theme-style') || 'abi'; // پیش‌فرض آبی
         let currentThemeMode = localStorage.getItem('quran-theme-mode') || 'day';
 
         function applyTheme() {
@@ -1539,9 +1309,7 @@
         }
 
         // ================== توابع کمکی ==================
-        function getPageFromFile(fileNumber) {
-            return fileNumber - 2;
-        }
+        function getPageFromFile(fileNumber) { return fileNumber - 2; }
 
         // ================== مدیریت صفحات و کش ==================
         async function loadPageImage(imgId, fileNumber, side) {
@@ -1639,7 +1407,7 @@
             dlBtn.style.pointerEvents = 'none';
             dlBtn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" fill="currentColor"/></svg>';
             progress.style.display = 'block';
-            progress.textContent = 'در حال دانلود...';
+            progress.textContent = translations[currentLang].downloading; // ترجمه شده
 
             try {
                 const cache = await caches.open('quran-cache-v1');
@@ -1660,13 +1428,16 @@
                     }
                     await Promise.all(promises);
                     downloaded += batch;
-                    progress.textContent = 'پیشرفت: ' + formatNumber(Math.min(downloaded, totalFiles-2)) + ' از ' + formatNumber(totalFiles-2);
+                    // نمایش پیشرفت ترجمه‌شده
+                    progress.textContent = translations[currentLang].progress
+                        .replace('{current}', formatNumber(Math.min(downloaded, totalFiles-2)))
+                        .replace('{total}', formatNumber(totalFiles-2));
                 }
                 setDownloadedUI();
                 await showDialogAlert(translations[currentLang].downloadSuccess, translations[currentLang].confirmDownloadTitle);
                 updatePages();
             } catch (err) {
-                progress.textContent = '❌ خطا در دانلود';
+                progress.textContent = '❌ ' + translations[currentLang].downloadError;
                 await showDialogAlert(translations[currentLang].downloadError, translations[currentLang].confirmDownloadTitle);
                 dlBtn.style.pointerEvents = 'auto';
                 dlBtn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18"><path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" fill="currentColor"/></svg>';
@@ -1679,6 +1450,8 @@
             if (btn) { btn.style.display = 'none'; btn.classList.add('done'); }
             if (prog) prog.style.display = 'none';
             isDownloaded = true;
+            // اگر فایل‌ها وجود دارند، دکمه حذف در منوی مدیریت حافظه قابل نمایش می‌شود (با کلیک روی storageToggle)
+            // نیازی به تغییر خودکار نمایش نیست، چون storageToggle کلیک می‌خورد و بررسی می‌کند.
         }
         function resetDownloadedUI() {
             const btn = document.getElementById('btnDownload');
@@ -1689,6 +1462,8 @@
                 btn.classList.remove('done');
             }
             isDownloaded = false;
+            // پس از حذف، container دکمه حذف را مخفی می‌کنیم
+            document.getElementById('deleteOptionContainer').style.display = 'none';
         }
 
         async function deleteOfflineFiles() {
@@ -1696,7 +1471,7 @@
             if (!confirmed) return;
             const prog = document.getElementById('progressPill');
             prog.style.display = 'block';
-            prog.textContent = 'در حال حذف...';
+            prog.textContent = translations[currentLang].downloading; // یا "در حال حذف" اما همان دانلودینگ موقتی است
             try {
                 await caches.delete('quran-cache-v1');
                 resetDownloadedUI();
@@ -1811,14 +1586,21 @@
             document.getElementById('installPwaBtn').style.display = 'none';
         });
 
-        // مدیریت حافظه
+        // مدیریت حافظه: نمایش دکمه حذف فقط در صورت وجود فایل‌های آفلاین
         const storageToggle = document.getElementById('storageToggle');
         const deleteContainer = document.getElementById('deleteOptionContainer');
         storageToggle.addEventListener('click', () => {
-            if (deleteContainer.style.display === 'none') {
-                deleteContainer.style.display = 'block';
+            if (isDownloaded) {
+                // اگر فایل آفلاین موجود است، نمایش/عدم نمایش container
+                if (deleteContainer.style.display === 'none' || deleteContainer.style.display === '') {
+                    deleteContainer.style.display = 'block';
+                } else {
+                    deleteContainer.style.display = 'none';
+                }
             } else {
+                // اگر فایلی نیست، container را مخفی نگه دار
                 deleteContainer.style.display = 'none';
+                // می‌توان پیام داد: "هیچ فایل آفلاینی موجود نیست"
             }
         });
         document.getElementById('deleteOfflineBtn').addEventListener('click', deleteOfflineFiles);
@@ -1912,7 +1694,7 @@
         // ================== مقداردهی اولیه ==================
         (function init() {
             applyTheme();
-            setLanguage(currentLang);
+            setLanguage(currentLang); // زبان پیش‌فرض عربی
             buildJuzGrid();
             rebuildSurahGrid();
             let saved = localStorage.getItem('lastQuranFile');
