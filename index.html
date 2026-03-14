@@ -15,8 +15,1026 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- استایل خارجی -->
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* تم زرد (پیش‌فرض) */
+        :root {
+            --bg-primary: #FDF8F0;
+            --bg-secondary: #FFFFFF;
+            --bg-tertiary: #F0EAE0;
+            --bg-elevated: rgba(255, 255, 255, 0.88);
+            --text-primary: #2D1F14;
+            --text-secondary: #5A4030;
+            --text-muted: #8C7A65;
+            --border-light: rgba(160, 130, 90, 0.15);
+            --border-hover: rgba(160, 130, 90, 0.3);
+            --border-decorative: rgba(200, 169, 81, 0.25);
+            --accent: #B8860B;
+            --accent-hover: #D4A017;
+            --accent-soft: rgba(184, 134, 11, 0.1);
+            --danger: #C0392B;
+            --danger-soft: rgba(192, 57, 43, 0.1);
+            --success: #27AE60;
+            --modal-bg: #FFFFFF;
+            --card-bg: rgba(255, 255, 255, 0.82);
+            --pattern-opacity: 0.03;
+            --shadow-soft: 0 2px 12px rgba(80, 50, 20, 0.08);
+            --shadow-md: 0 8px 24px rgba(80, 50, 20, 0.12);
+            --shadow-lg: 0 16px 40px rgba(80, 50, 20, 0.16);
+            --shadow-page: 0 8px 32px rgba(80, 50, 20, 0.2);
+            --scrollbar-thumb: #B8860B;
+            --scrollbar-track: rgba(184, 134, 11, 0.08);
+        }
+
+        /* تم زرد - شب */
+        body.theme-zard.night-mode {
+            --bg-primary: #0F1923;
+            --bg-secondary: #1A2B3E;
+            --bg-tertiary: #243548;
+            --bg-elevated: rgba(26, 43, 62, 0.92);
+            --text-primary: #E8DED0;
+            --text-secondary: #C8B89A;
+            --text-muted: #8A7A60;
+            --border-light: rgba(200, 180, 140, 0.12);
+            --border-hover: rgba(200, 180, 140, 0.25);
+            --border-decorative: rgba(212, 175, 55, 0.25);
+            --accent: #D4AF37;
+            --accent-hover: #E8C84A;
+            --accent-soft: rgba(212, 175, 55, 0.12);
+            --danger: #E74C3C;
+            --danger-soft: rgba(231, 76, 60, 0.15);
+            --success: #2ECC71;
+            --modal-bg: #1A2B3E;
+            --card-bg: rgba(26, 43, 62, 0.88);
+            --scrollbar-thumb: #D4AF37;
+            --scrollbar-track: rgba(212, 175, 55, 0.08);
+        }
+
+        /* تم زرد - dark-ui (فقط روز) */
+        body.theme-zard.dark-ui:not(.night-mode) {
+            --bg-primary: #1A2538;
+            --bg-secondary: #253548;
+            --bg-tertiary: #2F4058;
+            --bg-elevated: rgba(37, 53, 72, 0.92);
+            --text-primary: #E0D8CC;
+            --text-secondary: #B8A890;
+            --text-muted: #807060;
+            --border-light: rgba(200, 180, 140, 0.1);
+            --border-hover: rgba(200, 180, 140, 0.2);
+            --border-decorative: rgba(184, 134, 11, 0.2);
+            --accent: #D4AF37;
+            --accent-hover: #E8C84A;
+            --accent-soft: rgba(212, 175, 55, 0.12);
+            --modal-bg: #253548;
+            --card-bg: rgba(37, 53, 72, 0.88);
+            --scrollbar-thumb: #D4AF37;
+            --scrollbar-track: rgba(212, 175, 55, 0.08);
+        }
+
+        /* تم آبی */
+        body.theme-abi {
+            --bg-primary: #f0f7ff;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #e6f0fa;
+            --bg-elevated: rgba(255, 255, 255, 0.88);
+            --text-primary: #1e2a44;
+            --text-secondary: #2d3a5e;
+            --text-muted: #5b6f8c;
+            --border-light: rgba(0, 50, 100, 0.1);
+            --border-hover: rgba(0, 80, 150, 0.2);
+            --border-decorative: rgba(43, 110, 217, 0.2);
+            --accent: #2b6ed9;
+            --accent-hover: #4f9eff;
+            --accent-soft: rgba(43, 110, 217, 0.12);
+            --danger: #d14545;
+            --danger-soft: rgba(209, 69, 69, 0.1);
+            --success: #28a745;
+            --modal-bg: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.82);
+            --scrollbar-thumb: #2b6ed9;
+            --scrollbar-track: rgba(43, 110, 217, 0.08);
+        }
+
+        body.theme-abi.night-mode {
+            --bg-primary: #0b1424;
+            --bg-secondary: #1f2a40;
+            --bg-tertiary: #2a3650;
+            --bg-elevated: rgba(31, 42, 64, 0.92);
+            --text-primary: #f0f4ff;
+            --text-secondary: #d0dcff;
+            --text-muted: #a0b0d0;
+            --border-light: rgba(255, 255, 255, 0.1);
+            --border-hover: rgba(255, 255, 255, 0.2);
+            --border-decorative: rgba(79, 158, 255, 0.25);
+            --accent: #4f9eff;
+            --accent-hover: #7bb3ff;
+            --accent-soft: rgba(79, 158, 255, 0.2);
+            --danger: #ff6b6b;
+            --danger-soft: rgba(255, 107, 107, 0.15);
+            --success: #51cf66;
+            --modal-bg: #1f2a40;
+            --card-bg: rgba(31, 42, 64, 0.88);
+            --scrollbar-thumb: #4f9eff;
+            --scrollbar-track: rgba(79, 158, 255, 0.08);
+        }
+
+        body.theme-abi.dark-ui:not(.night-mode) {
+            --bg-primary: #1a2538;
+            --bg-secondary: #2c3a50;
+            --bg-tertiary: #3a4a64;
+            --bg-elevated: rgba(44, 58, 80, 0.92);
+            --text-primary: #eef2f8;
+            --text-secondary: #cbd5e8;
+            --text-muted: #9aafcc;
+            --border-light: rgba(255, 255, 255, 0.1);
+            --border-hover: rgba(255, 255, 255, 0.2);
+            --border-decorative: rgba(79, 158, 255, 0.2);
+            --accent: #4f9eff;
+            --accent-hover: #7bb3ff;
+            --accent-soft: rgba(79, 158, 255, 0.2);
+            --modal-bg: #2c3a50;
+            --card-bg: rgba(44, 58, 80, 0.88);
+            --scrollbar-thumb: #4f9eff;
+            --scrollbar-track: rgba(79, 158, 255, 0.08);
+        }
+
+        /* فیلتر شب ثابت */
+        body.night-mode {
+            --image-filter: invert(0.9) brightness(1.1) contrast(1.05) hue-rotate(180deg);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: var(--bg-primary);
+            font-family: 'Vazirmatn', Tahoma, sans-serif;
+            color: var(--text-primary);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+            overscroll-behavior-y: contain;
+            touch-action: none;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            line-height: 1.5;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: var(--pattern-opacity);
+            background-image: radial-gradient(var(--accent) 0.6px, transparent 0.6px);
+            background-size: 22px 22px;
+            transition: opacity 0.4s;
+        }
+
+        /* اسکرول بار مدرن و حرفه‌ای (عمومی) */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+            border-radius: 12px;
+            margin: 4px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb);
+            border-radius: 12px;
+            border: 1px solid transparent;
+            background-clip: content-box;
+            min-height: 40px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-hover);
+            border: 1px solid transparent;
+            background-clip: content-box;
+        }
+
+        /* استایل اختصاصی برای اسکرول‌بار مدرن فهرست اجزاء و سوره‌ها */
+        .modern-scroll::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        .modern-scroll::-webkit-scrollbar-track {
+            background: var(--bg-tertiary);
+            border-radius: 20px;
+            margin: 8px 2px;
+        }
+        .modern-scroll::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: inset 0 0 4px rgba(0,0,0,0.1);
+            transition: background 0.2s;
+        }
+        .modern-scroll::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-hover);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        /* برای فایرفاکس */
+        .modern-scroll {
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) var(--bg-tertiary);
+        }
+
+        /* دکمه‌های شناور */
+        .float-btn {
+            position: fixed;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-elevated);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-light);
+            border-radius: 50%;
+            width: 46px;
+            height: 46px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow-soft);
+        }
+        .float-btn:hover, .float-btn:active {
+            color: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md), 0 0 0 4px var(--accent-soft);
+        }
+        .float-btn svg { width: 20px; height: 20px; fill: currentColor; }
+
+        .btn-menu { top: 18px; right: 18px; }
+        .btn-settings { top: 18px; left: 18px; }
+        .btn-download { bottom: 18px; right: 18px; }
+        .btn-download.done { display: none; }
+        .btn-fullscreen { bottom: 18px; left: 18px; }
+
+        /* مودال‌ها */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            animation: overlayIn 0.25s ease;
+            z-index: 2500;
+        }
+        .overlay.active { display: flex; }
+
+        .overlay-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .modal-card {
+            position: relative;
+            z-index: 1;
+            background: var(--modal-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 28px;
+            padding: 28px;
+            max-width: 420px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+            color: var(--text-primary);
+            animation: cardIn 0.3s ease;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .modal-header svg { width: 22px; height: 22px; fill: var(--accent); flex-shrink: 0; }
+
+        /* استایل جدید تنظیمات - شبیه پنل */
+        .setting-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border-light);
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        .setting-item:last-child {
+            border-bottom: none;
+        }
+        .setting-label {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+        }
+        .setting-label svg {
+            width: 1.3rem;
+            height: 1.3rem;
+            fill: var(--accent);
+        }
+        .setting-value {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .theme-selector-group, .language-selector-group {
+            display: flex;
+            gap: 8px;
+        }
+        .theme-selector-btn, .lang-btn {
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--border-light);
+            background: var(--card-bg);
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        .theme-selector-btn.active, .lang-btn.active {
+            background: var(--accent-soft);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .theme-selector-btn svg, .lang-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+        .settings-btn-row {
+            width: 100%;
+            padding: 12px;
+            border-radius: 16px;
+            border: 1px solid var(--border-light);
+            background: var(--card-bg);
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        .settings-btn-row.danger {
+            border-color: var(--danger);
+            background: var(--danger-soft);
+            color: var(--danger);
+        }
+        .settings-btn-row.accent {
+            border-color: var(--accent);
+            background: var(--accent-soft);
+            color: var(--accent);
+        }
+
+        /* دکمه حذف کوچک و با آیکون مناسب */
+        .delete-option {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 16px;
+            border: 1px solid var(--danger);
+            background: var(--danger-soft);
+            color: var(--danger);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .delete-option svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+        .delete-option:hover {
+            background: var(--danger);
+            color: white;
+            border-color: var(--danger);
+        }
+
+        .storage-toggle {
+            cursor: pointer;
+        }
+
+        .close-btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 16px;
+            border: 1px solid var(--border-light);
+            background: transparent;
+            color: var(--text-muted);
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 16px;
+        }
+        .close-btn:hover { background: var(--bg-tertiary); color: var(--text-primary); }
+
+        @keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes cardIn { from { opacity: 0; transform: translateY(16px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+        /* دیالوگ سفارشی */
+        .dialog-overlay {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 16px;
+            animation: overlayIn 0.2s ease;
+        }
+        .dialog-overlay .overlay-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .dialog-card {
+            position: relative;
+            z-index: 1;
+            background: var(--modal-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            padding: 28px;
+            max-width: 360px;
+            width: 100%;
+            box-shadow: var(--shadow-lg);
+            animation: cardIn 0.25s ease;
+        }
+        .dialog-title {
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+        .dialog-message {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+        .dialog-actions { display: flex; gap: 8px; justify-content: flex-end; }
+        .dialog-btn {
+            padding: 10px 22px;
+            border-radius: 12px;
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+        .dialog-btn-ok {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+        .dialog-btn-ok:hover { background: var(--accent-hover); }
+        .dialog-btn-cancel {
+            background: transparent;
+            color: var(--text-muted);
+            border-color: var(--border-light);
+        }
+        .dialog-btn-cancel:hover { background: var(--bg-tertiary); }
+
+        /* اسپلش */
+        .splash-overlay {
+            z-index: 3000;
+            background: var(--bg-primary);
+        }
+        .splash-overlay .overlay-backdrop { background: transparent; backdrop-filter: none; }
+
+        .splash-card {
+            position: relative;
+            z-index: 1;
+            background: var(--card-bg);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--border-decorative);
+            border-radius: 40px;
+            padding: 48px 32px 36px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            animation: splashIn 0.5s ease;
+        }
+
+        @keyframes splashIn {
+            from { opacity: 0; transform: translateY(24px) scale(0.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .splash-title {
+            font-family: 'Amiri', serif;
+            font-size: 46px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), #8B6914, var(--accent-hover));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.4;
+            margin-bottom: 4px;
+        }
+
+        .splash-divider {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 16px auto 20px;
+            max-width: 240px;
+            color: var(--accent);
+            font-size: 14px;
+        }
+        .splash-divider::before, .splash-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .splash-subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+
+        .splash-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            background: var(--card-bg);
+            color: var(--text-primary);
+            font-size: 15px;
+            font-weight: 600;
+            font-family: 'Vazirmatn', sans-serif;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow-soft);
+        }
+        .splash-btn svg { width: 20px; height: 20px; fill: currentColor; }
+        .splash-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--border-hover);
+        }
+        .splash-btn-primary {
+            background: var(--accent-soft);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .splash-link {
+            margin-top: 28px;
+            font-size: 12px;
+            opacity: 0.6;
+        }
+        .splash-link a {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+        .splash-link a:hover { color: var(--accent); }
+        .splash-link svg { width: 15px; height: 15px; fill: currentColor; }
+
+        /* JUZ/Surah overlay با تب */
+        .juz-overlay { z-index: 2500; }
+        .juz-card {
+            position: relative;
+            z-index: 1;
+            background: var(--card-bg);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--border-decorative);
+            border-radius: 32px;
+            padding: 28px 24px;
+            max-width: 480px;
+            width: 100%;
+            max-height: 82vh;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            flex-direction: column;
+            animation: cardIn 0.3s ease;
+        }
+        .juz-continue-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px;
+            border-radius: 16px;
+            border: 1px solid var(--accent);
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s;
+            margin-bottom: 18px;
+            flex-shrink: 0;
+        }
+        .juz-continue-btn svg { width: 18px; height: 18px; fill: currentColor; }
+        .juz-continue-btn:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+        /* تب‌های اجزاء/سوره‌ها */
+        .tab-bar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 18px;
+            flex-shrink: 0;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 30px;
+            border: 1px solid var(--border-light);
+            background: var(--card-bg);
+            color: var(--text-secondary);
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        .tab-btn.active {
+            background: var(--accent-soft);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .tab-content {
+            overflow-y: auto;
+            flex-grow: 1;
+            padding: 4px;
+        }
+
+        /* مخفی‌سازی اسکرول‌بار در موبایل */
+        @media (max-width: 768px) {
+            .modern-scroll {
+                scrollbar-width: none; /* Firefox */
+                -ms-overflow-style: none; /* IE/Edge */
+            }
+            .modern-scroll::-webkit-scrollbar {
+                display: none; /* Chrome/Safari */
+                width: 0;
+                height: 0;
+            }
+        }
+
+        .juz-grid, .surah-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+        .surah-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .juz-item, .surah-item {
+            padding: 14px 8px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 14px;
+            text-align: center;
+            cursor: pointer;
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+            line-height: 1.4;
+        }
+        .juz-item:hover, .surah-item:hover {
+            border-color: var(--accent);
+            background: var(--accent-soft);
+            color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-soft);
+        }
+
+        /* دکمه‌های دانلود (مودال) */
+        .dl-option {
+            width: 100%;
+            padding: 18px;
+            margin: 10px 0;
+            border-radius: 20px;
+            border: 1px solid var(--border-light);
+            background: var(--card-bg);
+            color: var(--text-primary);
+            font-family: 'Vazirmatn', sans-serif;
+            cursor: pointer;
+            transition: all 0.25s;
+            text-align: center;
+        }
+        .dl-option:hover {
+            border-color: var(--accent);
+            background: var(--accent-soft);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        .dl-option .dl-main {
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .dl-option .dl-main svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--accent);
+        }
+        .dl-option .dl-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+        /* بخش نصب اپلیکیشن */
+        .install-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-light);
+        }
+        .install-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+/* بخش نصب اپلیکیشن */
+.install-section {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-light);
+}
+.install-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 14px;
+}
+.install-title svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+.install-btn {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--accent);
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.install-btn svg {
+    width: 18px;   /* اندازه مناسب برای دسکتاپ */
+    height: 18px;
+    fill: currentColor;
+    flex-shrink: 0;
+}
+.install-btn:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+.install-instructions {
+    background: var(--bg-tertiary);
+    border-radius: 16px;
+    padding: 14px;
+    margin-top: 12px;
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+.install-instructions p {
+    display: flex;
+    gap: 8px;
+    margin: 6px 0;
+}
+.install-instructions svg {
+    width: 15px;
+    height: 15px;
+    fill: currentColor;
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+/* تنظیمات برای موبایل */
+@media (max-width: 768px) {
+    .install-title {
+        font-size: 14px;
+        gap: 5px;
+        margin-bottom: 12px;
+    }
+    .install-title svg {
+        width: 16px;
+        height: 16px;
+    }
+    .install-btn {
+        padding: 10px 14px;
+        font-size: 13px;
+        gap: 6px;
+    }
+    .install-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+    .install-instructions {
+        padding: 12px;
+        font-size: 12px;
+    }
+    .install-instructions svg {
+        width: 14px;
+        height: 14px;
+    }
+}
+/* تنظیمات برای موبایل */
+@media (max-width: 768px) {
+    .install-title {
+        font-size: 14px;
+        gap: 5px;
+        margin-bottom: 12px;
+    }
+    .install-btn {
+        padding: 10px 14px;
+        font-size: 13px;
+        gap: 6px;
+    }
+    .install-btn svg {
+        width: 16px;  /* اندازه مناسب برای موبایل */
+        height: 16px;
+    }
+    .install-instructions {
+        padding: 12px;
+        font-size: 12px;
+    }
+    .install-instructions svg {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+        .progress-pill {
+            position: fixed;
+            bottom: 72px;
+            right: 18px;
+            background: var(--bg-elevated);
+            backdrop-filter: blur(10px);
+            color: var(--text-secondary);
+            font-size: 12px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-md);
+            display: none;
+            z-index: 150;
+        }
+
+        /* main content */
+        .main-content {
+            position: relative;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .quran-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            height: 96vh;
+            width: 100%;
+            padding: 0 56px;
+            transition: none;
+        }
+
+        .page-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            max-width: 48%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-page);
+            background: var(--bg-primary);
+            position: relative;
+            transform-origin: center center;
+            will-change: transform;
+        }
+        .page-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            border-radius: inherit;
+            box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.04);
+        }
+
+        .page {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+            border-radius: 16px;
+            background-color: white;
+            filter: var(--image-filter);
+            transition: filter 0.4s ease;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .nav-btn {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 48px;
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            z-index: 10;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .nav-btn:hover {
+            opacity: 1;
+            background: linear-gradient(to var(--grad-dir, left), var(--bg-elevated), transparent);
+            color: var(--accent);
+        }
+        .nav-btn svg { width: 26px; height: 26px; fill: currentColor; }
+        .nav-right { right: 0; --grad-dir: left; }
+        .nav-left { left: 0; --grad-dir: right; }
+
+        @media (max-width: 768px) {
+            .quran-container { padding: 8px; gap: 0; }
+            .page-wrapper { max-width: 100%; width: 100%; height: auto; border-radius: 12px; }
+            .nav-btn { display: none !important; }
+            .btn-fullscreen { display: none !important; }
+            .float-btn { width: 38px; height: 38px; }
+            .float-btn svg { width: 16px; height: 16px; }
+            .juz-grid { grid-template-columns: repeat(2, 1fr); }
+            .surah-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
 </head>
 <body class="theme-zard">
     <!-- اسپلش مودال -->
@@ -79,8 +1097,14 @@
                     <span id="themeLabel">تم اصلی</span>
                 </span>
                 <span class="setting-value">
-                    <button class="theme-selector-btn" id="themeZardBtn">زرد</button>
-                    <button class="theme-selector-btn" id="themeAbiBtn">آبی</button>
+                    <button class="theme-selector-btn" id="themeZardBtn">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor"/></svg>
+                        <span>زرد</span>
+                    </button>
+                    <button class="theme-selector-btn" id="themeAbiBtn">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor"/></svg>
+                        <span>آبی</span>
+                    </button>
                 </span>
             </div>
 
@@ -90,8 +1114,14 @@
                     <span id="languageLabel">زبان</span>
                 </span>
                 <span class="setting-value">
-                    <button class="lang-btn" id="langFa">فارسی</button>
-                    <button class="lang-btn" id="langAr">العربية</button>
+                    <button class="lang-btn" id="langFa">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                        <span>فارسی</span>
+                    </button>
+                    <button class="lang-btn" id="langAr">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                        <span>العربية</span>
+                    </button>
                 </span>
             </div>
 
@@ -101,7 +1131,7 @@
                     <span id="appearanceLabel">ظاهر</span>
                 </span>
                 <span class="setting-value">
-                    <button class="settings-btn-row accent" id="themeToggle"></button>
+                    <button class="settings-btn-row accent" id="themeToggle" style="padding:6px 12px; margin:0;"></button>
                 </span>
             </div>
 
@@ -111,7 +1141,7 @@
                     <span>پس‌زمینه</span>
                 </span>
                 <span class="setting-value">
-                    <button class="settings-btn-row" id="darkUiToggle"></button>
+                    <button class="settings-btn-row" id="darkUiToggle" style="padding:6px 12px; margin:0;"></button>
                 </span>
             </div>
 
@@ -223,7 +1253,735 @@
         </button>
     </div>
 
-    <!-- اسکریپت خارجی -->
-    <script src="script.js"></script>
+    <script>
+        // ================== CONST & STATE ==================
+        const totalFiles = 612; // آخرین فایل Quran612.jpg = صفحه 610
+        const GITHUB_BASE = 'https://raw.githubusercontent.com/YBakhtiar/quranh/main/';
+        let currentFile = 3; // پیش‌فرض فایل 3 (صفحه 1 = فاتحه)
+        let isDownloaded = false;
+        let objectUrls = { right: null, left: null };
+
+        // PWA
+        let deferredPrompt = null;
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+
+        // zoom & pan
+        let currentScale = 1;
+        let translateX = 0, translateY = 0;
+        let lastTranslateX = 0, lastTranslateY = 0;
+        let initialPinchDistance = null;
+        let isPanning = false;
+        let lastTapTime = 0;
+        let hasMoved = false;
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').catch(err => console.log('SW reg error:', err));
+            });
+        }
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            if (!isStandalone) {
+                document.getElementById('installPwaBtn').style.display = 'flex';
+            }
+        });
+
+        // ================== ترجمه (فقط فارسی و عربی) ==================
+        const translations = {
+            fa: {
+                splashSubtitle: 'به نرم‌افزار قرآن کریم خوش آمدید',
+                splashContinue: 'ادامه مطالعه',
+                splashJuz: 'فهرست اجزاء و سوره‌ها',
+                splashLink: 'پیشنهادات و نظریات',
+                juzContinue: 'ادامه تلاوت',
+                settingsTitle: 'تنظیمات',
+                themeLabel: 'تم اصلی',
+                languageLabel: 'زبان',
+                appearanceLabel: 'ظاهر',
+                storageLabel: 'مدیریت حافظه',
+                deleteBtn: 'حذف فایل‌های آفلاین',
+                closeBtn: 'بستن',
+                downloadTitle: 'انتخاب کیفیت',
+                downloadDesc: 'کیفیت مناسب خود را انتخاب کنید:',
+                standard: 'استاندارد (۷۰ مگابایت)',
+                standardSub: 'مناسب موبایل و تبلت',
+                hq: 'کیفیت بالا (۵۰۰ مگابایت)',
+                hqSub: 'مناسب کامپیوتر و صفحات بزرگ',
+                cancel: 'لغو',
+                ok: 'باشه',
+                confirmDeleteTitle: 'تأیید',
+                confirmDeleteMsg: 'تمام فایل‌های دانلود شده حذف میشوند. ادامه می‌دهید؟',
+                confirmDownloadTitle: 'دانلود آفلاین',
+                confirmDownloadMsg: 'فایل‌های آفلاین حدود {size} حجم دارد. ادامه می‌دهید؟',
+                page: 'صفحه',
+                tabJuz: 'اجزاء',
+                tabSurah: 'سوره‌ها',
+                juzPrefix: 'جزء ',
+                surahPrefix: '',
+                menuTitle: 'فهرست اجزاء و سوره‌ها',
+                settingsBtnTitle: 'تنظیمات',
+                downloadBtnTitle: 'دانلود آفلاین',
+                fullscreenTitle: 'تمام صفحه',
+                themeZard: 'زرد',
+                themeAbi: 'آبی',
+                dayMode: 'حالت روز',
+                nightMode: 'حالت شب',
+                lightBg: 'پس‌زمینه روشن',
+                darkBg: 'پس‌زمینه تیره',
+                downloadSuccess: 'دانلود با موفقیت انجام شد!',
+                deleteSuccess: 'فایل‌های آفلاین حذف شدند.',
+                downloadError: 'خطا در دانلود!',
+                deleteError: 'خطا در حذف!',
+                installTitle: 'نصب روی دستگاه',
+                installBtn: 'نصب اپلیکیشن',
+                installInstr1: '<strong>اندروید و کروم:</strong> دکمه نصب یا "Install App".',
+                installInstr2: '<strong>آیفون/آیپد:</strong> "Add to Home Screen".',
+                installInstr3: '<strong>دسکتاپ:</strong> آیکون نصب در نوار آدرس.',
+            },
+            ar: {
+                splashSubtitle: 'مرحباً بكم في تطبيق القرآن الكريم',
+                splashContinue: 'متابعة القراءة',
+                splashJuz: 'قائمة الأجزاء والسور',
+                splashLink: 'اقتراحات وملاحظات',
+                juzContinue: 'متابعة التلاوة',
+                settingsTitle: 'الإعدادات',
+                themeLabel: 'السمة الرئيسية',
+                languageLabel: 'اللغة',
+                appearanceLabel: 'المظهر',
+                storageLabel: 'إدارة التخزين',
+                deleteBtn: 'حذف الملفات المحفوظة',
+                closeBtn: 'إغلاق',
+                downloadTitle: 'اختيار الجودة',
+                downloadDesc: 'اختر الجودة المناسبة:',
+                standard: 'قياسي (۷۰ م.ب)',
+                standardSub: 'مناسب للجوال والتابلت',
+                hq: 'جودة عالية (۵۰۰ م.ب)',
+                hqSub: 'مناسب للكمبيوتر والشاشات الكبيرة',
+                cancel: 'إلغاء',
+                ok: 'موافق',
+                confirmDeleteTitle: 'تأكيد',
+                confirmDeleteMsg: 'سيتم حذف جميع الملفات التي تم تنزيلها. هل تريد المتابعة؟',
+                confirmDownloadTitle: 'تنزيل للاستخدام دون اتصال',
+                confirmDownloadMsg: 'الملفات غير المتصلة بالإنترنت بحجم {size}. هل تريد المتابعة؟',
+                page: 'صفحة',
+                tabJuz: 'الأجزاء',
+                tabSurah: 'السور',
+                juzPrefix: 'جزء ',
+                surahPrefix: '',
+                menuTitle: 'قائمة الأجزاء والسور',
+                settingsBtnTitle: 'الإعدادات',
+                downloadBtnTitle: 'تحميل دون اتصال',
+                fullscreenTitle: 'ملء الشاشة',
+                themeZard: 'الأصفر',
+                themeAbi: 'الأزرق',
+                dayMode: 'وضع النهار',
+                nightMode: 'وضع الليل',
+                lightBg: 'خلفية فاتحة',
+                darkBg: 'خلفية داكنة',
+                downloadSuccess: 'تم التحميل بنجاح!',
+                deleteSuccess: 'تم حذف الملفات غير المتصلة.',
+                downloadError: 'خطأ في التحميل!',
+                deleteError: 'خطأ في الحذف!',
+                installTitle: 'تثبيت على الجهاز',
+                installBtn: 'تثبيت التطبيق',
+                installInstr1: '<strong>أندرويد وكروم:</strong> زر التثبيت أو "Install App".',
+                installInstr2: '<strong>آيفون/آيباد:</strong> "Add to Home Screen".',
+                installInstr3: '<strong>سطح المكتب:</strong> أيقونة التثبيت في شريط العنوان.',
+            }
+        };
+
+        let currentLang = localStorage.getItem('quran-language') || 'fa';
+        if (!['fa', 'ar'].includes(currentLang)) currentLang = 'fa';
+
+        function formatNumber(num) {
+            if (currentLang === 'fa') {
+                return num.toString().replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+            } else {
+                return num.toString().replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+            }
+        }
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('quran-language', lang);
+            applyTranslations();
+            updateLangButtons();
+            rebuildSurahGrid();
+            updateTitles();
+            updateThemeToggleButton();
+            updateDarkUIToggleButton();
+        }
+
+        function applyTranslations() {
+            const t = translations[currentLang];
+            document.getElementById('splashSubtitle').textContent = t.splashSubtitle;
+            document.getElementById('splashContinueText').textContent = t.splashContinue;
+            document.getElementById('splashJuzText').textContent = t.splashJuz;
+            document.getElementById('splashLinkText').textContent = t.splashLink;
+            document.getElementById('juzContinueText').textContent = t.juzContinue;
+            document.getElementById('settingsTitle').textContent = t.settingsTitle;
+            document.getElementById('themeLabel').textContent = t.themeLabel;
+            document.getElementById('languageLabel').textContent = t.languageLabel;
+            document.getElementById('appearanceLabel').textContent = t.appearanceLabel;
+            document.getElementById('storageLabel').textContent = t.storageLabel;
+            document.getElementById('deleteBtnText').textContent = t.deleteBtn;
+            document.getElementById('closeBtnText').textContent = t.closeBtn;
+            document.getElementById('downloadTitle').textContent = t.downloadTitle;
+            document.getElementById('downloadDesc').textContent = t.downloadDesc;
+            document.getElementById('standardText').textContent = t.standard;
+            document.getElementById('standardSub').textContent = t.standardSub;
+            document.getElementById('hqText').textContent = t.hq;
+            document.getElementById('hqSub').textContent = t.hqSub;
+            document.getElementById('cancelText').textContent = t.cancel;
+            document.getElementById('tabJuzBtn').textContent = t.tabJuz;
+            document.getElementById('tabSurahBtn').textContent = t.tabSurah;
+            // نصب
+            document.getElementById('installTitle').textContent = t.installTitle;
+            document.getElementById('installBtnText').textContent = t.installBtn;
+            document.getElementById('installInstr1').innerHTML = t.installInstr1;
+            document.getElementById('installInstr2').innerHTML = t.installInstr2;
+            document.getElementById('installInstr3').innerHTML = t.installInstr3;
+        }
+
+        function updateLangButtons() {
+            document.getElementById('langFa').classList.toggle('active', currentLang === 'fa');
+            document.getElementById('langAr').classList.toggle('active', currentLang === 'ar');
+        }
+
+        function updateTitles() {
+            const t = translations[currentLang];
+            document.getElementById('btnMenu').title = t.menuTitle;
+            document.getElementById('btnSettings').title = t.settingsBtnTitle;
+            document.getElementById('btnDownload').title = t.downloadBtnTitle;
+            document.getElementById('btnFullscreen').title = t.fullscreenTitle;
+            document.querySelector('#themeZardBtn span').textContent = t.themeZard;
+            document.querySelector('#themeAbiBtn span').textContent = t.themeAbi;
+        }
+
+        // ================== دیالوگ سفارشی ==================
+        function showDialogConfirm(message, title) {
+            return new Promise(function(resolve) {
+                const overlay = document.createElement('div');
+                overlay.className = 'dialog-overlay';
+                overlay.innerHTML = `
+                    <div class="overlay-backdrop"></div>
+                    <div class="dialog-card">
+                        <div class="dialog-title">${title}</div>
+                        <div class="dialog-message">${message}</div>
+                        <div class="dialog-actions">
+                            <button class="dialog-btn dialog-btn-cancel" data-action="cancel">${translations[currentLang].cancel}</button>
+                            <button class="dialog-btn dialog-btn-ok" data-action="ok">${translations[currentLang].ok}</button>
+                        </div>
+                    </div>
+                `;
+                function cleanup(result) {
+                    overlay.remove();
+                    resolve(result);
+                }
+                overlay.querySelector('[data-action="ok"]').addEventListener('click', () => cleanup(true));
+                overlay.querySelector('[data-action="cancel"]').addEventListener('click', () => cleanup(false));
+                overlay.querySelector('.overlay-backdrop').addEventListener('click', () => cleanup(false));
+                document.body.appendChild(overlay);
+            });
+        }
+
+        function showDialogAlert(message, title) {
+            return new Promise(resolve => {
+                const overlay = document.createElement('div');
+                overlay.className = 'dialog-overlay';
+                overlay.innerHTML = `
+                    <div class="overlay-backdrop"></div>
+                    <div class="dialog-card">
+                        <div class="dialog-title">${title}</div>
+                        <div class="dialog-message">${message}</div>
+                        <div class="dialog-actions" style="justify-content:center;">
+                            <button class="dialog-btn dialog-btn-ok" data-action="ok">${translations[currentLang].ok}</button>
+                        </div>
+                    </div>
+                `;
+                overlay.querySelector('[data-action="ok"]').addEventListener('click', () => {
+                    overlay.remove();
+                    resolve();
+                });
+                overlay.querySelector('.overlay-backdrop').addEventListener('click', () => {
+                    overlay.remove();
+                    resolve();
+                });
+                document.body.appendChild(overlay);
+            });
+        }
+
+        // ================== تم اصلی ==================
+        let currentThemeStyle = localStorage.getItem('quran-theme-style') || 'zard';
+        let currentThemeMode = localStorage.getItem('quran-theme-mode') || 'day';
+
+        function applyTheme() {
+            document.body.classList.remove('theme-zard', 'theme-abi', 'night-mode', 'dark-ui');
+            document.body.classList.add(`theme-${currentThemeStyle}`);
+            if (currentThemeMode === 'night') {
+                document.body.classList.add('night-mode');
+            } else if (currentThemeMode === 'dark-ui') {
+                document.body.classList.add('dark-ui');
+            }
+            const meta = document.getElementById('theme-color-meta');
+            if (currentThemeStyle === 'abi') {
+                if (currentThemeMode === 'night') meta.setAttribute('content', '#0b1424');
+                else if (currentThemeMode === 'dark-ui') meta.setAttribute('content', '#1a2538');
+                else meta.setAttribute('content', '#f0f7ff');
+            } else {
+                if (currentThemeMode === 'night') meta.setAttribute('content', '#0F1923');
+                else if (currentThemeMode === 'dark-ui') meta.setAttribute('content', '#1A2538');
+                else meta.setAttribute('content', '#FDF8F0');
+            }
+            updateThemeToggleButton();
+            updateDarkUIToggleButton();
+            updateThemeStyleButtons();
+        }
+
+        function setThemeStyle(style) {
+            currentThemeStyle = style;
+            localStorage.setItem('quran-theme-style', style);
+            applyTheme();
+        }
+
+        function setThemeMode(mode) {
+            currentThemeMode = mode;
+            localStorage.setItem('quran-theme-mode', mode);
+            applyTheme();
+        }
+
+        function toggleThemeMode() {
+            if (currentThemeMode === 'day') setThemeMode('night');
+            else if (currentThemeMode === 'night') setThemeMode('day');
+            else setThemeMode('day');
+        }
+
+        function toggleDarkUI() {
+            if (currentThemeMode === 'night') return;
+            if (currentThemeMode === 'dark-ui') setThemeMode('day');
+            else setThemeMode('dark-ui');
+        }
+
+        function updateThemeToggleButton() {
+            const btn = document.getElementById('themeToggle');
+            if (!btn) return;
+            const t = translations[currentLang];
+            if (currentThemeMode === 'night') {
+                btn.innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/></g></svg> ${t.dayMode}`;
+            } else {
+                btn.innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79"/></svg> ${t.nightMode}`;
+            }
+        }
+
+        function updateDarkUIToggleButton() {
+            const btn = document.getElementById('darkUiToggle');
+            if (!btn) return;
+            const t = translations[currentLang];
+            if (currentThemeMode === 'night') {
+                btn.style.display = 'none';
+                return;
+            }
+            btn.style.display = 'flex';
+            if (currentThemeMode === 'dark-ui') {
+                btn.innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7z"/></svg> ${t.lightBg}`;
+                btn.classList.add('accent');
+            } else {
+                btn.innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7z"/></svg> ${t.darkBg}`;
+                btn.classList.remove('accent');
+            }
+        }
+
+        function updateThemeStyleButtons() {
+            document.getElementById('themeZardBtn').classList.toggle('active', currentThemeStyle === 'zard');
+            document.getElementById('themeAbiBtn').classList.toggle('active', currentThemeStyle === 'abi');
+        }
+
+        // ================== توابع کمکی ==================
+        function getPageFromFile(fileNumber) {
+            return fileNumber - 2;
+        }
+
+        // ================== مدیریت صفحات و کش ==================
+        async function loadPageImage(imgId, fileNumber, side) {
+            const img = document.getElementById(imgId);
+            if (!img) return;
+            if (objectUrls[side]) { URL.revokeObjectURL(objectUrls[side]); objectUrls[side] = null; }
+            const fileName = 'Quran' + String(fileNumber).padStart(3, '0') + '.jpg';
+            const urlPath = 'images/' + fileName;
+            try {
+                const cache = await caches.open('quran-cache-v1');
+                const response = await cache.match(urlPath);
+                if (response) {
+                    const blob = await response.blob();
+                    const objUrl = URL.createObjectURL(blob);
+                    objectUrls[side] = objUrl;
+                    img.src = objUrl;
+                } else {
+                    img.src = urlPath;
+                }
+            } catch {
+                img.src = urlPath;
+            }
+        }
+
+        function updatePages() {
+            resetZoom();
+            const isMobile = window.innerWidth <= 768;
+            const rightW = document.getElementById('rightWrapper');
+            const leftW = document.getElementById('leftWrapper');
+
+            if (isMobile) {
+                loadPageImage('rightPage', currentFile, 'right');
+                leftW.style.display = 'none';
+                rightW.style.display = 'flex';
+            } else {
+                let rightFile = (currentFile % 2 !== 0) ? currentFile : currentFile - 1;
+                let leftFile = rightFile + 1;
+                loadPageImage('rightPage', rightFile, 'right');
+                if (leftFile <= totalFiles) {
+                    loadPageImage('leftPage', leftFile, 'left');
+                    leftW.style.display = 'flex';
+                } else {
+                    leftW.style.display = 'none';
+                }
+                rightW.style.display = 'flex';
+                if (currentFile % 2 === 0) currentFile = rightFile;
+            }
+            localStorage.setItem('lastQuranFile', currentFile.toString());
+            if (window.location.protocol !== 'file:') history.replaceState(null, null, '#' + currentFile);
+        }
+
+        function resetZoom() {
+            currentScale = 1;
+            translateX = 0; translateY = 0;
+            lastTranslateX = 0; lastTranslateY = 0;
+            applyTransform(true);
+        }
+        function applyTransform(smooth) {
+            const rightW = document.getElementById('rightWrapper');
+            const leftW = document.getElementById('leftWrapper');
+            const t = `translate(${translateX}px, ${translateY}px) scale(${currentScale})`;
+            [rightW, leftW].forEach(w => {
+                if (w) {
+                    w.style.transition = smooth ? 'transform 0.3s ease-out' : 'none';
+                    w.style.transform = t;
+                }
+            });
+        }
+
+        function nextPage() {
+            let step = window.innerWidth <= 768 ? 1 : 2;
+            if (currentFile + step <= totalFiles) currentFile += step;
+            else if (currentFile < totalFiles) currentFile++;
+            else return;
+            updatePages();
+        }
+        function prevPage() {
+            let step = window.innerWidth <= 768 ? 1 : 2;
+            if (currentFile - step >= 1) currentFile -= step;
+            else if (currentFile > 1) currentFile--;
+            else return;
+            updatePages();
+        }
+
+        // ================== دانلود و کش ==================
+        async function startDownload(quality) {
+            closeOverlay('downloadOverlay');
+            let sizeText = quality === 'hq' ? '۵۰۰ مگابایت' : '۷۰ مگابایت';
+            let msg = translations[currentLang].confirmDownloadMsg.replace('{size}', sizeText);
+            let confirmed = await showDialogConfirm(msg, translations[currentLang].confirmDownloadTitle);
+            if (!confirmed) return;
+
+            const dlBtn = document.getElementById('btnDownload');
+            const progress = document.getElementById('progressPill');
+            dlBtn.style.pointerEvents = 'none';
+            dlBtn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" fill="currentColor"/></svg>';
+            progress.style.display = 'block';
+            progress.textContent = 'در حال دانلود...';
+
+            try {
+                const cache = await caches.open('quran-cache-v1');
+                let downloaded = 0;
+                const batch = 10;
+                for (let i = 3; i <= totalFiles; i += batch) {
+                    const promises = [];
+                    for (let j = 0; j < batch && i + j <= totalFiles; j++) {
+                        let fileNum = i + j;
+                        let fileName = 'Quran' + String(fileNum).padStart(3, '0') + '.jpg';
+                        let cacheKey = 'images/' + fileName;
+                        let fetchUrl = quality === 'hq' ? GITHUB_BASE + fileName : cacheKey;
+                        promises.push(
+                            fetch(fetchUrl, { cache: 'reload' })
+                                .then(resp => resp.ok ? cache.put(cacheKey, resp.clone()) : null)
+                                .catch(() => null)
+                        );
+                    }
+                    await Promise.all(promises);
+                    downloaded += batch;
+                    progress.textContent = 'پیشرفت: ' + formatNumber(Math.min(downloaded, totalFiles-2)) + ' از ' + formatNumber(totalFiles-2);
+                }
+                setDownloadedUI();
+                await showDialogAlert(translations[currentLang].downloadSuccess, translations[currentLang].confirmDownloadTitle);
+                updatePages();
+            } catch (err) {
+                progress.textContent = '❌ خطا در دانلود';
+                await showDialogAlert(translations[currentLang].downloadError, translations[currentLang].confirmDownloadTitle);
+                dlBtn.style.pointerEvents = 'auto';
+                dlBtn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18"><path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" fill="currentColor"/></svg>';
+            }
+        }
+
+        function setDownloadedUI() {
+            const btn = document.getElementById('btnDownload');
+            const prog = document.getElementById('progressPill');
+            if (btn) { btn.style.display = 'none'; btn.classList.add('done'); }
+            if (prog) prog.style.display = 'none';
+            isDownloaded = true;
+        }
+        function resetDownloadedUI() {
+            const btn = document.getElementById('btnDownload');
+            if (btn) {
+                btn.style.display = 'flex';
+                btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/></svg>';
+                btn.style.pointerEvents = 'auto';
+                btn.classList.remove('done');
+            }
+            isDownloaded = false;
+        }
+
+        async function deleteOfflineFiles() {
+            let confirmed = await showDialogConfirm(translations[currentLang].confirmDeleteMsg, translations[currentLang].confirmDeleteTitle);
+            if (!confirmed) return;
+            const prog = document.getElementById('progressPill');
+            prog.style.display = 'block';
+            prog.textContent = 'در حال حذف...';
+            try {
+                await caches.delete('quran-cache-v1');
+                resetDownloadedUI();
+                prog.style.display = 'none';
+                await showDialogAlert(translations[currentLang].deleteSuccess, translations[currentLang].confirmDeleteTitle);
+                updatePages();
+            } catch {
+                prog.style.display = 'none';
+                await showDialogAlert(translations[currentLang].deleteError, translations[currentLang].confirmDeleteTitle);
+            }
+        }
+
+        // ================== مودال‌ها ==================
+        function openOverlay(id) { document.getElementById(id).classList.add('active'); }
+        function closeOverlay(id) { document.getElementById(id).classList.remove('active'); }
+
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {});
+            else if (document.exitFullscreen) document.exitFullscreen();
+        }
+
+        // ================== تولید JUZ grid ==================
+        function buildJuzGrid() {
+            const grid = document.getElementById('juzGrid');
+            grid.innerHTML = '';
+            for (let i = 1; i <= 30; i++) {
+                let startFile;
+                if (i === 1) startFile = 3;
+                else if (i === 30) startFile = 588;
+                else startFile = 4 + ((i - 1) * 20);
+                const btn = document.createElement('button');
+                btn.className = 'juz-item';
+                btn.textContent = translations[currentLang].juzPrefix + formatNumber(i);
+                btn.onclick = () => {
+                    let target = startFile;
+                    if (window.innerWidth > 768 && target % 2 === 0) target--;
+                    currentFile = target;
+                    updatePages();
+                    closeOverlay('juzOverlay');
+                };
+                grid.appendChild(btn);
+            }
+        }
+
+        // ================== داده‌های سوره‌ها ==================
+        const surahPages = [
+            1,2,50,77,106,128,151,177,187,208,221,235,249,255,262,267,282,293,305,312,322,331,342,350,359,366,376,385,396,404,411,415,418,428,434,440,445,452,458,467,477,483,489,495,498,502,506,511,515,518,520,523,526,528,531,534,537,542,545,549,551,553,554,556,558,560,562,564,567,569,571,573,576,578,580,582,584,586,587,589,590,591,592,594,595,596,597,597,598,600,600,601,602,602,603,603,604,604,605,605,606,606,607,607,607,608,608,608,609,609,609,610,610,610
+        ];
+        const surahFiles = surahPages.map(p => p + 2);
+        const surahNamesAr = [
+            "الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه","الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم","لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر","فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق","الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة","الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج","نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس","التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد","الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات","القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر","المسد","الإخلاص","الفلق","الناس"
+        ];
+        const surahNamesFa = [
+            "فاتحه","بقره","آل‌عمران","نساء","مائده","انعام","اعراف","انفال","توبه","یونس","هود","یوسف","رعد","ابراهیم","حجر","نحل","اسراء","کهف","مریم","طه","انبیاء","حج","مؤمنون","نور","فرقان","شعراء","نمل","قصص","عنکبوت","روم","لقمان","سجده","احزاب","سبأ","فاطر","یس","صافات","ص","زمر","غافر","فصلت","شوری","زخرف","دخان","جاثیه","احقاف","محمد","فتح","حجرات","ق","ذاریات","طور","نجم","قمر","الرحمن","واقعه","حدید","مجادله","حشر","ممتحنه","صف","جمعه","منافقون","تغابن","طلاق","تحریم","ملک","قلم","حاقه","معارج","نوح","جن","مزمل","مدثر","قیامت","انسان","مرسلات","نبأ","نازعات","عبس","تکویر","انفطار","مطففین","انشقاق","بروج","طارق","اعلی","غاشیه","فجر","بلد","شمس","لیل","ضحی","شرح","تین","علق","قدر","بینه","زلزله","عادیات","قارعه","تکاثر","عصر","همزه","فیل","قریش","ماعون","کوثر","کافرون","نصر","مسد","اخلاص","فلق","ناس"
+        ];
+
+        function rebuildSurahGrid() {
+            const grid = document.getElementById('surahGrid');
+            grid.innerHTML = '';
+            for (let i = 0; i < 114; i++) {
+                const surahNumber = i + 1;
+                const file = surahFiles[i];
+                let name = (currentLang === 'fa') ? surahNamesFa[i] : surahNamesAr[i];
+                const btn = document.createElement('button');
+                btn.className = 'surah-item';
+                btn.textContent = `${surahNumber}. ${name}`;
+                btn.onclick = () => {
+                    let target = file;
+                    if (window.innerWidth > 768 && target % 2 === 0) target--;
+                    currentFile = target;
+                    updatePages();
+                    closeOverlay('juzOverlay');
+                };
+                grid.appendChild(btn);
+            }
+        }
+
+        // ================== Event Listeners ==================
+        document.getElementById('btnMenu').addEventListener('click', () => openOverlay('juzOverlay'));
+        document.getElementById('btnSettings').addEventListener('click', () => openOverlay('settingsOverlay'));
+        document.getElementById('btnDownload').addEventListener('click', () => openOverlay('downloadOverlay'));
+        document.getElementById('btnFullscreen').addEventListener('click', toggleFullScreen);
+        document.getElementById('navRight').addEventListener('click', prevPage);
+        document.getElementById('navLeft').addEventListener('click', nextPage);
+        document.getElementById('splashContinue').addEventListener('click', () => closeOverlay('splashOverlay'));
+        document.getElementById('splashJuzList').addEventListener('click', () => { closeOverlay('splashOverlay'); openOverlay('juzOverlay'); });
+        document.getElementById('juzContinueBtn').addEventListener('click', () => closeOverlay('juzOverlay'));
+
+        // تنظیمات
+        document.getElementById('themeToggle').addEventListener('click', toggleThemeMode);
+        document.getElementById('darkUiToggle').addEventListener('click', toggleDarkUI);
+        document.getElementById('settingsClose').addEventListener('click', () => closeOverlay('settingsOverlay'));
+        document.getElementById('themeZardBtn').addEventListener('click', () => setThemeStyle('zard'));
+        document.getElementById('themeAbiBtn').addEventListener('click', () => setThemeStyle('abi'));
+
+        // زبان
+        document.getElementById('langFa').addEventListener('click', () => setLanguage('fa'));
+        document.getElementById('langAr').addEventListener('click', () => setLanguage('ar'));
+
+        // دانلود
+        document.getElementById('dlStandard').addEventListener('click', () => startDownload('standard'));
+        document.getElementById('dlHQ').addEventListener('click', () => startDownload('hq'));
+        document.getElementById('downloadClose').addEventListener('click', () => closeOverlay('downloadOverlay'));
+
+        // نصب PWA
+        document.getElementById('installPwaBtn').addEventListener('click', async () => {
+            if (!deferredPrompt) return;
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log('User response to install prompt:', outcome);
+            deferredPrompt = null;
+            document.getElementById('installPwaBtn').style.display = 'none';
+        });
+
+        // مدیریت حافظه
+        const storageToggle = document.getElementById('storageToggle');
+        const deleteContainer = document.getElementById('deleteOptionContainer');
+        storageToggle.addEventListener('click', () => {
+            if (deleteContainer.style.display === 'none') {
+                deleteContainer.style.display = 'block';
+            } else {
+                deleteContainer.style.display = 'none';
+            }
+        });
+        document.getElementById('deleteOfflineBtn').addEventListener('click', deleteOfflineFiles);
+
+        // تب‌ها
+        const tabJuz = document.getElementById('tabJuzBtn');
+        const tabSurah = document.getElementById('tabSurahBtn');
+        const contentJuz = document.getElementById('juzTabContent');
+        const contentSurah = document.getElementById('surahTabContent');
+        tabJuz.addEventListener('click', () => {
+            tabJuz.classList.add('active');
+            tabSurah.classList.remove('active');
+            contentJuz.style.display = 'block';
+            contentSurah.style.display = 'none';
+        });
+        tabSurah.addEventListener('click', () => {
+            tabSurah.classList.add('active');
+            tabJuz.classList.remove('active');
+            contentSurah.style.display = 'block';
+            contentJuz.style.display = 'none';
+            rebuildSurahGrid();
+        });
+
+        // بستن مودال‌ها با کلیک روی backdrop
+        ['juzOverlay', 'settingsOverlay', 'downloadOverlay'].forEach(id => {
+            const el = document.getElementById(id);
+            el.querySelector('.overlay-backdrop').addEventListener('click', () => closeOverlay(id));
+        });
+
+        // ================== رویدادهای لمسی ==================
+        const swipeArea = document.getElementById('swipeArea');
+        let touchstartX = 0, touchstartY = 0, touchendX = 0, touchendY = 0, touchStartTime = 0;
+        swipeArea.addEventListener('touchstart', e => {
+            if (e.touches.length >= 2) {
+                initialPinchDistance = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+                isPanning = false;
+            } else if (e.touches.length === 1) {
+                touchstartX = e.touches[0].clientX; touchstartY = e.touches[0].clientY;
+                touchStartTime = Date.now(); hasMoved = false;
+                if (currentScale > 1) isPanning = true;
+            }
+        }, { passive: false });
+        swipeArea.addEventListener('touchmove', e => {
+            e.preventDefault(); hasMoved = true;
+            if (e.touches.length >= 2 && initialPinchDistance) {
+                let dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+                currentScale = Math.min(Math.max(1, currentScale * (dist / initialPinchDistance)), 4);
+                initialPinchDistance = dist;
+                applyTransform(false);
+            } else if (e.touches.length === 1 && isPanning && currentScale > 1) {
+                translateX = lastTranslateX + (e.touches[0].clientX - touchstartX);
+                translateY = lastTranslateY + (e.touches[0].clientY - touchstartY);
+                applyTransform(false);
+            }
+        }, { passive: false });
+        swipeArea.addEventListener('touchend', e => {
+            if (e.touches.length > 0) {
+                initialPinchDistance = null;
+                if (e.touches.length === 1 && currentScale > 1) {
+                    touchstartX = e.touches[0].clientX; touchstartY = e.touches[0].clientY;
+                    lastTranslateX = translateX; lastTranslateY = translateY; isPanning = true;
+                }
+                return;
+            }
+            initialPinchDistance = null;
+            if (isPanning) { lastTranslateX = translateX; lastTranslateY = translateY; isPanning = false; }
+            if (!hasMoved) {
+                let now = Date.now();
+                if (now - lastTapTime < 300 && now - lastTapTime > 0) { resetZoom(); lastTapTime = 0; return; }
+                lastTapTime = now;
+            } else lastTapTime = 0;
+
+            if (currentScale <= 1.05 && e.changedTouches.length === 1 && hasMoved) {
+                touchendX = e.changedTouches[0].clientX; touchendY = e.changedTouches[0].clientY;
+                let diffX = Math.abs(touchendX - touchstartX), diffY = Math.abs(touchendY - touchstartY);
+                let timeDiff = Date.now() - touchStartTime;
+                if (diffX > 80 && diffX > diffY * 2 && timeDiff < 600) {
+                    if (touchendX > touchstartX) nextPage(); else prevPage();
+                }
+            }
+        }, { passive: false });
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowLeft') { e.preventDefault(); nextPage(); }
+            if (e.key === 'ArrowRight') { e.preventDefault(); prevPage(); }
+        });
+
+        window.addEventListener('resize', updatePages);
+        window.addEventListener('orientationchange', () => setTimeout(updatePages, 50));
+
+        // ================== مقداردهی اولیه ==================
+        (function init() {
+            applyTheme();
+            setLanguage(currentLang);
+            buildJuzGrid();
+            rebuildSurahGrid();
+            let saved = localStorage.getItem('lastQuranFile');
+            if (saved && !isNaN(parseInt(saved))) currentFile = parseInt(saved);
+            updatePages();
+            caches.open('quran-cache-v1').then(cache => {
+                cache.match('images/Quran003.jpg').then(res => { if (res) setDownloadedUI(); });
+            });
+        })();
+    </script>
 </body>
 </html>
