@@ -465,7 +465,7 @@
         .splash-link a:hover { color: var(--accent); }
         .splash-link svg { width: 15px; height: 15px; fill: currentColor; }
 
-        /* JUZ/Surah overlay */
+        /* JUZ/Surah overlay (بدون دکمه ادامه) */
         .juz-overlay { z-index: 2500; }
         .juz-card {
             position: relative;
@@ -484,26 +484,6 @@
             flex-direction: column;
             animation: cardIn 0.3s ease;
         }
-        .juz-continue-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 14px;
-            border-radius: 16px;
-            border: 1px solid var(--accent);
-            background: var(--accent-soft);
-            color: var(--accent);
-            font-family: 'Vazirmatn', sans-serif;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.25s;
-            margin-bottom: 18px;
-            flex-shrink: 0;
-        }
-        .juz-continue-btn svg { width: 18px; height: 18px; fill: currentColor; }
-        .juz-continue-btn:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: var(--shadow-md); }
 
         .tab-bar {
             display: flex;
@@ -632,7 +612,6 @@
             margin-top: 2px;
         }
 
-        /* راهنمای کلی جدید */
         .guide-intro {
             text-align: justify;
             background: var(--bg-tertiary);
@@ -799,14 +778,10 @@
         </div>
     </div>
 
-    <!-- مودال اجزاء و سوره‌ها -->
+    <!-- مودال اجزاء و سوره‌ها (بدون دکمه ادامه) -->
     <div class="overlay juz-overlay" id="juzOverlay">
         <div class="overlay-backdrop"></div>
         <div class="juz-card">
-            <button class="juz-continue-btn" id="juzContinueBtn">
-                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                <span id="juzContinueText">متابعة التلاوة</span>
-            </button>
             <div class="tab-bar">
                 <button class="tab-btn active" id="tabJuzBtn">الأجزاء</button>
                 <button class="tab-btn" id="tabSurahBtn">السور</button>
@@ -898,7 +873,7 @@
         <div class="modal-card">
             <div class="modal-header">
                 <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                <span id="downloadTitle">راهنمای نصب و دانلود آفلاین</span> <!-- عنوان جدید -->
+                <span id="downloadTitle">راهنمای نصب و دانلود آفلاین</span>
             </div>
 
             <!-- متن راهنمای کلی جدید (justify) -->
@@ -1022,14 +997,13 @@
             }
         });
 
-        // ================== ترجمه (فارسی و عربی) با اضافات جدید ==================
+        // ================== ترجمه (فارسی و عربی) ==================
         const translations = {
             fa: {
                 splashSubtitle: 'به نرم‌افزار قرآن کریم خوش آمدید',
                 splashContinue: 'ادامه مطالعه',
                 splashJuz: 'فهرست اجزاء و سوره‌ها',
                 splashLink: 'پیشنهادات و نظریات',
-                juzContinue: 'ادامه تلاوت',
                 settingsTitle: 'تنظیمات',
                 themeLabel: 'تم اصلی',
                 languageLabel: 'زبان',
@@ -1038,7 +1012,7 @@
                 storageLabel: 'مدیریت حافظه',
                 deleteBtn: 'حذف فایل‌های آفلاین',
                 closeBtn: 'بستن',
-                downloadTitle: 'راهنمای نصب و دانلود آفلاین', // عنوان جدید
+                downloadTitle: 'راهنمای نصب و دانلود آفلاین',
                 downloadDesc: 'کیفیت مناسب خود را انتخاب کنید:',
                 standard: 'استاندارد (۷۰ مگابایت)',
                 standardSub: 'مناسب موبایل و تبلت',
@@ -1066,7 +1040,6 @@
                 nightMode: 'حالت شب',
                 lightBg: 'پس‌زمینه روشن',
                 darkBg: 'پس‌زمینه تیره',
-                downloadSuccess: 'دانلود با موفقیت انجام شد!',
                 deleteSuccess: 'فایل‌های آفلاین حذف شدند.',
                 downloadError: 'خطا در دانلود!',
                 deleteError: 'خطا در حذف!',
@@ -1084,7 +1057,6 @@
                 splashContinue: 'متابعة القراءة',
                 splashJuz: 'قائمة الأجزاء والسور',
                 splashLink: 'اقتراحات وملاحظات',
-                juzContinue: 'متابعة التلاوة',
                 settingsTitle: 'الإعدادات',
                 themeLabel: 'السمة الرئيسية',
                 languageLabel: 'اللغة',
@@ -1093,7 +1065,7 @@
                 storageLabel: 'إدارة التخزين',
                 deleteBtn: 'حذف الملفات المحفوظة',
                 closeBtn: 'إغلاق',
-                downloadTitle: 'دليل التثبيت والتنزيل دون اتصال', // عنوان جدید عربی
+                downloadTitle: 'دليل التثبيت والتنزيل دون اتصال',
                 downloadDesc: 'اختر الجودة المناسبة:',
                 standard: 'قياسي (۷۰ ميغابايت)',
                 standardSub: 'مناسب للجوال والتابلت',
@@ -1121,7 +1093,6 @@
                 nightMode: 'وضع الليل',
                 lightBg: 'خلفية فاتحة',
                 darkBg: 'خلفية داكنة',
-                downloadSuccess: 'تم التحميل بنجاح!',
                 deleteSuccess: 'تم حذف الملفات غير المتصلة.',
                 downloadError: 'خطأ في التحميل!',
                 deleteError: 'خطأ في الحذف!',
@@ -1164,7 +1135,6 @@
             document.getElementById('splashContinueText').textContent = t.splashContinue;
             document.getElementById('splashJuzText').textContent = t.splashJuz;
             document.getElementById('splashLinkText').textContent = t.splashLink;
-            document.getElementById('juzContinueText').textContent = t.juzContinue;
             document.getElementById('settingsTitle').textContent = t.settingsTitle;
             document.getElementById('themeLabel').textContent = t.themeLabel;
             document.getElementById('languageLabel').textContent = t.languageLabel;
@@ -1603,7 +1573,6 @@
         document.getElementById('navLeft').addEventListener('click', nextPage);
         document.getElementById('splashContinue').addEventListener('click', () => closeOverlay('splashOverlay'));
         document.getElementById('splashJuzList').addEventListener('click', () => { closeOverlay('splashOverlay'); openOverlay('juzOverlay'); });
-        document.getElementById('juzContinueBtn').addEventListener('click', () => closeOverlay('juzOverlay'));
 
         // تنظیمات
         document.getElementById('themeToggle').addEventListener('click', toggleThemeMode);
