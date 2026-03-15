@@ -113,7 +113,51 @@
             --scrollbar-track: rgba(184, 134, 11, 0.08);
         }
 
-        /* فیلتر شب ثابت */
+        /* تم زرد - شب (اختیاری) */
+        body.theme-zard.night-mode {
+            --bg-primary: #1a150f;
+            --bg-secondary: #2a231c;
+            --bg-tertiary: #3a3128;
+            --bg-elevated: rgba(42, 35, 28, 0.92);
+            --text-primary: #f0e8e0;
+            --text-secondary: #d0c0b0;
+            --text-muted: #a09080;
+            --border-light: rgba(255, 255, 255, 0.1);
+            --border-hover: rgba(255, 255, 255, 0.2);
+            --border-decorative: rgba(200, 169, 81, 0.25);
+            --accent: #e6b422;
+            --accent-hover: #ffcc33;
+            --accent-soft: rgba(230, 180, 34, 0.2);
+            --danger: #ff7f7f;
+            --danger-soft: rgba(255, 127, 127, 0.15);
+            --modal-bg: #2a231c;
+            --card-bg: rgba(42, 35, 28, 0.88);
+            --scrollbar-thumb: #e6b422;
+            --scrollbar-track: rgba(230, 180, 34, 0.08);
+        }
+
+        /* تم زرد - dark-ui (بدون تغییر شب) */
+        body.theme-zard.dark-ui:not(.night-mode) {
+            --bg-primary: #2a231c;
+            --bg-secondary: #3a3128;
+            --bg-tertiary: #4a3f34;
+            --bg-elevated: rgba(58, 49, 40, 0.92);
+            --text-primary: #f0e8e0;
+            --text-secondary: #d0c0b0;
+            --text-muted: #a09080;
+            --border-light: rgba(255, 255, 255, 0.1);
+            --border-hover: rgba(255, 255, 255, 0.2);
+            --border-decorative: rgba(200, 169, 81, 0.2);
+            --accent: #e6b422;
+            --accent-hover: #ffcc33;
+            --accent-soft: rgba(230, 180, 34, 0.2);
+            --modal-bg: #3a3128;
+            --card-bg: rgba(58, 49, 40, 0.88);
+            --scrollbar-thumb: #e6b422;
+            --scrollbar-track: rgba(230, 180, 34, 0.08);
+        }
+
+        /* فیلتر شب ثابت برای تصاویر */
         body.night-mode {
             --image-filter: invert(0.9) brightness(1.1) contrast(1.05) hue-rotate(180deg);
         }
@@ -128,11 +172,6 @@
         @keyframes floatParticles {
             0%, 100% { transform: translate(0, 0) scale(1); }
             50% { transform: translate(-20px, -20px) scale(1.05); }
-        }
-
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(30px); }
-            to { opacity: 1; transform: translateX(0); }
         }
 
         body.theme-modern {
@@ -162,13 +201,11 @@
             --scrollbar-thumb: #667eea;
             --scrollbar-track: rgba(102, 126, 234, 0.1);
             
-            /* انیمیشن پس‌زمینه */
             background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1a1a2e);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
         }
 
-        /* افکت ذرات معلق فقط در تم مدرن */
         body.theme-modern::before {
             content: '';
             position: fixed;
@@ -182,14 +219,12 @@
             animation: floatParticles 20s ease-in-out infinite;
         }
 
-        /* استایل‌های اختصاصی تم مدرن برای المان‌های موجود */
+        /* استایل‌های اختصاصی تم مدرن برای المان‌ها */
         body.theme-modern .float-btn {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: var(--shadow-md);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         body.theme-modern .float-btn:hover {
@@ -204,18 +239,15 @@
         body.theme-modern .dialog-card {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
             backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37), 0 0 60px rgba(102, 126, 234, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
             color: var(--text-primary);
         }
 
         body.theme-modern .splash-card {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
         }
 
         body.theme-modern .splash-title {
@@ -223,37 +255,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 4px 20px rgba(245, 175, 25, 0.3);
-        }
-
-        body.theme-modern .splash-divider {
-            color: #ffd700;
-        }
-
-        body.theme-modern .splash-divider::before,
-        body.theme-modern .splash-divider::after {
-            background: linear-gradient(90deg, transparent, #ffd700, transparent);
-        }
-
-        body.theme-modern .splash-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            color: white;
-            transition: all 0.3s ease;
-        }
-
-        body.theme-modern .splash-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.4);
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
-        }
-
-        body.theme-modern .splash-btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
-            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
         }
 
         body.theme-modern .tab-bar {
@@ -267,8 +268,6 @@
             background: transparent;
             color: rgba(255, 255, 255, 0.6);
             border: none;
-            border-radius: 50px;
-            transition: all 0.2s;
         }
 
         body.theme-modern .tab-btn.active {
@@ -281,9 +280,7 @@
         body.theme-modern .surah-item {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
             color: white;
-            transition: all 0.3s;
         }
 
         body.theme-modern .juz-item:hover,
@@ -300,17 +297,6 @@
             border-radius: 16px;
             margin: 8px 0;
             padding: 16px 20px;
-            transition: all 0.2s;
-        }
-
-        body.theme-modern .setting-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
-            transform: translateX(4px);
-        }
-
-        body.theme-modern .setting-label svg {
-            fill: #667eea;
         }
 
         body.theme-modern .theme-selector-btn,
@@ -319,8 +305,6 @@
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
             color: white;
-            border-radius: 30px;
-            transition: all 0.2s;
         }
 
         body.theme-modern .theme-selector-btn.active,
@@ -352,8 +336,6 @@
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             color: white;
-            border-radius: 50px;
-            animation: slideInRight 0.3s ease;
         }
 
         body.theme-modern .close-btn {
@@ -371,44 +353,9 @@
             background: linear-gradient(135deg, #f5af19 0%, #f12711 100%);
             border: none;
             color: white;
-            box-shadow: 0 4px 20px rgba(245, 175, 25, 0.4);
         }
 
-        body.theme-modern .install-btn:hover {
-            box-shadow: 0 8px 30px rgba(245, 175, 25, 0.6);
-            transform: translateY(-3px);
-        }
-
-        /* اسکرول بار مدرن برای تم مدرن */
-        body.theme-modern ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        body.theme-modern ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            background-clip: content-box;
-        }
-
-        /* ==================== انیمیشن کلیک (لمس) برای همه تم‌ها ==================== */
-        .float-btn:active,
-        .splash-btn:active,
-        .juz-item:active,
-        .surah-item:active,
-        .tab-btn:active,
-        .theme-selector-btn:active,
-        .lang-btn:active,
-        .settings-btn-row:active,
-        .delete-option:active,
-        .close-btn:active,
-        .install-btn:active,
-        .nav-btn:active,
-        .dl-option:active {
-            transform: scale(0.95);
-            transition: transform 0.1s ease;
-        }
-
-        /* استایل‌های عمومی (بدون تغییر) */
+        /* ==================== استایل‌های عمومی ==================== */
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
@@ -993,11 +940,13 @@
             user-select: none;
             -webkit-user-drag: none;
         }
+
+        /* ==================== دکمه‌های ناوبری بهبود یافته ==================== */
         .nav-btn {
             position: absolute;
             top: 0;
             height: 100%;
-            width: 48px;
+            width: 90px;               /* افزایش عرض برای دسترسی آسان‌تر */
             background: transparent;
             color: var(--text-muted);
             cursor: pointer;
@@ -1006,17 +955,31 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            transition: all 0.3s ease;
+            opacity: 0.2;               /* کمی قابل مشاهده بودن دائمی */
+            transition: opacity 0.3s ease, color 0.3s ease, background 0.3s ease;
+            font-size: 2rem;
         }
         .nav-btn:hover {
             opacity: 1;
             background: linear-gradient(to var(--grad-dir, left), var(--bg-elevated), transparent);
             color: var(--accent);
         }
-        .nav-btn svg { width: 26px; height: 26px; fill: currentColor; }
-        .nav-right { right: 0; --grad-dir: left; }
-        .nav-left { left: 0; --grad-dir: right; }
+        .nav-btn svg { 
+            width: 32px; 
+            height: 32px; 
+            fill: currentColor; 
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+        .nav-right { 
+            right: 0; 
+            --grad-dir: left; 
+            background: linear-gradient(to left, rgba(0,0,0,0.1), transparent);
+        }
+        .nav-left { 
+            left: 0; 
+            --grad-dir: right; 
+            background: linear-gradient(to right, rgba(0,0,0,0.1), transparent);
+        }
 
         @media (max-width: 768px) {
             .quran-container { padding: 8px; gap: 0; }
@@ -1217,7 +1180,7 @@
 
     <div class="progress-pill" id="progressPill"></div>
 
-    <!-- محتوای اصلی -->
+    <!-- محتوای اصلی با دکمه‌های ناوبری بهبود یافته -->
     <div class="main-content" id="swipeArea">
         <button class="nav-btn nav-right" id="navRight" title="الصفحة السابقة">
             <svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
@@ -1522,8 +1485,8 @@
                 else if (currentThemeMode === 'dark-ui') meta.setAttribute('content', '#1a2538');
                 else meta.setAttribute('content', '#f0f7ff');
             } else if (currentThemeStyle === 'zard') {
-                if (currentThemeMode === 'night') meta.setAttribute('content', '#0F1923');
-                else if (currentThemeMode === 'dark-ui') meta.setAttribute('content', '#1A2538');
+                if (currentThemeMode === 'night') meta.setAttribute('content', '#1a150f');
+                else if (currentThemeMode === 'dark-ui') meta.setAttribute('content', '#2a231c');
                 else meta.setAttribute('content', '#FDF8F0');
             } else if (currentThemeStyle === 'modern') {
                 meta.setAttribute('content', '#0f0c29');
@@ -1546,14 +1509,12 @@
         }
 
         function toggleThemeMode() {
-            // برای تم مدرن نیز حالت شب/روز فعال است (فقط تصاویر invert می‌شوند)
             if (currentThemeMode === 'day') setThemeMode('night');
             else if (currentThemeMode === 'night') setThemeMode('day');
             else setThemeMode('day');
         }
 
         function toggleDarkUI() {
-            if (currentThemeStyle === 'modern') return;
             if (currentThemeMode === 'night') return;
             if (currentThemeMode === 'dark-ui') setThemeMode('day');
             else setThemeMode('dark-ui');
@@ -1563,7 +1524,6 @@
             const btn = document.getElementById('themeToggle');
             if (!btn) return;
             const t = translations[currentLang];
-            // همیشه دکمه را نمایش بده (حتی برای تم مدرن)
             btn.style.display = 'flex';
             if (currentThemeMode === 'night') {
                 btn.innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/></g></svg> ${t.dayMode}`;
